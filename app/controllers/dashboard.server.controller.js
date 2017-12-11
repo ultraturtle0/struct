@@ -8,17 +8,7 @@ exports.dashboard = (function(req, res, next) {
 });
 
 exports.jobs = (function(req, res, next) {
+    console.log('getting here tho');
     res.render('jobs', {});
 });
 
-exports.new_job = (function(req, res, next) {
-    console.log(req.body);
-    const job = new Job(req.body);
-    job.save((err) => {
-        if (err) {
-            const message = getErrorMessage(err);
-            console.log(message);
-        }
-        return res.redirect('/');
-    });
-});

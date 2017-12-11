@@ -25,6 +25,7 @@ module.exports = function() {
     app.set('view engine', 'ejs');
 
     require('../app/routes/dashboard.js')(app);
+    require('../app/routes/api.js')(app);
     
     app.use('/lib', express.static('./node_modules'));
     app.use('/public', express.static('./public'));

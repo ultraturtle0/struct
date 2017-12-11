@@ -1,8 +1,9 @@
 angular.module('Database')
-    .controller('JobController' ['$scope', 'API', function($scope, API) {
+    .controller('JobController', ['$scope', 'JobService', function($scope, JobService) {
         
         $scope.getJobs = function(query) {
-            API
+            JobService
+                .jobs
                 .query(query)
                 .$promise
                 .then(function(data) {
@@ -19,3 +20,4 @@ angular.module('Database')
         init();
     }]);
 
+ 

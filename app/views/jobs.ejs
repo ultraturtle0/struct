@@ -2,10 +2,11 @@
 <html>
     <head>
         <title>Jobs - Sound Sport Surfaces</title>
-        <script type="text/javascript" src="/lib/angular/angular.min.js">
-        <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js">
+        <script type="text/javascript" src="/lib/angular/angular.js"></script>
+        <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
     </head>
     <body ng-app="Database" ng-controller="JobController">
+        <p>we're getting here</p>
         <table>
             <tr ng-repeat="job in jobs">
                 <td>{{ job.JOB_NUMBER }}</td>
@@ -15,8 +16,15 @@
                 <td>{{ job.CUSTOMER_EMAIL }}</td>
             </tr>
         </table>
-        <script type="text/javascript" src="/public/js/controllers/jobs.client.controllers.js">
-        <script type="text/javascript" src="/public/js/services/job.service.js">
+
+        <!-- application -->
+        <script type="text/javascript" src="/public/js/Database.js"></script>
+
+        <!-- services -->
+        <script type="text/javascript" src="/public/js/services/job.service.js"></script>
+
+        <!-- controllers -->
+        <script type="text/javascript" src="/public/js/controllers/jobs.client.controllers.js"></script>
     </body>
 </html>
 
