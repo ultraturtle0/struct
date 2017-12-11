@@ -8,7 +8,9 @@ exports.dashboard = (function(req, res, next) {
 });
 
 exports.jobs = (function(req, res, next) {
-    console.log('getting here tho');
     res.render('jobs', {});
 });
 
+exports.emps = (function(req, res, next) {
+    res.render('emps', {});
+});

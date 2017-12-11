@@ -11,6 +11,7 @@ const JobSchema = new Schema({
     autoIndex: false
 });
 
-mongoose.model('Job', JobSchema).on('index', (err) => {
-    console.log('indexing error: ' + err.message);
-});
+mongoose.model('Job', JobSchema)
+	.on('index', (err) => {
+	    console.log('indexing error: ' + err.message);
+	});

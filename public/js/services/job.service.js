@@ -14,8 +14,8 @@ angular.module('Database')
                             new_job: true
                         }
                     }
-                })/*,
-            employees: $resource('http://localhost:5000/api/employees', {
+                }),
+            employees: $resource('http://localhost:5000/api/emps', {
                     EMP_NAME: "@EMP_NAME",
                     EMP_PHONE: "@EMP_PHONE",
                     EMP_EMAIL: "@EMP_EMAIL"
@@ -26,7 +26,7 @@ angular.module('Database')
                             new_emp: true
                         }
                     }
-                });*/
+                })
         }
 
         return service;

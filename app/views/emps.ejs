@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Employees - Sound Sport Surfaces</title>
+        <script type="text/javascript" src="/lib/angular/angular.js"></script>
+        <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
+    </head>
+    <body ng-app="Database" ng-controller="EmpController">
+        <table>
+            <tr ng-repeat="emp in emps">
+                <td>{{ emp.EMP_NAME }}</td>
+                <td>{{ emp.EMP_PHONE }}</td>
+                <td>{{ emp.EMP_EMAIL }}</td>
+            </tr>
+        </table>
+
+        <!-- application -->
+        <script type="text/javascript" src="/public/js/Database.js"></script>
+
+        <!-- services -->
+        <script type="text/javascript" src="/public/js/services/job.service.js"></script>
+
+        <!-- controllers -->
+        <script type="text/javascript" src="/public/js/controllers/emps.client.controllers.js"></script>
+    </body>
+</html>
+
