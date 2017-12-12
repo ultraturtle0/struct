@@ -7,4 +7,7 @@ module.exports = (function (app) {
 	app.route('/api/emps')
 		.get(api.emps)
 		.post(api.addemp);
+	app.route('/api/labor')
+		.get(api.labor)
+		.post(api.addlabor);
 }); 

@@ -9,5 +9,8 @@ module.exports = (function(app) {
 
     app.route('/emps')
     	.get(dashboard.emps);
+
+    app.route('/labor')
+    	.get(dashboard.labor);
 });
     

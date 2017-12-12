@@ -6,6 +6,7 @@ mongoose.Promise = require('bluebird');
 module.exports = function() {
     const db = mongoose.connect(config.db);
     require('../app/models/job.server.model.js');
-    require('../app/models/employee.server.model.js')
+    require('../app/models/employee.server.model.js');
+    require('../app/models/labor.server.model.js');
     return db;
 };

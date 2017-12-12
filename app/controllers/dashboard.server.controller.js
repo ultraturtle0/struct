@@ -14,3 +14,7 @@ exports.jobs = (function(req, res, next) {
 exports.emps = (function(req, res, next) {
     res.render('emps', {});
 });
+
+exports.labor = (function(req, res, next) {
+    res.render('labor', {});
+});

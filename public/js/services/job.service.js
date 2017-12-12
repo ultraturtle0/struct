@@ -26,6 +26,13 @@ angular.module('Database')
                             new_emp: true
                         }
                     }
+                }),
+            labor: $resource('http://localhost:5000/api/labor', {
+                    /* JOB_ID: "@JOB_ID",
+                    EMP_ID: "@EMP_ID",
+                    TIME_START: "@TIME_START",
+                    TIME_END: "@TIME_END",
+                    DESCRIPTION: "@DESCRIPTION"*/
                 })
         }
 

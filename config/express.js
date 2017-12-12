@@ -11,9 +11,9 @@ module.exports = function() {
         app.use(morgan('dev'))
         : app.use(morgan('combined'));
 
-    app.use(bodyParser.urlencoded({
+    app.use(bodyParser()); /* .urlencoded({
         extended: true
-    }));
+    })); */
 
     app.use(session({
         saveUninitialized: true,

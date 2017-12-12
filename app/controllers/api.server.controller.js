@@ -49,3 +49,28 @@ exports.addemp = function(req, res, next) {
         return res.redirect('/emps');
     });
 };
+
+exports.labor = function(req, res, next) {
+	var Labor = mongoose.model('Labor');
+	var query = req.query;
+	Labor
+		.find(query, function (err, labors) {
+			if (err) {
+				return next(err);
+			}
+			res.json(labors);
+		});
+};
+
+exports.addlabor = function(req, res, next) {
+	console.log(req.body);
+	var Labor = mongoose.model('Labor');
+    const labor = new Labor(req.body);
+    labor.save((err) => {
+        if (err) {
+            const message = getErrorMessage(err);
+            console.log(message);
+        }
+        return res.redirect('/labor');
+    });
+};
