@@ -8,7 +8,7 @@
     <body ng-app="Database" ng-controller="JobController">
         <p>we're getting here</p>
         <table>
-            <tr ng-repeat="job in jobs">
+            <tr ng-repeat="job in jobs | orderBy:'-JOB_NUMBER'">
                 <td>{{ job.JOB_NUMBER }}</td>
                 <td>{{ job.JOB_NAME }}</td>
                 <td>{{ job.CUSTOMER_NAME }}</td>

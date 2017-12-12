@@ -32,6 +32,16 @@ angular.module('Database')
         $scope.select = {};
 
         $scope.laborSubmit = function () {
+            var date = $scope.select.DATE;
+            $scope.select.TIME_START.setFullYear(date.getFullYear());
+            $scope.select.TIME_END.setFullYear(date.getFullYear());
+            $scope.select.TIME_START.setMonth(date.getMonth());
+            $scope.select.TIME_END.setMonth(date.getMonth());
+            $scope.select.TIME_START.setDate(date.getDate());
+            $scope.select.TIME_END.setDate(date.getDate());
+            $scope.select.HOURS = ($scope.select.TIME_END - $scope.select.TIME_START) / 3600000;
+            console.log($scope.select.HOURS);
+            delete $scope.select.DATE;
             console.log($scope.select);
             JobService
                 .labor

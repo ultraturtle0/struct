@@ -54,11 +54,15 @@ exports.labor = function(req, res, next) {
 	var Labor = mongoose.model('Labor');
 	var query = req.query;
 	Labor
-		.find(query, function (err, labors) {
+		.find(query)
+		.populate('JOB_ID')
+		.populate('EMP_ID')
+		.exec(function(err, data) {
+			console.log(data);
 			if (err) {
 				return next(err);
 			}
-			res.json(labors);
+			res.json(data);
 		});
 };
 

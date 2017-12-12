@@ -1,20 +1,25 @@
 angular.module('Database')
-    .controller('EmpController', ['$scope', 'JobService', function($scope, JobService) {
+    .controller('LaborController', ['$scope', 'JobService', 'daterangeFilter', function($scope, JobService, daterangeFilter) {
         
-        $scope.getEmps = function(query) {
+        $scope.getLabors = function(query) {
             JobService
                 .labor
                 .query(query)
                 .$promise
                 .then(function(data) {
                     if (data.length) {
+                        console.log(data);
                         $scope.labors = data;
                     }
                 });
         };
 
         var init = function() {
-            $scope.getEmps({});
+            $scope.getLabors({});
+            $scope.focus = {};
+            $scope.$watch('focus.time_start', function () {
+                console.log($scope.focus.time_start);
+            });
         }
 
         init();
