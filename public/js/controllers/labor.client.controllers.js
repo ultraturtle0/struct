@@ -16,7 +16,9 @@ angular.module('Database')
 
         var init = function() {
             $scope.getLabors({});
-            $scope.focus = {};
+            $scope.focus = {
+                time_end: new Date()
+            };
             $scope.$watch('focus.time_start', function () {
                 console.log($scope.focus.time_start);
             });

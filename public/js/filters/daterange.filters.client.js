@@ -2,7 +2,7 @@ angular.module('Database')
 	.filter("daterange", function () {
 		return function(items, startDate, endDate) {
 			var result = [];
-			if (!startDate && !endDate) {
+			if (!startDate || !endDate) {
 				return items;
 			}
 			angular.forEach(items, function(value) {
