@@ -15,6 +15,7 @@ angular.module('Database')
                         }
                     }
                 }),
+
             employees: $resource('http://localhost:5000/api/emps', {
                     EMP_NAME: "@EMP_NAME",
                     EMP_PHONE: "@EMP_PHONE",
@@ -27,13 +28,17 @@ angular.module('Database')
                         }
                     }
                 }),
+
             labor: $resource('http://localhost:5000/api/labor', {
                     JOB_ID: "@JOB_ID",
                     EMP_ID: "@EMP_ID",
                     TIME_START: "@TIME_START",
                     TIME_END: "@TIME_END",
+                    CATEGORY: "@CATEGORY",
+                    SUBCATEGORY: "@SUBCATEGORY",
                     DESCRIPTION: "@DESCRIPTION"
                 }),
+
             travel: $resource('http://localhost:5000/api/travel', {
                     JOB_ID_START: "@JOB_ID_START",
                     JOB_ID_END: "@JOB_ID_END",
@@ -43,6 +48,10 @@ angular.module('Database')
                     VEHICLE_ID: "@VEHICLE_ID",
                     TIME_START: "@TIME_START",
                     TIME_END: "@TIME_END"
+                }),
+
+            trades: $resource('http://localhost:5000/api/trades', {
+                    
                 })
         }
 

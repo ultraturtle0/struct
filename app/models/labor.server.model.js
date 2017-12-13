@@ -14,7 +14,6 @@ const LaborSchema = new Schema({
 	},
 	TIME_START: Date,
 	TIME_END: Date,
-	HOURS: Number,
 	CATEGORY: [TradeSchema],
 	SUBCATEGORY: [WorkSchema],
 	DESCRIPTION: String

@@ -22,6 +22,16 @@ angular.module('Database')
                         $scope.emps = data;
                     }
                 });
+            JobService
+                .trades
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.trades = data;
+                    }
+                });
         };
 
         var init = function() {
