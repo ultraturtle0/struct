@@ -53,6 +53,10 @@ angular.module('Database')
                     }
                 });
         }
+
+        $scope.travelSubmit = function () {
+            
+        }
         init();
     }]);
 

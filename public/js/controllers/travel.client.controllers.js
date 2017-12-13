@@ -15,12 +15,13 @@ angular.module('Database')
         };
 
         var init = function() {
+            $scope.select = {};
             $scope.getTrips({});
             $scope.focus = {
                 time_end: new Date()
             };
-            $scope.$watch('focus.time_start', function () {
-                console.log($scope.focus.time_start);
+            $scope.$watch('select.JOB_START_ID', function () {
+                console.log($scope.select);
             });
         }
 
