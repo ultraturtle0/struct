@@ -78,3 +78,34 @@ exports.addlabor = function(req, res, next) {
         return res.redirect('/labor');
     });
 };
+
+exports.travel = function(req, res, next) {
+	var Travel = mongoose.model('Travel');
+	var query = req.query;
+	Travel
+		.find(query)
+		.populate('JOB_ID')
+		.populate('EMP_ID')
+		.populate('VEHICLE_ID')
+		.exec(function(err, data) {
+			console.log(data);
+			if (err) {
+				console.log(err);
+				return next(err);
+			}
+			res.json(data);
+		});
+};
+
+exports.addtravel = function(req, res, next) {
+	console.log(req.body);
+	var Travel = mongoose.model('Travel');
+    const travel = new Travel(req.body);
+    travel.save((err) => {
+        if (err) {
+            const message = getErrorMessage(err);
+            console.log(message);
+        }
+        return res.redirect('/travel');
+    });
+};

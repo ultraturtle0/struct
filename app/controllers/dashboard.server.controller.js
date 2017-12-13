@@ -22,3 +22,7 @@ exports.labor = (function(req, res, next) {
 exports.payroll = (function(req, res, next) {
     res.render('payroll', {});
 });
+
+exports.travel = (function(req, res, next) {
+    res.render('travel', {});
+});

@@ -33,6 +33,16 @@ angular.module('Database')
                     TIME_START: "@TIME_START",
                     TIME_END: "@TIME_END",
                     DESCRIPTION: "@DESCRIPTION"
+                }),
+            travel: $resource('http://localhost:5000/api/travel', {
+                    JOB_ID_START: "@JOB_ID_START",
+                    JOB_ID_END: "@JOB_ID_END",
+                    LOC_START: "@LOC_START",
+                    LOC_END: "@LOC_END",
+                    EMP_ID: "@EMP_ID",
+                    VEHICLE_ID: "@VEHICLE_ID",
+                    TIME_START: "@TIME_START",
+                    TIME_END: "@TIME_END"
                 })
         }
 

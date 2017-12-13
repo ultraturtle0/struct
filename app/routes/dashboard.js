@@ -15,5 +15,8 @@ module.exports = (function(app) {
 
     app.route('/payroll')
     	.get(dashboard.payroll);
+
+    app.route('/travel')
+    	.get(dashboard.travel);
 });
     

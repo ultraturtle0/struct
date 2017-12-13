@@ -10,4 +10,7 @@ module.exports = (function (app) {
 	app.route('/api/labor')
 		.get(api.labor)
 		.post(api.addlabor);
+	app.route('/api/travel')
+		.get(api.travel)
+		.post(api.addtravel);
 }); 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Labor - Sound Sport Surfaces</title>
+        <script type="text/javascript" src="/lib/angular/angular.js"></script>
+        <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
+        <script type="text/javascript" src="/lib/moment/moment.js"></script>
+    </head>
+    <body ng-app="Database" ng-controller="TravelController">
+        From Job <input type="text" ng-Model="focus.job1" name="job">
+        To Job <input type="text" ng-Model="focus.job2" name="job">
+        Employee: <input type="text" ng-Model="focus.emp" name="emp">
+        Vehicle: <input type="text" ng-Model="focus.vehicle" name="vehicle">
+        From <input type="date" ng-Model="focus.time_start" name="date_start"> 
+        to <input type="date" ng-Model="focus.time_end" name="date_end">
+        <table>
+            <tr ng-repeat="trip in trips | filter : {JOB_ID_START: {JOB_NUMBER: focus.job1 }} | filter : {JOB_ID_END: {JOB_NUMBER: focus.job2 }} | filter : {EMP_ID: {EMP_NAME: focus.emp }} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START'">
+                <td>{{ trip.JOB_ID_START.JOB_NUMBER }}</td>
+                <td>{{ trip.JOB_ID_END.JOB_NUMBER }}</td>
+                <td>{{ trip.EMP_ID.EMP_NAME }}</td>
+                <td>{{ trip.VEHICLE_ID.VEH_NAME }}</td>
+                <td>{{ trip.TIME_START | date : 'shortDate' }} {{ trip.TIME_START | date : 'hh:mm' }}</td>
+                <td>{{ trip.TIME_END | date : 'shortDate' }} {{ trip.TIME_END | date : 'hh:mm' }}</td>
+                <td>{{ trip.HOURS }}</td>
+                <td>{{ labor.LABOR_TYPE }}</td>
+                <td>{{ labor.DESCRIPTION }}</td>
+            </tr>
+        </table>
+
+        <!-- application -->
+        <script type="text/javascript" src="/public/js/Database.js"></script>
+
+        <!-- filters -->
+        <script type="text/javascript" src="/public/js/filters/daterange.filters.client.js"></script>
+
+        <!-- services -->
+        <script type="text/javascript" src="/public/js/services/job.service.js"></script>
+
+        <!-- controllers -->
+        <script type="text/javascript" src="/public/js/controllers/travel.client.controllers.js"></script>
+    </body>
+</html>
+
