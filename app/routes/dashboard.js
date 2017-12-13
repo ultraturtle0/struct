@@ -6,13 +6,14 @@ module.exports = (function(app) {
 
     app.route('/jobs')
         .get(dashboard.jobs);
-    app.route('/jobs/:number')
-        .get(dashboard.jobs);
 
     app.route('/emps')
     	.get(dashboard.emps);
 
     app.route('/labor')
     	.get(dashboard.labor);
+
+    app.route('/payroll')
+    	.get(dashboard.payroll);
 });
     

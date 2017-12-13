@@ -7,7 +7,7 @@
     </head>
     <body ng-app="Database" ng-controller="EmpController">
         <table>
-            <tr ng-repeat="emp in emps | orderBy 'EMP_NAME'">
+            <tr ng-repeat="emp in emps | orderBy : 'EMP_NAME'">
                 <td>{{ emp.EMP_NAME }}</td>
                 <td>{{ emp.EMP_PHONE }}</td>
                 <td>{{ emp.EMP_EMAIL }}</td>

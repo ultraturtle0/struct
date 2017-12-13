@@ -7,13 +7,13 @@
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
     </head>
     <body ng-app="Database" ng-controller="LaborController">
-        <input type="text" ng-Model="focus.job" name="job">
-        <input type="text" ng-Model="focus.emp" name="emp">
-        <input type="date" ng-Model="focus.time_start" name="date_start">
-        <input type="date" ng-Model="focus.time_end" name="date_end">
+        Job Number: <input type="text" ng-Model="focus.job" name="job">
+        Employee: <input type="text" ng-Model="focus.emp" name="emp">
+        From <input type="date" ng-Model="focus.time_start" name="date_start"> 
+        to <input type="date" ng-Model="focus.time_end" name="date_end">
         <table>
             <tr ng-repeat="labor in labors | filter : {JOB_ID: {JOB_NUMBER: focus.job }} | filter : {EMP_ID: {EMP_NAME: focus.emp }} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START'">
-                <td>{{ labor.JOB_ID.JOB_NUMBER }}</a></td>
+                <td>{{ labor.JOB_ID.JOB_NUMBER }}</td>
                 <td>{{ labor.EMP_ID.EMP_NAME }}</td>
                 <td>{{ labor.TIME_START | date : 'shortDate' }} {{ labor.TIME_START | date : 'hh:mm' }}</td>
                 <td>{{ labor.TIME_END | date : 'shortDate' }} {{ labor.TIME_END | date : 'hh:mm' }}</td>

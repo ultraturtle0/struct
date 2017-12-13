@@ -18,3 +18,7 @@ exports.emps = (function(req, res, next) {
 exports.labor = (function(req, res, next) {
     res.render('labor', {});
 });
+
+exports.payroll = (function(req, res, next) {
+    res.render('payroll', {});
+});

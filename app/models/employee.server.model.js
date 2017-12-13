@@ -5,7 +5,11 @@ const EmpSchema = new Schema({
 	EMP_NAME: String,
 	EMP_PHONE: Number,
 	EMP_EMAIL: String,
-	WAGE: Number
+	WAGE: {
+		type: Number,
+		default: 15,
+	},
+	MILEAGE: Number
 }, {
 	autoIndex: false
 });
