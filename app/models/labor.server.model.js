@@ -1,5 +1,7 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const TradeSchema = mongoose.model('Trade');
+const WorkSchema = mongoose.model('Work');
 
 const LaborSchema = new Schema({
 	JOB_ID: {
@@ -13,10 +15,8 @@ const LaborSchema = new Schema({
 	TIME_START: Date,
 	TIME_END: Date,
 	HOURS: Number,
-	LABOR_TYPE: {
-		type: Schema.Types.ObjectId,
-		ref: 'Work'
-	},
+	CATEGORY: [TradeSchema],
+	SUBCATEGORY: [WorkSchema],
 	DESCRIPTION: String
 }, {
 	autoIndex: false
