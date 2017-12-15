@@ -34,6 +34,14 @@ angular.module('Database')
                 });
         };
 
+        $scope.sumHours = function(filtered) {
+            var hours = 0;
+            filtered.forEach(function(value) {
+                hours += value.HOURS;
+            });
+            return hours;
+        }
+
         var init = function() {
             $scope.getData({});
             $scope.focus = {

@@ -36,7 +36,7 @@ angular.module('Database')
 			console.log("we're in.");
 			var employees = {};
 			$scope.employees = [];
-			angular.forEach(labor_data, function(value) {
+			angular.forEach(labor_data, function(value) { 
 				if (!employees[value.EMP_ID.EMP_NAME]) {
 					employees[value.EMP_ID.EMP_NAME] = {
 						employee: value.EMP_ID.EMP_NAME,
