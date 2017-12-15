@@ -35,6 +35,7 @@ const LaborSchema = new Schema({
 	},
 	TIME_START: Date,
 	TIME_END: Date,
+	HOURS: Number,
 	CATEGORY: {
 		type: Schema.Types.ObjectId,
 		ref: 'Trade'

@@ -11,8 +11,10 @@
         Employee: <input type="text" ng-Model="focus.emp" name="emp">
         From <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
+        Trade: <select ng-options="trade.TRADE_NAME as trade.TRADE_NAME for trade in trades" ng-model="focus.CATEGORY"></select><br>
+        Work: <select ng-options="work.WORK_NAME as work.WORK_NAME for work in works" ng-model="focus.SUBCATEGORY"></select>
         <table>
-            <tr ng-repeat="labor in labors | filter : {JOB_ID: {JOB_NUMBER: focus.job }} | filter : {EMP_ID: {EMP_NAME: focus.emp }} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START'">
+            <tr ng-repeat="labor in labors | filter : {JOB_ID: {JOB_NUMBER: focus.job }} | filter : {EMP_ID: {EMP_NAME: focus.emp }, CATEGORY: {TRADE_NAME: focus.CATEGORY}, SUBCATEGORY: {WORK_NAME: focus.SUBCATEGORY}} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START'">
                 <td>{{ labor.JOB_ID.JOB_NUMBER }}</td>
                 <td>{{ labor.EMP_ID.EMP_NAME }}</td>
                 <td>{{ labor.TIME_START | date : 'shortDate' }} {{ labor.TIME_START | date : 'hh:mm' }}</td>

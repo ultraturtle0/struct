@@ -30,6 +30,13 @@ angular.module('Database')
                     if (data.length) {
                         console.log(data);
                         $scope.works = data;
+                        data.forEach(function(value) {
+                            console.log(value.WORK_NAME);
+                            if (value.WORK_NAME == '') {
+                                $scope.workblank = value._id;
+                            }
+                        });
+                        console.log('blank: ' + $scope.workblank);
                     }
                 });
             JobService
@@ -64,6 +71,9 @@ angular.module('Database')
             delete $scope.select.DATE;
             
             $scope.select.CATEGORY = $scope.focustrade._id;
+            if (!$scope.select.SUBCATEGORY) {
+                $scope.select.SUBCATEGORY = $scope.workblank;
+            }
 
             console.log($scope.select);
             JobService

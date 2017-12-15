@@ -50,7 +50,7 @@ angular.module('Database')
 				console.log('end: ' + value.EMP_ID.EMP_NAME);
 				if (moment(value.TIME_START).isAfter(time_start) &&
 					moment(value.TIME_END).isBefore(time_end)) {
-						console.log('this hits.');
+						console.log(value.HOURS);
 						employees[value.EMP_ID.EMP_NAME].labor.push(value);
 						employees[value.EMP_ID.EMP_NAME].hours += value.HOURS;
 					}

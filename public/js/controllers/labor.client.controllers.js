@@ -1,7 +1,7 @@
 angular.module('Database')
     .controller('LaborController', ['$scope', 'JobService', 'daterangeFilter', function($scope, JobService, daterangeFilter) {
         
-        $scope.getLabors = function(query) {
+        $scope.getData = function(query) {
             JobService
                 .labor
                 .query(query)
@@ -12,10 +12,30 @@ angular.module('Database')
                         $scope.labors = data;
                     }
                 });
+            JobService
+                .works
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.works = data;
+                    }
+                });
+            JobService
+                .trades
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.trades = data;
+                    }
+                });
         };
 
         var init = function() {
-            $scope.getLabors({});
+            $scope.getData({});
             $scope.focus = {
                 time_end: new Date()
             };

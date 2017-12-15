@@ -34,6 +34,7 @@ angular.module('Database')
                     EMP_ID: "@EMP_ID",
                     TIME_START: "@TIME_START",
                     TIME_END: "@TIME_END",
+                    HOURS: "@HOURS",
                     CATEGORY: "@CATEGORY",
                     SUBCATEGORY: "@SUBCATEGORY",
                     DESCRIPTION: "@DESCRIPTION"
