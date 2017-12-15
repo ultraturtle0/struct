@@ -57,6 +57,8 @@ exports.labor = function(req, res, next) {
 		.find(query)
 		.populate('JOB_ID')
 		.populate('EMP_ID')
+		.populate('CATEGORY')
+		.populate('SUBCATEGORY')
 		.exec(function(err, data) {
 			console.log(data);
 			if (err) {
@@ -107,5 +109,70 @@ exports.addtravel = function(req, res, next) {
             console.log(message);
         }
         return res.redirect('/travel');
+    });
+};
+
+exports.work = function(req, res, next) {
+	var Work = mongoose.model('Work');
+	var query = req.query;
+	Work
+		.find(query)
+		.exec(function(err, data) {
+			console.log(data);
+			if (err) {
+				console.log(err);
+				return next(err);
+			}
+			res.json(data);
+		});
+};
+
+exports.addwork = function(req, res, next) {
+	console.log(req.body);
+	var Work = mongoose.model('Work');
+    const work = new Work(req.body);
+    work.save((err) => {
+        if (err) {
+            const message = getErrorMessage(err);
+            console.log(message);
+        }
+        return res.redirect('/');
+    });
+};
+
+exports.trades = function(req, res, next) {
+	var Trade = mongoose.model('Trade');
+	var query = req.query;
+	Trade
+		.find(query)
+		.populate('WORKS')
+		.exec(function(err, data) {
+			console.log(data);
+			if (err) {
+				console.log(err);
+				return next(err);
+			}
+			res.json(data);
+		});
+};
+
+exports.addtrade = function(req, res, next) {
+	console.log('why is the body empty');
+	console.log(req.body);
+	var WORKS = req.body.WORKS;
+	delete req.body.WORKS;
+	var Trade = mongoose.model('Trade');
+    const trade = new Trade(req.body);
+    trade.WORKS = [];
+    WORKS.forEach(function(work) {
+    	console.log(work.WORK_NAME);
+    	trade.WORKS.push(work);
+    });
+    trade.save((err) => {
+        if (err) {
+
+            console.log(err);
+        }
+        return res.redirect('/');
     });
 };

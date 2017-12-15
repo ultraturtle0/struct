@@ -13,4 +13,10 @@ module.exports = (function (app) {
 	app.route('/api/travel')
 		.get(api.travel)
 		.post(api.addtravel);
+	app.route('/api/work')
+		.get(api.work)
+		.post(api.addwork);
+	app.route('/api/trades')
+		.get(api.trades)
+		.post(api.addtrade);
 }); 

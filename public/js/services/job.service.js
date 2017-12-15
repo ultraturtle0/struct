@@ -51,7 +51,10 @@ angular.module('Database')
                 }),
 
             trades: $resource('http://localhost:5000/api/trades', {
-                    
+                }),
+
+            works: $resource('http://localhost:5000/api/work', {
+                    TRADE_NAME: "@WORK_NAME",
                 })
         }
 

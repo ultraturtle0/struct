@@ -22,6 +22,7 @@ angular.module('Database')
             $scope.$watch('focus.time_start', function () {
                 console.log($scope.focus.time_start);
             });
+            console.log($scope.labors);
         }
 
         init();

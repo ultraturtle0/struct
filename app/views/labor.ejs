@@ -18,7 +18,8 @@
                 <td>{{ labor.TIME_START | date : 'shortDate' }} {{ labor.TIME_START | date : 'hh:mm' }}</td>
                 <td>{{ labor.TIME_END | date : 'shortDate' }} {{ labor.TIME_END | date : 'hh:mm' }}</td>
                 <td>{{ labor.HOURS }}</td>
-                <td>{{ labor.LABOR_TYPE }}</td>
+                <td>{{ labor.CATEGORY.TRADE_NAME }}</td>
+                <td>{{ labor.SUBCATEGORY.WORK_NAME }}</td>
                 <td>{{ labor.DESCRIPTION }}</td>
             </tr>
         </table>

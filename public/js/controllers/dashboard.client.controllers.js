@@ -23,6 +23,16 @@ angular.module('Database')
                     }
                 });
             JobService
+                .works
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.works = data;
+                    }
+                });
+            JobService
                 .trades
                 .query(query)
                 .$promise
@@ -52,6 +62,9 @@ angular.module('Database')
             $scope.select.HOURS = ($scope.select.TIME_END - $scope.select.TIME_START) / 3600000;
             console.log($scope.select.HOURS);
             delete $scope.select.DATE;
+            
+            $scope.select.CATEGORY = $scope.focustrade._id;
+
             console.log($scope.select);
             JobService
                 .labor
@@ -64,8 +77,23 @@ angular.module('Database')
                 });
         }
 
-        $scope.travelSubmit = function () {
-            
+        $scope.tradeSubmit = function () {
+            console.log($scope.select.WORKS);
+            var query = {
+                TRADE_NAME: $scope.select.TRADE_NAME,
+                WORKS: $scope.select.WORKS
+            }
+            console.log('query');
+            console.log(query);
+            JobService
+                .trades
+                .save({}, query)
+                .$promise
+                .then(function(err) {
+                    if (err) {
+                        console.log(err)
+                    }
+                });
         }
         init();
     }]);

@@ -27,7 +27,8 @@
             Date: <input type="date" name="DATE" ng-model="select.DATE"><br>
             Start Time: <input type="time" name="TIME_START" ng-model="select.TIME_START"><br>
             Stop Time: <input type="time" name="TIME_END" ng-model="select.TIME_END"><br>
-            <!--Labor: <input type="text" name="EMP_EMAIL"><br>-->
+            Trade: <select ng-options="trade as trade.TRADE_NAME for trade in trades" ng-model="focustrade"></select><br>
+            Work: <select ng-options="work._id as work.WORK_NAME for work in focustrade.WORKS" ng-model="select.SUBCATEGORY"></select><br>
             Description: <input type="text" name="DESCRIPTION" ng-model="select.DESCRIPTION"><br>
             <input type="submit" value="Submit">
         </form>
@@ -42,6 +43,16 @@
             Stop Time: <input type="time" name="TIME_END" ng-model="select.TIME_END"><br>
             <input type="submit" value="Submit">
         </form>
+        <!-- <form id="work" action="/api/work" method="post">
+            Work Name: <input type="text" name="WORK_NAME" ng-model="select.WORK_NAME"><br>
+            <input type="submit" value="Submit">
+        </form>
+        <form id="trade" ng-submit="tradeSubmit()" method="post">
+            Trade Name: <input type="text" name="TRADE_NAME" ng-model="select.TRADE_NAME"><br>
+            Works: <select ng-options="work._id as work.WORK_NAME for work in works" ng-model="select.WORKS" multiple>
+            <input type="submit" value="Submit">
+        </form>
+        <button type="button" ng-click="console.log(select.WORKS);">post WORKS</button> -->
 
         <!-- application -->
         <script type="text/javascript" src="/public/js/Database.js"></script>
