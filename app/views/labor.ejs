@@ -11,8 +11,9 @@
         Employee: <input type="text" ng-Model="focus.emp" name="emp">
         From <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
-        Trade: <select ng-options="trade.TRADE_NAME as trade.TRADE_NAME for trade in trades" ng-model="focus.CATEGORY"></select><br>
+        Trade: <select ng-options="trade.TRADE_NAME as trade.TRADE_NAME for trade in trades" ng-model="focus.CATEGORY"></select>
         Work: <select ng-options="work.WORK_NAME as work.WORK_NAME for work in works" ng-model="focus.SUBCATEGORY"></select>
+        <button type="button" ng-click="saveQuery(filtered)">Save Query</button>
         <table>
             <tr ng-repeat="labor in labors | filter : {JOB_ID: {JOB_NUMBER: focus.job }} | filter : {EMP_ID: {EMP_NAME: focus.emp }, CATEGORY: {TRADE_NAME: focus.CATEGORY}, SUBCATEGORY: {WORK_NAME: focus.SUBCATEGORY}} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START' as filtered">
                 <td>{{ labor.JOB_ID.JOB_NUMBER }}</td>
@@ -24,7 +25,18 @@
                 <td>{{ labor.SUBCATEGORY.WORK_NAME }}</td>
                 <td>{{ labor.DESCRIPTION }}</td>
             </tr>
-            {{ sumHours(filtered) }}
+            <br>
+            <tr ng-repeat="search in searches as queries">
+                <td ng-show="search.job">Job Number: {{ search.job }}</td>
+                <td ng-show="search.emp">Employee: {{ search.emp }}</td>
+                <td ng-show="search.CATEGORY">Trade: {{ search.CATEGORY }}</td>
+                <td ng-show="search.SUBCATEGORY">Work: {{ search.SUBCATEGORY }}</td>
+                <td ng-show="search.time_start">From: {{ search.time_start | date : "short" }} to: {{ search.time_end | date : "short" }}</td>
+                <td ng-show="search.HOURS">Hours: {{ search.HOURS }}</td>
+            </tr>
+            <tr ng-show="searches.length">
+                <td>Total hours: {{ sumHours(queries) }}</td>
+            </tr>
         </table>
 
         <!-- application -->
