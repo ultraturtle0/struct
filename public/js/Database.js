@@ -1,1 +1,1 @@
-angular.module('Database', ['ngResource']);
+angular.module('Database', ['ngResource', 'ngRoute']);

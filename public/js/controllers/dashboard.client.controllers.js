@@ -1,6 +1,5 @@
 angular.module('Database')
-    .controller('DashboardController', ['$scope', 'JobService', function($scope, JobService) {
-        
+    .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', 'JobService', function($scope, $route, $routeParams, $location, JobService) {
         $scope.getData = function(query) {
             JobService
                 .jobs
@@ -54,6 +53,14 @@ angular.module('Database')
         var init = function() {
             $scope.getData({});
         }
+
+        $scope.tabs = [
+            {name: "Labor", url: "/#!add_labor"},
+            {name: "Job", url: "/#!add_job"},
+            {name: "Employee", url: "/#!add_emp"},
+            {name: "Travel", url: "/#!add_travel"}
+        ];
+
         $scope.jobs = [];
         $scope.emps = [];
         $scope.select = {};
