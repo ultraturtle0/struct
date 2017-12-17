@@ -9,5 +9,6 @@ module.exports = function() {
     require('../app/models/employee.server.model.js');
     require('../app/models/labor.server.model.js');
     require('../app/models/travel.server.model.js');
+    require('../app/models/vehicle.server.model.js');
     return db;
 };
