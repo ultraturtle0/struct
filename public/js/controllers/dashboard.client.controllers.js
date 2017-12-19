@@ -1,5 +1,5 @@
 angular.module('Database')
-    .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', 'JobService', function($scope, $route, $routeParams, $location, JobService) {
+    .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', '$templateCache', 'JobService', function($scope, $route, $routeParams, $location, $templateCache, JobService) {
         $scope.getData = function(query) {
             JobService
                 .jobs
@@ -62,6 +62,7 @@ angular.module('Database')
 
         var init = function() {
             $scope.getData({});
+            $templateCache.removeAll();
         }
 
         $scope.tabs = [

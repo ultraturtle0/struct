@@ -1,6 +1,5 @@
 angular.module('Database')
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-		console.log('do we even get here tho');
 		$routeProvider
 			.when('/add_job', {
 				templateUrl: '/public/templates/addjob.ejs'
