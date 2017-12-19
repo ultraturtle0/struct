@@ -18,5 +18,8 @@ module.exports = (function(app) {
 
     app.route('/travel')
     	.get(dashboard.travel);
+
+    app.route('/repairs')
+        .get(dashboard.repairs);
 });
     

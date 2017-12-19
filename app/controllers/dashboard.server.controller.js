@@ -26,3 +26,7 @@ exports.payroll = (function(req, res, next) {
 exports.travel = (function(req, res, next) {
     res.render('travel', {});
 });
+
+exports.repairs = (function(req, res, next) {
+    res.render('repairs', {});
+});

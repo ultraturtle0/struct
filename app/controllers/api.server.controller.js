@@ -182,7 +182,6 @@ exports.vehicles = function(req, res, next) {
 	var query = req.query;
 	Vehicle
 		.find(query)
-		.populate('VEHICLE_REPAIRS')
 		.exec(function(err, data) {
 			console.log(data);
 			if (err) {
@@ -211,6 +210,7 @@ exports.repairs = function(req, res, next) {
 	var query = req.query;
 	Repair
 		.find(query)
+		.populate('VEHICLE')
 		.exec(function(err, data) {
 			console.log(data);
 			if (err) {
