@@ -176,3 +176,79 @@ exports.addtrade = function(req, res, next) {
         return res.redirect('/');
     });
 };
+
+exports.vehicles = function(req, res, next) {
+	var Vehicle = mongoose.model('Vehicle');
+	var query = req.query;
+	Vehicle
+		.find(query)
+		.populate('VEHICLE_REPAIRS')
+		.exec(function(err, data) {
+			console.log(data);
+			if (err) {
+				console.log(err);
+				return next(err);
+			}
+			res.json(data);
+		});
+};
+
+exports.addvehicle = function(req, res, next) {
+	console.log(req.body);
+	var Vehicle = mongoose.model('Vehicle');
+    const vehicle = new Vehicle(req.body);
+    vehicle.save((err) => {
+        if (err) {
+            const message = getErrorMessage(err);
+            console.log(message);
+        }
+        return res.redirect('/');
+    });
+};
+
+exports.repairs = function(req, res, next) {
+	var Repair = mongoose.model('Repair');
+	var query = req.query;
+	Repair
+		.find(query)
+		.exec(function(err, data) {
+			console.log(data);
+			if (err) {
+				console.log(err);
+				return next(err);
+			}
+			res.json(data);
+		});
+};
+
+exports.addrepair = function(req, res, next) {
+	// QUERY _ID FOR VEHICLE AND PUSH
+	console.log(req.body);
+	var vehicle_id = req.body.VEHICLE_ID;
+	delete req.body.VEHICLE_ID;
+
+	var Repair = mongoose.model('Repair');
+	var Vehicle = mongoose.model('Vehicle');
+    const repair = new Repair(req.body);
+    repair.save((err, the_repair) => {
+        if (err) {
+            const message = getErrorMessage(err);
+            console.log(message);
+        }
+
+		Vehicle
+			.findOne({_id: vehicle_id}, function (err, vehicle) {
+				console.log('found:');
+				console.log(vehicle);
+				console.log(the_repair);
+				vehicle.VEHICLE_REPAIRS.push(the_repair._id);
+				vehicle.save((err) => {
+					if (err) {
+						console.log(err);
+					}
+				});
+			});
+
+        return res.redirect('/');
+    });
+};

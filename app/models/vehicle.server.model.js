@@ -2,9 +2,9 @@ var mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const RepairSchema = new Schema({
-	NAME: String,
-	COST: Number,
-	DATE: {
+	REPAIR_NAME: String,
+	REPAIR_COST: Number,
+	REPAIR_DATE: {
 		type: Date,
 		default: Date.now
 	},
@@ -19,8 +19,11 @@ mongoose.model('Repair', RepairSchema)
 	});
 
 const VehicleSchema = new Schema({
-	NAME: String,
-	REPAIRS: [RepairSchema]
+	VEHICLE_NAME: String,
+	VEHICLE_REPAIRS: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Repair'
+	}]
 }, {
 	autoIndex: false
 });

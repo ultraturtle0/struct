@@ -48,6 +48,16 @@ angular.module('Database')
                         $scope.trades = data;
                     }
                 });
+            JobService
+                .vehicles
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.vehicles = data;
+                    }
+                });
         };
 
         var init = function() {
@@ -58,7 +68,8 @@ angular.module('Database')
             {name: "Labor", url: "/#!add_labor"},
             {name: "Job", url: "/#!add_job"},
             {name: "Employee", url: "/#!add_emp"},
-            {name: "Travel", url: "/#!add_travel"}
+            {name: "Travel", url: "/#!add_travel"},
+            {name: "Repairs", url: "/#!add_repair"}
         ];
 
         $scope.jobs = [];
@@ -94,6 +105,22 @@ angular.module('Database')
                 });
         }
 
+        $scope.vehicleSubmit = function () {
+            console.log($scope.select);
+            var query = {
+                VEHICLE_NAME: $scope.select.VEHICLE_NAME
+            }
+            JobService
+                .vehicles
+                .save({}, query)
+                .$promise
+                .then(function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+        }
+
         $scope.tradeSubmit = function () {
             console.log($scope.select.WORKS);
             var query = {
@@ -104,6 +131,27 @@ angular.module('Database')
             console.log(query);
             JobService
                 .trades
+                .save({}, query)
+                .$promise
+                .then(function(err) {
+                    if (err) {
+                        console.log(err)
+                    }
+                });
+        }
+
+        $scope.repairSubmit = function () {
+            var query = {
+                REPAIR_NAME: $scope.select.REPAIR_NAME,
+                REPAIR_COST: $scope.select.REPAIR_COST,
+                REPAIR_DATE: $scope.select.REPAIR_DATE,
+                DESCRIPTION: $scope.select.DESCRIPTION,
+                VEHICLE_ID: $scope.select.VEHICLE
+            }
+            console.log('query');
+            console.log(query);
+            JobService
+                .repairs
                 .save({}, query)
                 .$promise
                 .then(function(err) {

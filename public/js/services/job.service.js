@@ -56,6 +56,18 @@ angular.module('Database')
 
             works: $resource('http://localhost:5000/api/work', {
                     TRADE_NAME: "@WORK_NAME",
+                }),
+
+            vehicles: $resource('http://localhost:5000/api/vehicles', {
+                    VEHICLE_NAME: "@VEHICLE_NAME",
+                }),
+
+            repairs: $resource('http://localhost:5000/api/repairs', {
+                    REPAIR_NAME: "@REPAIR_NAME",
+                    REPAIR_COST: "@REPAIR_COST",
+                    REPAIR_DATE: "@REPAIR_DATE",
+                    DESCRIPTION: "@DESCRIPTION",
+                    VEHICLE_ID: "@VEHICLE_ID"
                 })
         }
 

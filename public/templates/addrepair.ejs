@@ -1,0 +1,12 @@
+<form id="vehicle" ng-submit="vehicleSubmit()" method="post">
+      Vehicle Name: <input type="text" name="VEHICLE_NAME" ng-model="select.VEHICLE_NAME"></select><br>
+      <input type="submit" value="Add Vehicle">
+</form>
+<form id="repairs" ng-submit="repairSubmit()" method="post">
+      Repair Name: <input type="text" ng-model="select.REPAIR_NAME"><br>
+      Vehicle: <select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" ng-model="select.VEHICLE"></select>
+      Cost: <input type="text" ng-model="select.REPAIR_COST"><br>
+      Date: <input type="date" ng-model="select.REPAIR_DATE"><br>
+      Description: <input type="text" ng-model="select.DESCRIPTION"><br>
+      <input type="submit" value="Add Repair">
+</form>

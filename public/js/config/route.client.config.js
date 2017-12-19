@@ -13,5 +13,8 @@ angular.module('Database')
 			})
 			.when('/add_travel', {
 				templateUrl: '/public/templates/addtravel.ejs'
+			})
+			.when('/add_repair', {
+				templateUrl: '/public/templates/addrepair.ejs'
 			});
 	}]);

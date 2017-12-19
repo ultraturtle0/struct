@@ -19,4 +19,10 @@ module.exports = (function (app) {
 	app.route('/api/trades')
 		.get(api.trades)
 		.post(api.addtrade);
+	app.route('/api/repairs')
+		.get(api.repairs)
+		.post(api.addrepair);
+	app.route('/api/vehicles')
+		.get(api.vehicles)
+		.post(api.addvehicle);
 }); 
