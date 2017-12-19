@@ -222,33 +222,14 @@ exports.repairs = function(req, res, next) {
 };
 
 exports.addrepair = function(req, res, next) {
-	// QUERY _ID FOR VEHICLE AND PUSH
 	console.log(req.body);
-	var vehicle_id = req.body.VEHICLE_ID;
-	delete req.body.VEHICLE_ID;
 
 	var Repair = mongoose.model('Repair');
-	var Vehicle = mongoose.model('Vehicle');
     const repair = new Repair(req.body);
-    repair.save((err, the_repair) => {
+    repair.save((err) => {
         if (err) {
-            const message = getErrorMessage(err);
-            console.log(message);
+            console.log(err);
         }
-
-		Vehicle
-			.findOne({_id: vehicle_id}, function (err, vehicle) {
-				console.log('found:');
-				console.log(vehicle);
-				console.log(the_repair);
-				vehicle.VEHICLE_REPAIRS.push(the_repair._id);
-				vehicle.save((err) => {
-					if (err) {
-						console.log(err);
-					}
-				});
-			});
-
         return res.redirect('/');
     });
 };

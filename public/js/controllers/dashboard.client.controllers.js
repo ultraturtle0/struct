@@ -119,7 +119,20 @@ angular.module('Database')
                         console.log(err);
                     }
                 });
-        }
+        };
+
+        $scope.repairSubmit = function () {
+            console.log($scope.select);
+            JobService
+                .repairs
+                .save({}, $scope.select)
+                .$promise
+                .then(function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+        };
 
         $scope.tradeSubmit = function () {
             console.log($scope.select.WORKS);
@@ -140,26 +153,6 @@ angular.module('Database')
                 });
         }
 
-        $scope.repairSubmit = function () {
-            var query = {
-                REPAIR_NAME: $scope.select.REPAIR_NAME,
-                REPAIR_COST: $scope.select.REPAIR_COST,
-                REPAIR_DATE: $scope.select.REPAIR_DATE,
-                DESCRIPTION: $scope.select.DESCRIPTION,
-                VEHICLE_ID: $scope.select.VEHICLE
-            }
-            console.log('query');
-            console.log(query);
-            JobService
-                .repairs
-                .save({}, query)
-                .$promise
-                .then(function(err) {
-                    if (err) {
-                        console.log(err)
-                    }
-                });
-        }
         init();
     }]);
 
