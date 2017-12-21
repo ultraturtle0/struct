@@ -201,7 +201,7 @@ exports.addvehicle = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        return res.redirect('/');
+        return res.redirect('/travel');
     });
 };
 
@@ -230,6 +230,6 @@ exports.addrepair = function(req, res, next) {
         if (err) {
             console.log(err);
         }
-        return res.redirect('/');
+        return res.redirect('/repairs');
     });
 };

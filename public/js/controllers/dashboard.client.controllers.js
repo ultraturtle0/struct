@@ -79,7 +79,7 @@ angular.module('Database')
             {name: "Labor", url: "/labor"},
             {name: "Travel", url: "/travel"},
             {name: "Repairs", url: "/repairs"}
-        ]
+        ];
 
         $scope.jobs = [];
         $scope.emps = [];
@@ -97,7 +97,9 @@ angular.module('Database')
             console.log($scope.select.HOURS);
             delete $scope.select.DATE;
             
-            $scope.select.CATEGORY = $scope.focustrade._id;
+            $scope.select.CATEGORY = $scope.select.trade._id;
+            delete $scope.select.trade;
+            
             if (!$scope.select.SUBCATEGORY) {
                 $scope.select.SUBCATEGORY = $scope.workblank;
             }

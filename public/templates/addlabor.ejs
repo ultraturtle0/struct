@@ -23,17 +23,18 @@
 			</tr>
 			<tr>
 				<td>Trade: </td>
-				<td><select ng-options="trade as trade.TRADE_NAME for trade in trades" ng-model="focustrade"></select></td>
+				<td><select ng-options="trade as trade.TRADE_NAME for trade in trades" ng-model="select.trade"></select></td>
 			</tr>
 			<tr>
 				<td>Work: </td>
-				<td><select ng-options="work._id as work.WORK_NAME for work in focustrade.WORKS" ng-model="select.SUBCATEGORY"></select></td>
+				<td><select ng-options="work._id as work.WORK_NAME for work in select.trade.WORKS" ng-model="select.SUBCATEGORY"></select></td>
 			</tr>
 			<tr>
 				<td>Description: </td>
 				<td><input type="text" name="DESCRIPTION" ng-model="select.DESCRIPTION"></td>
 			</tr>
 		</tbody>
+		{{ select.trade }}
 	</table>
     <input type="submit" value="Submit">
 </form>

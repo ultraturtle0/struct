@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const JobSchema = new Schema({
     JOB_NUMBER: Number,
+    JOB_START: Date,
     JOB_NAME: String,
     CUSTOMER_NAME: String,
     CUSTOMER_PHONE: Number,
