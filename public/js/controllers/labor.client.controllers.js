@@ -59,6 +59,7 @@ angular.module('Database')
 
         var init = function() {
             $scope.getData({});
+            
             $scope.focus = {
                 time_end: new Date()
             };

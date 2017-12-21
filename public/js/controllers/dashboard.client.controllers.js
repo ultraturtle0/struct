@@ -73,14 +73,6 @@ angular.module('Database')
             {name: "Repairs", url: "/#!add_repair"}
         ];
 
-        $scope.pages = [
-            {name: "Jobs", url: "/jobs"},
-            {name: "Employees", url: "/emps"},
-            {name: "Labor", url: "/labor"},
-            {name: "Travel", url: "/travel"},
-            {name: "Repairs", url: "/repairs"}
-        ];
-
         $scope.jobs = [];
         $scope.emps = [];
         $scope.select = {};

@@ -11,9 +11,3 @@ headtabs td {
     transition: opacity 0.4s ease; }
     headtabs td a:hover {
       opacity: 1.0; }
-
-#form {
-  position: absolute;
-  padding: 25px; }
-  #form td {
-    padding: 5px 10px; }

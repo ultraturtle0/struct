@@ -10,13 +10,7 @@
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
     </head>
     <body ng-app="Database" ng-Controller="DashboardController">
-        <table id="pages">
-            <tbody>
-                <tr>
-                    <td ng-repeat="page in pages"><a ng-href="{{ page.url }}">{{ page.name }}</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <headtabs></headtabs>
         <table id="tabs">
             <tbody>
                 <tr>
@@ -38,5 +32,8 @@
 
         <!-- controllers -->
         <script type="text/javascript" src="/public/js/controllers/dashboard.client.controllers.js"></script>
+
+        <!-- directives -->
+        <script type="text/javascript" src="/public/js/directives/headtabs.client.directives.js"></script>
     </body>
 </html>

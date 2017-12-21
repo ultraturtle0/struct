@@ -12,8 +12,10 @@ headtabs td {
     headtabs td a:hover {
       opacity: 1.0; }
 
-#form {
-  position: absolute;
+.filters span {
+  padding: 5px 10px; }
+
+.data {
   padding: 25px; }
-  #form td {
-    padding: 5px 10px; }
+  .data td {
+    padding: 5px 50px; }

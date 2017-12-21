@@ -17,6 +17,7 @@ angular.module('Database')
         var init = function() {
             $scope.select = {};
             $scope.getTrips({});
+
             $scope.focus = {
                 time_end: new Date()
             };

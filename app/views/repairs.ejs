@@ -2,12 +2,14 @@
 <html>
     <head>
         <title>Repairs - Sound Sport Surfaces</title>
+        <link rel="stylesheet" href="/public/css/tables.css">
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
     </head>
     <body ng-app="Database" ng-controller="RepairsController">
+        <headtabs></headtabs>
         Vehicle: <select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" ng-model="focus.VEHICLE"></select>
         From <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
@@ -32,6 +34,9 @@
 
         <!-- controllers -->
         <script type="text/javascript" src="/public/js/controllers/repairs.client.controllers.js"></script>
+
+        <!-- directives -->
+        <script type="text/javascript" src="/public/js/directives/headtabs.client.directives.js"></script>
     </body>
 </html>
 

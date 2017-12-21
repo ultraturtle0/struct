@@ -8,6 +8,7 @@
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
     </head>
     <body ng-app="Database" ng-controller="TravelController">
+        <headtabs></headtabs>
         From Job <input type="text" ng-Model="focus.job1" name="job">
         To Job <input type="text" ng-Model="focus.job2" name="job">
         Employee: <input type="text" ng-Model="focus.emp" name="emp">
@@ -39,6 +40,9 @@
 
         <!-- controllers -->
         <script type="text/javascript" src="/public/js/controllers/travel.client.controllers.js"></script>
+
+        <!-- directives -->
+        <script type="text/javascript" src="/public/js/directives/headtabs.client.directives.js"></script>
     </body>
 </html>
 
