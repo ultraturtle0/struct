@@ -1,5 +1,5 @@
 angular.module('Database')
-    .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', '$templateCache', 'JobService', function($scope, $route, $routeParams, $location, $templateCache, JobService) {
+    .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', '$templateCache', 'JobService', 'GeoService', function($scope, $route, $routeParams, $location, $templateCache, JobService, GeoService) {
         $scope.getData = function(query) {
             JobService
                 .jobs
@@ -152,6 +152,24 @@ angular.module('Database')
                 .then(function(err) {
                     if (err) {
                         console.log(err)
+                    }
+                });
+        }
+
+        $scope.testDistance = function () {
+            console.log($scope.select);
+            var query = {
+                origins: $scope.select.origins,
+                destinations: $scope.select.destinations
+            }
+
+            GeoService
+                .distance
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
                     }
                 });
         }

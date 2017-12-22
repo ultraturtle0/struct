@@ -4,6 +4,8 @@ angular.module('Database')
             jobs: $resource('http://localhost:5000/api/jobs', {
                     JOB_NUMBER: "@JOB_NUMBER",
                     JOB_NAME: "@JOB_NAME",
+                    JOB_ADDRESS: "@JOB_ADDRESS",
+                    JOB_STATE: "@JOB_STATE",
                     CUSTOMER_NAME: "@CUSTOMER_NAME",
                     CUSTOMER_PHONE: "@CUSTOMER_PHONE",
                     CUSTOMER_EMAIL: "@CUSTOMER_EMAIL"
