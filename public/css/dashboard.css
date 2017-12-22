@@ -1,6 +1,6 @@
-headtabs td {
+headtabs td, #tabs td {
   padding: 5px 50px; }
-  headtabs td a {
+  headtabs td a, #tabs td a {
     text-decoration: none;
     color: black;
     opacity: .7;
@@ -9,7 +9,7 @@ headtabs td {
     -ms-transition: opacity 0.4s ease;
     -o-transition: opacity 0.4s ease;
     transition: opacity 0.4s ease; }
-    headtabs td a:hover {
+    headtabs td a:hover, #tabs td a:hover {
       opacity: 1.0; }
 
 #form {

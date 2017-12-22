@@ -13,7 +13,7 @@
         Vehicle: <select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" ng-model="focus.VEHICLE"></select>
         From <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
-        <table>
+        <table class="data">
             <tr ng-repeat="repair in repairs | filter : {VEHICLE: {_id: focus.VEHICLE }} | daterange : 'REPAIR_DATE' : focus.time_start : focus.time_end | orderBy:'-REPAIR_DATE'">
                 <td>{{ repair.VEHICLE.VEHICLE_NAME }}</td>
                 <td>{{ repair.REPAIR_NAME }}</td>

@@ -4,7 +4,7 @@
         <title>Payroll - Sound Sport Surfaces</title>
 
         <link rel="stylesheet" href="/public/css/tables.css">
-        
+
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
@@ -15,7 +15,7 @@
         Employee: <input type="text" ng-Model="focus.emp" name="emp">
         Period: from <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
-        <table>
+        <table class="data">
             <tr ng-repeat="emp in employees | filter:focus.emp | orderBy:'EMP_NAME'">
                 <td>{{ emp.employee }}</td>
                 <td>{{ emp.hours }}</td>

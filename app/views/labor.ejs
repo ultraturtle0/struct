@@ -18,7 +18,7 @@
         Trade: <select ng-options="trade.TRADE_NAME as trade.TRADE_NAME for trade in trades" ng-model="focus.CATEGORY"></select>
         Work: <select ng-options="work.WORK_NAME as work.WORK_NAME for work in works" ng-model="focus.SUBCATEGORY"></select>
         <button type="button" ng-click="saveQuery(filtered)">Save Query</button>
-        <table>
+        <table class="data">
             <tr ng-repeat="labor in labors | filter : {JOB_ID: {JOB_NUMBER: focus.job }} | filter : {EMP_ID: {EMP_NAME: focus.emp }, CATEGORY: {TRADE_NAME: focus.CATEGORY}, SUBCATEGORY: {WORK_NAME: focus.SUBCATEGORY}} | daterange : 'TIME_START' : focus.time_start : focus.time_end | orderBy:'-TIME_START' as filtered">
                 <td>{{ labor.JOB_ID.JOB_NUMBER }}</td>
                 <td>{{ labor.EMP_ID.EMP_NAME }}</td>

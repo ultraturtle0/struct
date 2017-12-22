@@ -4,14 +4,14 @@
         <title>Employees - Sound Sport Surfaces</title>
 
         <link rel="stylesheet" href="/public/css/tables.css">
-        
+
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
     </head>
     <body ng-app="Database" ng-controller="EmpController">
         <headtabs></headtabs>
-        <table>
+        <table class="data">
             <tr ng-repeat="emp in emps | orderBy : 'EMP_NAME'">
                 <td>{{ emp.EMP_NAME }}</td>
                 <td>{{ emp.EMP_PHONE }}</td>

@@ -2,6 +2,9 @@
 <html>
     <head>
         <title>Labor - Sound Sport Surfaces</title>
+
+        <link rel="stylesheet" href="/public/css/tables.css">
+
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
@@ -15,7 +18,7 @@
         Vehicle: <input type="text" ng-Model="focus.vehicle" name="vehicle">
         From <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
-        <table>
+        <table class="data">
             <tr ng-repeat="trip in trips | filter : {JOB_ID_START: {JOB_NUMBER: focus.job1 }} | filter : {JOB_ID_END: {JOB_NUMBER: focus.job2 }} | filter : {EMP_ID: {EMP_NAME: focus.emp }} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START'">
                 <td>{{ trip.JOB_ID_START.JOB_NUMBER }}</td>
                 <td>{{ trip.JOB_ID_END.JOB_NUMBER }}</td>
