@@ -10,10 +10,9 @@ const TravelSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Job'
 	},
-	LOC_START_LAT: Number,
-	LOC_START_LNG: Number,
-	LOC_END_LAT: Number,
-	LOC_END_LNG: Number,
+	LOC_START_ADDR: String,
+	LOC_END_ADDR: String,
+	MILES: Number,
 	EMP_ID: {
 		type: Schema.Types.ObjectId,
 		ref: 'Emp'

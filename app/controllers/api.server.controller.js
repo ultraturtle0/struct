@@ -86,7 +86,8 @@ exports.travel = function(req, res, next) {
 	var query = req.query;
 	Travel
 		.find(query)
-		.populate('JOB_ID')
+		.populate('JOB_ID_START')
+		.populate('JOB_ID_END')
 		.populate('EMP_ID')
 		.populate('VEHICLE_ID')
 		.exec(function(err, data) {

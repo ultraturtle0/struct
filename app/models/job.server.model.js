@@ -6,6 +6,7 @@ const JobSchema = new Schema({
     JOB_START: Date,
     JOB_NAME: String,
     JOB_ADDRESS: String,
+    JOB_CITY: String,
     JOB_STATE: String,
     CUSTOMER_NAME: String,
     CUSTOMER_PHONE: Number,

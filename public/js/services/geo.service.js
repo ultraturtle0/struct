@@ -3,7 +3,8 @@ angular.module('Database')
 		var service = {
 			distance: $resource('http://localhost:5000/api/geo', {
 					origins: "@origins",
-					destinations: "@destinations"
+					destinations: "@destinations",
+					units: "@units"
 				})
 			}
 		return service;

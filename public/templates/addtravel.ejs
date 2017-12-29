@@ -1,21 +1,22 @@
-<form id="travel" action="/api/travel" method="post">
+<p>{{ distance }}</p>
+<form id="travel" ng-submit="travelSubmit()" method="post">
 	<table>
 		<tbody>
 			<tr>
 				<td>Job Start: </td>
-				<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" ng-model="select.JOB_ID_START"></select></td>
+				<td><select ng-options="job as job.JOB_NUMBER for job in jobs" ng-model="select.JOB_ID_START"></select></td>
 			</tr>
 			<tr>
 				<td>Job End: </td>
-				<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" ng-model="select.JOB_ID_END"></select></td>
+				<td><select ng-options="job as job.JOB_NUMBER for job in jobs" ng-model="select.JOB_ID_END"></select></td>
 			</tr>
 			<tr>
 				<td>Location Start: </td>
-				<td><input type="text" name="LOC_START"></td>
+				<td><input type="text" ng-model="select.LOC_START"></td>
 			</tr>
 			<tr>
 				<td>Location End: </td>
-				<td><input type="text" name="LOC_END"></td>
+				<td><input type="text" ng-model="select.LOC_END"></td>
 			</tr>
 			<tr>
 				<td>Employee: </td>
@@ -23,7 +24,11 @@
 			</tr>
 			<tr>
 				<td>Vehicle: </td>
-				<td><select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE" ng-model="select.VEHICLE"></select></td>
+				<td><select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE" ng-model="select.VEHICLE_ID"></select></td>
+			</tr>
+			<tr>
+				<td>Date: </td>
+				<td><input type="date" name="TIME_START" ng-model="select.DATE"></td>
 			</tr>
 			<tr>
 				<td>Start Time: </td>

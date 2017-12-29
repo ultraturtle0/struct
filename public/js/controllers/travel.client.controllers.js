@@ -14,16 +14,55 @@ angular.module('Database')
                 });
         };
 
+        $scope.getVehicles = function(query) {
+            JobService
+                .vehicles
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.vehicles = data;
+                    }
+                });
+        };
+
+        $scope.getJobs = function(query) {
+            JobService
+                .jobs
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.jobs = data;
+                    }
+                });
+        };
+
+        $scope.getEmps = function(query) {
+            JobService
+                .employees
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.emps = data;
+                    }
+                });
+        };
+
         var init = function() {
             $scope.select = {};
             $scope.getTrips({});
+            $scope.getVehicles({});
+            $scope.getJobs({});
+            $scope.getEmps({});
 
             $scope.focus = {
                 time_end: new Date()
             };
-            $scope.$watch('select.JOB_START_ID', function () {
-                console.log($scope.select);
-            });
         }
 
         init();
