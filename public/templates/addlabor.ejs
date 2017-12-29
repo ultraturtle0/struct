@@ -1,9 +1,10 @@
-<form id="labor" ng-submit="laborSubmit()" method="post">
+<form id="labor" name="labor" ng-submit="laborSubmit()" method="post">
 	<table>
 		<tbody>
 			<tr>
 				<td>Job Number: </td>
-				<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" ng-model="select.JOB_ID"></select></td>
+				<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" name="JOB_ID" ng-model="select.JOB_ID" required></select></td>
+				<td ng-show="labor.JOB_ID.$touched && labor.JOB_ID.$invalid">Select a job number.</td>
 			</tr>
 			<tr>
 				<td>Employee: </td>

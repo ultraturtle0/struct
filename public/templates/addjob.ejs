@@ -1,25 +1,28 @@
-<form id="job" action="/api/jobs" method="post">
+<form id="job" name="job" action="/api/jobs" method="post">
 	<table>
 		<tbody>
 			<tr>
 				<td>Job Number: </td>
-				<td><input type="text" name="JOB_NUMBER"></td>
+				<td><input type="text" name="JOB_NUMBER" ng-model="select.JOB_NUMBER" required></td>
+				<td ng-show="job.JOB_NUMBER.$touched && job.JOB_NUMBER.$invalid">Job number required.</td>
 			</tr>
 			<tr>
 				<td>Job Name: </td>
-				<td><input type="text" name="JOB_NAME"></td>
+				<td><input type="text" name="JOB_NAME" ng-model="select.JOB_NAME" required></td>
+				<td ng-show="job.JOB_NAME.$touched && job.JOB_NAME.$invalid">Job name required.</td>
 			</tr>
 			<tr>
 				<td>Street Address: </td>
-				<td><input type="text" name="JOB_ADDRESS"></td>
+				<td><input type="text" name="JOB_ADDRESS" ng-model="select.JOB_ADDRESS" required></td>
 			</tr>
 			<tr>
 				<td>City: </td>
-				<td><input type="text" name="JOB_CITY"></td>
-			</tr>
-			<tr>
+				<td><input type="text" name="JOB_CITY" ng-model="select.JOB_CITY" ng-click=
+					"job.JOB_STATE.$touched = true" required></td>
 				<td>State: </td>
-				<td><input type="text" name="JOB_STATE"></td>
+				<td><input type="text" name="JOB_STATE" ng-model="select.JOB_STATE" ng-click=
+					"job.JOB_CITY.$touched = true" required></td>
+				<td ng-show="(job.JOB_CITY.$touched || job.JOB_STATE.$touched || job.JOB_ADDRESS.$touched) && (job.JOB_CITY.$invalid || job.JOB_STATE.$invalid || job.JOB_ADDRESS.$invalid)">Complete address required.</td>
 			</tr>
 			<tr>
 				<td>Customer Name: </td>
@@ -31,7 +34,8 @@
 			</tr>
 			<tr>
 				<td>Customer Email: </td>
-				<td><input type="text" name="CUSTOMER_EMAIL"></td>
+				<td><input type="email" name="CUSTOMER_EMAIL" ng-model="select.CUSTOMER_EMAIL"></td>
+				<td ng-show="job.CUSTOMER_EMAIL.$touched && job.CUSTOMER_EMAIL.$invalid">Invalid email.</td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,9 +1,10 @@
-<form id="emp" action="/api/emps" method="post">
+<form id="emp" name="emp" action="/api/emps" method="post">
 	<table>
 		<tbody>
 			<tr>
 				<td>Employee Name: </td>
-				<td><input type="text" name="EMP_NAME"></td>
+				<td><input type="text" name="EMP_NAME" ng-model="select.EMP_NAME" required></td>
+				<td ng-show="emp.EMP_NAME.$touched && emp.EMP_NAME.$invalid">Name required.</td>
 			</tr>
 			<tr>
 				<td>Employee Phone: </td>
@@ -11,7 +12,7 @@
 			</tr>
 			<tr>
 				<td>Employee Email: </td>
-				<td><input type="text" name="EMP_EMAIL"></td>
+				<td><input type="email" name="EMP_EMAIL"></td>
 			</tr>
 		</tbody>
 	</table>
