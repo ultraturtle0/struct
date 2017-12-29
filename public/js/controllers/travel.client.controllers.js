@@ -53,6 +53,22 @@ angular.module('Database')
                 });
         };
 
+        $scope.sumMiles = function (filtered) {
+            var miles = 0;
+            filtered.forEach(function(value) {
+                miles += value.MILES;
+            });
+            return miles;
+        }
+
+        $scope.sumHours = function (filtered) {
+            var hours = 0;
+            filtered.forEach(function(value) {
+                hours += value.HOURS;
+            });
+            return hours;
+        }
+
         var init = function() {
             $scope.select = {};
             $scope.getTrips({});

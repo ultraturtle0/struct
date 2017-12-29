@@ -50,11 +50,13 @@ angular.module('Database')
         };
 
         $scope.sumHours = function(filtered) {
+            console.log("filtered: ");
+            console.log(filtered);
             var hours = 0;
             filtered.forEach(function(value) {
                 hours += value.HOURS;
             });
-            return hours;
+            return hours || "";
         };
 
         var init = function() {

@@ -19,7 +19,7 @@
         From <input type="date" ng-model="focus.time_start" name="date_start"> 
         to <input type="date" ng-model="focus.time_end" name="date_end">
         <table class="data">
-            <tr ng-repeat="trip in trips | filter : {JOB_ID_START: {_id: focus.job1 }} | filter : {JOB_ID_END: {_id: focus.job2 }} | filter : {EMP_ID: {_id: focus.emp }} | filter : {VEHICLE_ID: {_id: focus.vehicle}} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START'">
+            <tr ng-repeat="trip in trips | filter : {JOB_ID_START: {_id: focus.job1 }} | filter : {JOB_ID_END: {_id: focus.job2 }} | filter : {EMP_ID: {_id: focus.emp }} | filter : {VEHICLE_ID: {_id: focus.vehicle}} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START' as filtered">
                 <td>{{ trip.JOB_ID_START.JOB_NUMBER || trip.LOC_START_ADDR }}</td>
                 <td>{{ trip.JOB_ID_END.JOB_NUMBER || trip.LOC_END_ADDR }}</td>
                 <td>{{ trip.EMP_ID.EMP_NAME }}</td>
@@ -28,6 +28,10 @@
                 <td>{{ trip.TIME_END | date : 'shortDate' }} {{ trip.TIME_END | date : 'hh:mm' }}</td>
                 <td>{{ trip.MILES }}</td>
                 <td>{{ trip.HOURS }}</td>
+            </tr>
+            <tr ng-show="filtered.length">
+                <td>Miles: {{ sumMiles(filtered || []) }}</td>
+                <td>Hours: {{ sumHours(filtered || []) }}</td>
             </tr>
         </table>
 

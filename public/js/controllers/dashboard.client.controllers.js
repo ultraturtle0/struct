@@ -165,6 +165,8 @@ angular.module('Database')
             $scope.select.TIME_END.setMonth(date.getMonth());
             $scope.select.TIME_START.setDate(date.getDate());
             $scope.select.TIME_END.setDate(date.getDate());
+            $scope.select.HOURS = ($scope.select.TIME_END - $scope.select.TIME_START) / 3600000;
+
             delete $scope.select.DATE;
 
             var job_start, job_end, start_format, end_format;
