@@ -1,5 +1,5 @@
 angular.module('Database')
-    .controller('TravelController', ['$scope', 'JobService', 'daterangeFilter', function($scope, JobService, daterangeFilter) {
+    .controller('TravelController', ['$scope', 'JobService', 'daterangeFilter', 'jobfilterFilter', function($scope, JobService, daterangeFilter, jobfilterFilter) {
         
         $scope.getTrips = function(query) {
             JobService
