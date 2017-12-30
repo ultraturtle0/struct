@@ -1,37 +1,38 @@
-<form id="vehicle" ng-submit="vehicleSubmit()" method="post">
+<form id="vehicle" name="vehicle" ng-submit="vehicleSubmit()" method="post">
 	<table>
 		<tbody>
 			<tr>
 				<td>Vehicle Name: </td>
-				<td><input type="text" name="VEHICLE_NAME" ng-model="select.VEHICLE_NAME"></select></td>
+				<td><input type="text" name="VEHICLE_NAME" ng-model="select.VEHICLE_NAME"></td>
+				<td ng-show="vehicle.VEHICLE_NAME.$touched && vehicle.VEHICLE_NAME.$invalid">Enter a vehicle name.</td>
 			</tr>
 		</tbody>
 	</table>
 	<input type="submit" value="Add Vehicle">
 </form>
 
-<form id="repair" ng-submit="repairSubmit()" method="post">
+<form id="repair" name="repair" ng-submit="repairSubmit()" method="post">
 	<table>
 		<tbody>
 			<tr>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
 				<td>Repair Name: </td>
-				<td><input type="text" name="REPAIR_NAME" ng-model="select.REPAIR_NAME"></td>
+				<td><input type="text" name="REPAIR_NAME" ng-model="select.REPAIR_NAME" required></td>
+				<td ng-show="repair.REPAIR_NAME.$touched && repair.REPAIR_NAME.$invalid">Enter a repair name.</td>
 			</tr>
 			<tr>
 				<td>Vehicle: </td>
-				<td><select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE" ng-model="select.VEHICLE"></select></td>
+				<td><select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE" ng-model="select.VEHICLE" required></select></td>
+				<td ng-show="repair.VEHICLE.$touched && repair.VEHICLE.$invalid">Select a vehicle.</td>
 			</tr>
 			<tr>
 				<td>Cost: </td>
 				<td><input type="text" name="REPAIR_COST" ng-model="select.REPAIR_COST"></td>
+				<td ng-show="repair.REPAIR_COST.$touched && repair.REPAIR_COST.$invalid" required>Enter a cost.</td>
 			</tr>
 			<tr>
 				<td>Date: </td>
 				<td><input type="date" name="REPAIR_DATE" ng-model="select.REPAIR_DATE"></td>
+				<td ng-show="repair.REPAIR_DATE.$touched && repair.REPAIR_DATE.$invalid" required>Enter a date.</td>
 			</tr>
 			<tr>
 				<td>Description: </td>

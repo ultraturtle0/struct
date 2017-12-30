@@ -8,34 +8,39 @@
 			</tr>
 			<tr>
 				<td>Employee: </td>
-				<td><select ng-options="emp._id as emp.EMP_NAME for emp in emps" ng-model="select.EMP_ID"></select></td>
+				<td><select ng-options="emp._id as emp.EMP_NAME for emp in emps" name="EMP_ID" ng-model="select.EMP_ID" required></select></td>
+				<td ng-show="labor.EMP_ID.$touched && labor.EMP_ID.$invalid">Select an employee.</td>
 			</tr>
 			<tr>
 				<td>Date: </td>
-				<td><input type="date" name="DATE" ng-model="select.DATE"></td>
+				<td><input type="date" name="DATE" ng-model="select.DATE" required></td>
+				<td ng-show="labor.DATE.$touched && labor.DATE.$invalid">Enter a date.</td>
 			</tr>
 			<tr>
 				<td>Start Time: </td>
-				<td><input type="time" name="TIME_START" ng-model="select.TIME_START"></td>
+				<td><input type="time" name="TIME_START" ng-model="select.TIME_START" required></td>
+				<td ng-show="labor.TIME_START.$touched && labor.TIME_START.$invalid">Enter a start time.</td>
 			</tr>
 			<tr>
 				<td>Stop Time: </td>
-				<td><input type="time" name="TIME_END" ng-model="select.TIME_END"></td>
+				<td><input type="time" name="TIME_END" ng-model="select.TIME_END" required></td>
+				<td ng-show="labor.TIME_END.$touched && labor.TIME_END.$invalid">Enter an end time.</td>
 			</tr>
 			<tr>
 				<td>Trade: </td>
-				<td><select ng-options="trade as trade.TRADE_NAME for trade in trades" ng-model="select.trade"></select></td>
+				<td><select ng-options="trade as trade.TRADE_NAME for trade in trades" name="TRADE_NAME" ng-model="select.trade"></select></td>
+				<td ng-show="labor.TRADE_NAME.$touched && labor.TRADE_NAME.$invalid">Select a category.</td>
 			</tr>
 			<tr>
 				<td>Work: </td>
-				<td><select ng-options="work._id as work.WORK_NAME for work in select.trade.WORKS" ng-model="select.SUBCATEGORY"></select></td>
+				<td><select ng-options="work._id as work.WORK_NAME for work in select.trade.WORKS" name="WORK_NAME" ng-model="select.SUBCATEGORY"></select></td>
+				<td ng-show="labor.WORK_NAME.$touched && labor.WORK_NAME.$invalid">Select a subcategory.</td>
 			</tr>
 			<tr>
 				<td>Description: </td>
 				<td><input type="text" name="DESCRIPTION" ng-model="select.DESCRIPTION"></td>
 			</tr>
 		</tbody>
-		{{ select.trade }}
 	</table>
     <input type="submit" value="Submit">
 </form>
