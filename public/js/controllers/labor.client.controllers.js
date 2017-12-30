@@ -13,6 +13,26 @@ angular.module('Database')
                     }
                 });
             JobService
+                .jobs
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.jobs = data;
+                    }
+                });
+            JobService
+                .employees
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.emps = data;
+                    }
+                });
+            JobService
                 .works
                 .query(query)
                 .$promise
