@@ -16,7 +16,10 @@ exports.emps = (function(req, res, next) {
 });
 
 exports.labor = (function(req, res, next) {
-    res.render('labor', {});
+    console.log(req.query);
+    res.render('labor', {
+        job: req.query.job
+    });
 });
 
 exports.payroll = (function(req, res, next) {

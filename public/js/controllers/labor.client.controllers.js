@@ -79,12 +79,16 @@ angular.module('Database')
             return hours || "";
         };
 
+
+
         var init = function() {
-            $scope.getData({});
-            
             $scope.focus = {
                 time_end: new Date()
             };
+
+            $scope.getData({});
+            
+            
             $scope.searches = [];
             $scope.$watch('focus.time_start', function () {
                 console.log($scope.focus.time_start);

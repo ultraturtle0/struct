@@ -1,4 +1,5 @@
 @import 'headtabs.sass'
+@import 'transitions.sass'
 
 
 .filters
@@ -6,9 +7,20 @@
 		padding: 5px 10px
 
 .data
-
+	border-collapse: collapse
 	padding: 25px
 
-	td
-		padding: 5px 50px
+	tr
+		border-bottom: 2px solid transparent
+		border-top: 2px solid transparent
+		cursor: pointer
+
+		&:hover
+			td
+
+				border-bottom: 2px solid black
+				border-top: 2px solid black
+
+		td
+			padding: 5px 50px
 

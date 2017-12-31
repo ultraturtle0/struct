@@ -1,5 +1,5 @@
 angular.module('Database')
-    .controller('JobController', ['$scope', '$location', 'JobService', 'daterangeFilter', function($scope, $location, JobService, daterangeFilter) {
+    .controller('JobController', ['$scope', '$location', '$window', 'JobService', 'daterangeFilter', function($scope, $location, $window, JobService, daterangeFilter) {
         
         $scope.getJobs = function(query) {
             JobService
@@ -12,6 +12,10 @@ angular.module('Database')
                     }
                 });
         };
+
+        $scope.showJob = function(job) {
+            $window.location.href = 'labor?job=' + job;
+        }
 
         var init = function() {
             $scope.getJobs({});

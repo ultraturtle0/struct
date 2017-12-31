@@ -16,6 +16,14 @@ headtabs td, #tabs td {
   padding: 5px 10px; }
 
 .data {
+  border-collapse: collapse;
   padding: 25px; }
-  .data td {
-    padding: 5px 50px; }
+  .data tr {
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    cursor: pointer; }
+    .data tr:hover td {
+      border-bottom: 2px solid black;
+      border-top: 2px solid black; }
+    .data tr td {
+      padding: 5px 50px; }
