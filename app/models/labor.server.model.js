@@ -53,3 +53,38 @@ mongoose.model('Labor', LaborSchema)
 	.on('index', (err) => {
 		console.log('indexing error: ' + err.message);
 	});
+
+
+const RequestSchema = new Schema({
+	JOB_ID: {
+		type: Schema.Types.ObjectId,
+		ref: 'Job'
+	},
+	LOCATION: String,
+	EMP_ID: {
+		type: Schema.Types.ObjectId,
+		ref: 'Emp',
+		required: true
+	},
+	TIME_START: {
+		type: Date,
+		required: true
+	},
+	TIME_END: {
+		type: Date,
+		required: true
+	},
+	SUBCATEGORY: {
+		type: Schema.Types.ObjectId,
+		ref: 'Work'
+		required: true
+	},
+	DESCRIPTION: String
+}, {
+	autoIndex: false
+});
+
+mongoose.model('Request', RequestSchema)
+	.on('index', (err) => {
+		console.log('indexing error: ' + err.message);
+	});
