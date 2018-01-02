@@ -18,7 +18,7 @@ angular.module('Database')
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
+                        console.log(data[0].JOB_NUMBER);
                         $scope.jobs = data;
                     }
                 });
@@ -79,21 +79,22 @@ angular.module('Database')
             return hours || "";
         };
 
-
-
         var init = function() {
+            var params = (new URL(document.location)).searchParams;
+
             $scope.focus = {
                 time_end: new Date()
             };
 
+
+            if (params.has("emp"))
+                $scope.focus.emp = params.get("emp");
+            if (params.has("job"))
+                $scope.focus.job = parseInt(params.get("job"));
+
             $scope.getData({});
             
-            
             $scope.searches = [];
-            $scope.$watch('focus.time_start', function () {
-                console.log($scope.focus.time_start);
-            });
-            console.log($scope.labors);
         }
 
         init();

@@ -1,5 +1,5 @@
 angular.module('Database')
-    .controller('EmpController', ['$scope', 'JobService', function($scope, JobService) {
+    .controller('EmpController', ['$scope', '$window', 'JobService', function($scope, $window, JobService) {
         
         $scope.getEmps = function(query) {
             JobService
@@ -12,6 +12,10 @@ angular.module('Database')
                     }
                 });
         };
+
+        $scope.showEmp = function(emp) {
+            $window.location.href = '/labor?emp=' + emp;
+        }
 
         var init = function() {
             $scope.getEmps({});

@@ -18,7 +18,10 @@ exports.emps = (function(req, res, next) {
 exports.labor = (function(req, res, next) {
     console.log(req.query);
     res.render('labor', {
-        job: req.query.job
+        focus: {
+            job: req.query.job || '',
+            emp: req.query.emp || ''
+        }
     });
 });
 
