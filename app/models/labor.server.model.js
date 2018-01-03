@@ -76,10 +76,14 @@ const RequestSchema = new Schema({
 	},
 	SUBCATEGORY: {
 		type: Schema.Types.ObjectId,
-		ref: 'Work'
+		ref: 'Work',
 		required: true
 	},
-	DESCRIPTION: String
+	DESCRIPTION: String,
+	DATE_CREATED: {
+		type: Date,
+		default: Date.now
+	}
 }, {
 	autoIndex: false
 });

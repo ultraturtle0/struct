@@ -66,11 +66,11 @@ angular.module('Database')
         }
 
         $scope.tabs = [
-            {name: "Labor", url: "/#!add_labor"},
-            {name: "Job", url: "/#!add_job"},
-            {name: "Employee", url: "/#!add_emp"},
-            {name: "Travel", url: "/#!add_travel"},
-            {name: "Repairs", url: "/#!add_repair"}
+            {name: "Add Labor", url: "/#!add_labor"},
+            {name: "Add Job", url: "/#!add_job"},
+            {name: "Add Employee", url: "/#!add_emp"},
+            {name: "Add Travel", url: "/#!add_travel"},
+            {name: "Add Repairs", url: "/#!add_repair"}
         ];
 
         $scope.jobs = [];

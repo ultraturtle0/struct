@@ -36,3 +36,7 @@ exports.travel = (function(req, res, next) {
 exports.repairs = (function(req, res, next) {
     res.render('repairs', {});
 });
+
+exports.requests = (function(req, res, next) {
+    res.render('requests', {});
+});

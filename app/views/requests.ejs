@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sound Sport Surfaces</title>
+        <title>Requests - Sound Sport Surfaces</title>
 
-        <link rel="stylesheet" type="text/css" href="/public/css/dashboard.css">
+        <link rel="stylesheet" href="/public/css/tables.css">
 
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
     </head>
-    <body ng-app="Database" ng-Controller="DashboardController">
+    <body ng-app="Database" ng-controller="ReqController">
         <headtabs></headtabs>
-        <table id="tabs">
-            <tbody>
-                <tr>
-                    <td ng-repeat="tab in tabs"><a ng-href="{{ tab.url }}">{{ tab.name }}</a></td>
-                </tr>
-            </tbody>
+        <table class="data">
+            <tr ng-repeat="request in requests | orderBy : '-DATE_CREATED'" ng-click="requestFocus($index)">
+                <td>{{ request._id }}</td>
+                <td>{{ request.DATE_CREATED }}</td>
+            </tr>
         </table>
 
-        <div ng-view id="form"></div>
-        
+        <div id="request" ng-show="focus.request">
+            <p>{{ focus.request._id }}</p>
+        </div>
+
         <!-- application -->
         <script type="text/javascript" src="/public/js/Database.js"></script>
 
-        <!-- config -->
-        <script type="text/javascript" src="/public/js/config/route.client.config.js"></script>
-
         <!-- services -->
         <script type="text/javascript" src="/public/js/services/job.service.js"></script>
-        <script type="text/javascript" src="/public/js/services/geo.service.js"></script>
 
         <!-- controllers -->
-        <script type="text/javascript" src="/public/js/controllers/dashboard.client.controllers.js"></script>
+        <script type="text/javascript" src="/public/js/controllers/requests.client.controllers.js"></script>
 
         <!-- directives -->
         <script type="text/javascript" src="/public/js/directives/headtabs.client.directives.js"></script>
     </body>
 </html>
+

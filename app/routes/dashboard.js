@@ -21,5 +21,8 @@ module.exports = (function(app) {
 
     app.route('/repairs')
         .get(dashboard.repairs);
+
+    app.route('/requests')
+        .get(dashboard.requests);
 });
     

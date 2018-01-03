@@ -234,3 +234,31 @@ exports.addrepair = function(req, res, next) {
         return res.redirect('/repairs');
     });
 };
+
+exports.requests = function(req, res, next) {
+	var Request = mongoose.model('Request');
+	var query = req.query;
+	Request
+		.find(query)
+		.exec(function(err, data) {
+			console.log(data);
+			if (err) {
+				console.log(err);
+				return next(err);
+			}
+			res.json(data);
+		});
+}
+
+exports.addrequest = function(req, res, next) {
+	console.log(req.body);
+
+	var Request = mongoose.model('Request');
+    const request = new Request(req.body);
+    request.save((err) => {
+        if (err) {
+            console.log(err);
+        }
+        return res.redirect('/requests');
+    });
+};

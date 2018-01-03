@@ -1,7 +1,7 @@
 angular.module('Database')
     .factory('JobService', ['$resource', function($resource) {
         var service = {
-            jobs: $resource('http://localhost:5000/api/jobs', {
+            jobs: $resource('/api/jobs', {
                     JOB_NUMBER: "@JOB_NUMBER",
                     JOB_NAME: "@JOB_NAME",
                     JOB_ADDRESS: "@JOB_ADDRESS",
@@ -18,7 +18,7 @@ angular.module('Database')
                     }
                 }),
 
-            employees: $resource('http://localhost:5000/api/emps', {
+            employees: $resource('/api/emps', {
                     EMP_NAME: "@EMP_NAME",
                     EMP_PHONE: "@EMP_PHONE",
                     EMP_EMAIL: "@EMP_EMAIL"
@@ -31,7 +31,7 @@ angular.module('Database')
                     }
                 }),
 
-            labor: $resource('http://localhost:5000/api/labor', {
+            labor: $resource('/api/labor', {
                     JOB_ID: "@JOB_ID",
                     EMP_ID: "@EMP_ID",
                     TIME_START: "@TIME_START",
@@ -42,7 +42,7 @@ angular.module('Database')
                     DESCRIPTION: "@DESCRIPTION"
                 }),
 
-            travel: $resource('http://localhost:5000/api/travel', {
+            travel: $resource('/api/travel', {
                     JOB_ID_START: "@JOB_ID_START",
                     JOB_ID_END: "@JOB_ID_END",
                     LOC_START: "@LOC_START",
@@ -53,23 +53,33 @@ angular.module('Database')
                     TIME_END: "@TIME_END"
                 }),
 
-            trades: $resource('http://localhost:5000/api/trades', {
+            trades: $resource('/api/trades', {
                 }),
 
-            works: $resource('http://localhost:5000/api/work', {
+            works: $resource('/api/work', {
                     TRADE_NAME: "@WORK_NAME",
                 }),
 
-            vehicles: $resource('http://localhost:5000/api/vehicles', {
+            vehicles: $resource('/api/vehicles', {
                     VEHICLE_NAME: "@VEHICLE_NAME",
                 }),
 
-            repairs: $resource('http://localhost:5000/api/repairs', {
+            repairs: $resource('/api/repairs', {
                     REPAIR_NAME: "@REPAIR_NAME",
                     REPAIR_COST: "@REPAIR_COST",
                     REPAIR_DATE: "@REPAIR_DATE",
                     DESCRIPTION: "@DESCRIPTION",
                     VEHICLE_ID: "@VEHICLE_ID"
+                }),
+
+            requests: $resource('/api/requests', {
+                    JOB_ID: "@JOB_ID",
+                    LOCATION: "@LOCATION",
+                    EMP_ID: "@EMP_ID",
+                    TIME_START: "@TIME_START",
+                    TIME_END: "@TIME_END",
+                    SUBCATEGORY: "@SUBCATEGORY",
+                    DESCRIPTION: "@DESCRIPTION"
                 })
         }
 

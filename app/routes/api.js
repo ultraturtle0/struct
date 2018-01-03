@@ -26,6 +26,9 @@ module.exports = (function (app) {
 	app.route('/api/vehicles')
 		.get(api.vehicles)
 		.post(api.addvehicle);
+	app.route('/api/requests')
+		.get(api.requests)
+		.post(api.addrequest);
 
 	app.route('/api/geo')
 		.get(geo.distance);
