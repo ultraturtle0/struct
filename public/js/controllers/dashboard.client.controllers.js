@@ -58,6 +58,15 @@ angular.module('Database')
                         $scope.vehicles = data;
                     }
                 });
+            JobService
+                .requests
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        $scope.requests = data;
+                    }
+                });
         };
 
         var init = function() {
@@ -77,6 +86,20 @@ angular.module('Database')
         $scope.jobs = [];
         $scope.emps = [];
         $scope.select = {};
+        $scope.focus = {};
+
+        $scope.$watch('select.EMP_ID', function (newValue) {
+            
+            var latest = new Date(0);
+            var last;
+            angular.forEach($scope.requests, function(value) {
+                if ((value.EMP_ID == newValue) && (moment(moment().toDate(value.DATE_CREATED)).isAfter(latest))) {
+                    last = value;
+                }
+            });
+            $scope.lastrequest = last;
+        });
+            
 
         $scope.laborSubmit = function () {
             var date = $scope.select.DATE;
