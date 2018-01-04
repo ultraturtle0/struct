@@ -15,5 +15,8 @@ angular.module('Database')
 			})
 			.when('/add_repair', {
 				templateUrl: '/public/templates/addrepair.ejs'
+			})
+			.when('/add_request', {
+				templateUrl: '/public/templates/addrequest.ejs'
 			});
 	}]);

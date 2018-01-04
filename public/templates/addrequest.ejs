@@ -1,0 +1,39 @@
+<p>{{ distance }}</p>
+<form id="request" name="request" ng-submit="requestSubmit()" method="post" novalidate>
+	<table>
+		<tbody>
+			<tr>
+				<td>Job: </td>
+				<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" name="JOB_ID" ng-model="select.JOB_ID"></select></td>
+				<td>or Location: </td>
+				<td><input type="text" name="LOCATION" ng-model="select.LOCATION"></td>
+				<td ng-show="(request.JOB_ID.$touched || request.LOCATION.$touched) && (!select.JOB_ID && !select.LOCATION)">Choose a job or enter a location.</td>
+			</tr>
+			<tr>
+				<td>Employee: </td>
+				<td><select ng-options="emp._id as emp.EMP_NAME for emp in emps" name="EMP_ID" ng-model="select.EMP_ID" required></select></td>
+				<td ng-show="request.EMP_NAME.$touched && request.EMP_NAME.$invalid">Select an employee.</td>
+			</tr>
+			<!--<tr>
+				<td>Vehicle: </td>
+				<td><select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE" ng-model="select.VEHICLE_ID" required></select></td>
+				<td ng-show="request.EMP_NAME.$touched && request.EMP_NAME.$invalid">Select a vehicle.</td>
+			</tr>-->
+			<tr>
+				<td>Start Time: </td>
+				<td><input type="time" name="TIME_START" ng-model="select.TIME_START"  required></td>
+				<td ng-show="request.TIME_START.$touched && request.TIME_START.$invalid">Time invalid.</td>
+			</tr>
+			<tr>
+				<td>Stop Time: </td>
+				<td><input type="time" name="TIME_END" ng-model="select.TIME_END" start="select.TIME_START" dateorder required></td>
+				<td ng-show="request.TIME_END.$touched && request.TIME_END.$invalid">Time invalid.</td>
+			</tr>
+			<tr>
+				<td>Description: </td>
+				<td><input type="text" name="DESCRIPTION" ng-model="select.DESCRIPTION"></td>
+			</tr>
+		</tbody>
+	</table>
+    <input type="submit" value="Submit" ng-disabled="request.$invalid">
+</form>

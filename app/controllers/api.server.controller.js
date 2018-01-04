@@ -21,7 +21,7 @@ exports.addjob = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        return res.redirect('/jobs');
+        res.redirect('/jobs');
     });
 };
 
@@ -46,7 +46,7 @@ exports.addemp = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        return res.redirect('/emps');
+        res.redirect('/emps');
     });
 };
 
@@ -77,7 +77,7 @@ exports.addlabor = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        return res.redirect('/labor');
+        res.redirect('/labor');
     });
 };
 
@@ -109,7 +109,7 @@ exports.addtravel = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        return res.redirect('/travel');
+        res.redirect('/travel');
     });
 };
 
@@ -137,7 +137,7 @@ exports.addwork = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        return res.redirect('/');
+        res.redirect('/');
     });
 };
 
@@ -174,7 +174,7 @@ exports.addtrade = function(req, res, next) {
 
             console.log(err);
         }
-        return res.redirect('/');
+        res.redirect('/');
     });
 };
 
@@ -202,7 +202,7 @@ exports.addvehicle = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        return res.redirect('/travel');
+        res.redirect('/travel');
     });
 };
 
@@ -231,7 +231,8 @@ exports.addrepair = function(req, res, next) {
         if (err) {
             console.log(err);
         }
-        return res.redirect('/repairs');
+        res.setHeader("Content-Type", "text/html");
+        res.redirect('/repairs');
     });
 };
 
@@ -259,6 +260,6 @@ exports.addrequest = function(req, res, next) {
         if (err) {
             console.log(err);
         }
-        return res.redirect('/requests');
+        res.redirect('/requests');
     });
 };

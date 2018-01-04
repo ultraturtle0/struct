@@ -76,8 +76,8 @@ const RequestSchema = new Schema({
 	},
 	SUBCATEGORY: {
 		type: Schema.Types.ObjectId,
-		ref: 'Work',
-		required: true
+		ref: 'Work'/*,
+		required: true*/
 	},
 	DESCRIPTION: String,
 	DATE_CREATED: {

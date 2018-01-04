@@ -1,5 +1,5 @@
 angular.module('Database')
-    .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', '$templateCache', 'JobService', 'GeoService', function($scope, $route, $routeParams, $location, $templateCache, JobService, GeoService) {
+    .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', '$window', '$templateCache', 'JobService', 'GeoService', function($scope, $route, $routeParams, $location, $window, $templateCache, JobService, GeoService) {
         $scope.getData = function(query) {
             JobService
                 .jobs
@@ -70,7 +70,8 @@ angular.module('Database')
             {name: "Add Job", url: "/#!add_job"},
             {name: "Add Employee", url: "/#!add_emp"},
             {name: "Add Travel", url: "/#!add_travel"},
-            {name: "Add Repairs", url: "/#!add_repair"}
+            {name: "Add Repairs", url: "/#!add_repair"},
+            {name: "Add Request", url: "/#!add_request"}
         ];
 
         $scope.jobs = [];
@@ -157,7 +158,6 @@ angular.module('Database')
         }
 
         $scope.travelSubmit = function () {
-            console.log("do we get here");
             var date = $scope.select.DATE;
             $scope.select.TIME_START.setFullYear(date.getFullYear());
             $scope.select.TIME_END.setFullYear(date.getFullYear());
@@ -213,6 +213,24 @@ angular.module('Database')
                                 }
                             });
                     }
+                });
+        }
+
+        $scope.requestSubmit = function () {
+            var date = Date.now();
+            $scope.select.TIME_START.setFullYear(date.getFullYear());
+            $scope.select.TIME_END.setFullYear(date.getFullYear());
+            $scope.select.TIME_START.setMonth(date.getMonth());
+            $scope.select.TIME_END.setMonth(date.getMonth());
+            $scope.select.TIME_START.setDate(date.getDate());
+            $scope.select.TIME_END.setDate(date.getDate());
+
+            JobService
+                .requests
+                .save({}, $scope.select)
+                .$promise
+                .then(function(response) {
+                    $window.location.href = '/requests';
                 });
         }
 
