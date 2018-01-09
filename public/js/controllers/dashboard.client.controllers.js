@@ -239,7 +239,7 @@ angular.module('Database')
         }
 
         $scope.requestSubmit = function () {
-            var date = Date.now();
+            var date = new Date(Date.now());
             $scope.select.TIME_START.setFullYear(date.getFullYear());
             $scope.select.TIME_END.setFullYear(date.getFullYear());
             $scope.select.TIME_START.setMonth(date.getMonth());

@@ -13,12 +13,14 @@
         <headtabs></headtabs>
         <div ng-repeat="(name, emp) in requests">
             <h1>{{ name }}</h1>
-            <form ng-repeat="req in emp | orderBy: '-DATE_CREATED'" ng-submit="requestFocus($index)">
-                    <span><label ng-show="req.JOB_ID.JOB_NAME">Job: <input type="text" ng-show="req.JOB_ID.JOB_NAME" ng-model="select.JOB_ID" ng-value="req.JOB_ID.JOB_NUMBER"></label></span>
-                    <span>Time in: {{ req.TIME_START }}</span>
-                    <span>Time out: {{ req.TIME_END }}</span>
-                    <span>Description: {{ req.DESCRIPTION }}</span>
-                </tr>
+            <form ng-repeat="req in emp | orderBy: '-DATE_CREATED'" ng-submit="requestApprove(req._id)">
+                <span ng-show="req.JOB_ID.JOB_NAME"><label>Job: <select ng-options="job._id as job.JOB_NUMBER for job in jobs" name="JOB_ID" ng-model="select[req._id].JOB_ID"></select></label></span>
+                <span ng-show="req.LOCATION"><label>Location: <input type="text" ng-model="select[req._id].LOCATION" ng-value="req.LOCATION"></label></span>
+                <span>Date: {{ select[req._id].TIME_START | date: "mm/dd/yyyy" }}</span>
+                <span><label>Time in: <input type="time" name="TIME_START" ng-model="select[req._id].TIME_START"></label></span>
+                <span><label>Time out: <input type="time" name="TIME_END" ng-model="select[req._id].TIME_END"></label></span>
+                <span><label>Description: <input type="text" name="DESCRIPTION" ng-model="select[req._id].DESCRIPTION"></label></span>
+                <input type="submit" value="Approve">
             </form>
             <br>
         </div>
