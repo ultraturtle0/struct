@@ -9,7 +9,14 @@ angular.module('Database')
                 .then(function(data) {
                     if (data.length) {
                         console.log(data);
-                        $scope.requests = data;
+                        $scope.requests = {};
+                        angular.forEach(data, function (value) {
+                            if (!(value.EMP_ID.EMP_NAME in $scope.requests)) {
+                                $scope.requests[value.EMP_ID.EMP_NAME] = [value];
+                            } else {
+                                $scope.requests[value.EMP_ID.EMP_NAME].push(value);
+                            }
+                        });
                     }
                 });
         };

@@ -11,12 +11,17 @@
     </head>
     <body ng-app="Database" ng-controller="ReqController">
         <headtabs></headtabs>
-        <table class="data">
-            <tr ng-repeat="request in requests | orderBy : '-DATE_CREATED'" ng-click="requestFocus($index)">
-                <td>{{ request._id }}</td>
-                <td>{{ request.DATE_CREATED }}</td>
-            </tr>
-        </table>
+        <div ng-repeat="(name, emp) in requests">
+            <h1>{{ name }}</h1>
+            <form ng-repeat="req in emp | orderBy: '-DATE_CREATED'" ng-submit="requestFocus($index)">
+                    <span><label ng-show="req.JOB_ID.JOB_NAME">Job: <input type="text" ng-show="req.JOB_ID.JOB_NAME" ng-model="select.JOB_ID" ng-value="req.JOB_ID.JOB_NUMBER"></label></span>
+                    <span>Time in: {{ req.TIME_START }}</span>
+                    <span>Time out: {{ req.TIME_END }}</span>
+                    <span>Description: {{ req.DESCRIPTION }}</span>
+                </tr>
+            </form>
+            <br>
+        </div>
 
         <div id="request" ng-show="focus.request">
             <p>{{ focus.request._id }}</p>

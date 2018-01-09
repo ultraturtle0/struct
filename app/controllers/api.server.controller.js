@@ -241,6 +241,8 @@ exports.requests = function(req, res, next) {
 	var query = req.query;
 	Request
 		.find(query)
+		.populate('EMP_ID')
+		.populate('JOB_ID')
 		.exec(function(err, data) {
 			console.log(data);
 			if (err) {
