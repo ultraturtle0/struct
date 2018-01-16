@@ -38,9 +38,11 @@ exports.emps = function(req, res, next) {
 };
 
 exports.addemp = function(req, res, next) {
+	console.log('new emp');
 	console.log(req.body);
 	var Emp = mongoose.model('Emp');
     const emp = new Emp(req.body);
+    emp.provider = 'local';
     emp.save((err) => {
         if (err) {
             const message = getErrorMessage(err);
@@ -60,7 +62,6 @@ exports.labor = function(req, res, next) {
 		.populate('CATEGORY')
 		.populate('SUBCATEGORY')
 		.exec(function(err, data) {
-			console.log(data);
 			if (err) {
 				return next(err);
 			}
@@ -103,7 +104,6 @@ exports.travel = function(req, res, next) {
 		.populate('EMP_ID')
 		.populate('VEHICLE_ID')
 		.exec(function(err, data) {
-			console.log(data);
 			if (err) {
 				console.log(err);
 				return next(err);
@@ -131,7 +131,6 @@ exports.work = function(req, res, next) {
 	Work
 		.find(query)
 		.exec(function(err, data) {
-			console.log(data);
 			if (err) {
 				console.log(err);
 				return next(err);
@@ -160,7 +159,6 @@ exports.trades = function(req, res, next) {
 		.find(query)
 		.populate('WORKS')
 		.exec(function(err, data) {
-			console.log(data);
 			if (err) {
 				console.log(err);
 				return next(err);
@@ -196,7 +194,6 @@ exports.vehicles = function(req, res, next) {
 	Vehicle
 		.find(query)
 		.exec(function(err, data) {
-			console.log(data);
 			if (err) {
 				console.log(err);
 				return next(err);
@@ -225,7 +222,6 @@ exports.repairs = function(req, res, next) {
 		.find(query)
 		.populate('VEHICLE')
 		.exec(function(err, data) {
-			console.log(data);
 			if (err) {
 				console.log(err);
 				return next(err);
@@ -256,7 +252,6 @@ exports.requests = function(req, res, next) {
 		.populate('EMP_ID')
 		.populate('JOB_ID')
 		.exec(function(err, data) {
-			console.log(data);
 			if (err) {
 				console.log(err);
 				return next(err);

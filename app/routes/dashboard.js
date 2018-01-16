@@ -1,4 +1,5 @@
 const dashboard = require('../controllers/dashboard.server.controller');
+const passport = require('passport');
 
 module.exports = (function(app) {
     app.route('/')
@@ -24,5 +25,12 @@ module.exports = (function(app) {
 
     app.route('/requests')
         .get(dashboard.requests);
+
+    app.route('/signin')
+        .post(passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/labor',
+            failureFlash: true
+        }));
 });
     

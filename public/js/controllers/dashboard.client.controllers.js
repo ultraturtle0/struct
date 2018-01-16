@@ -7,7 +7,6 @@ angular.module('Database')
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
                         $scope.jobs = data;
                     }
                 });
@@ -17,7 +16,6 @@ angular.module('Database')
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
                         $scope.emps = data;
                     }
                 });
@@ -27,7 +25,6 @@ angular.module('Database')
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
                         $scope.works = data;
                         data.forEach(function(value) {
                             console.log(value.WORK_NAME);
@@ -44,7 +41,6 @@ angular.module('Database')
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
                         $scope.trades = data;
                     }
                 });
@@ -54,7 +50,6 @@ angular.module('Database')
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
                         $scope.vehicles = data;
                     }
                 });
