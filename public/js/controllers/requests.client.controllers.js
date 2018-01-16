@@ -45,10 +45,23 @@ angular.module('Database')
                         $scope.jobs = data;
                     }
                 });
+            JobService
+                .works
+                .query(query)
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        console.log(data);
+                        $scope.works = data;
+                    }
+                });
         };
 
         $scope.requestApprove = function(req) {
             var request = $scope.select[req];
+            request.HOURS = (request.TIME_END - request.TIME_START) / 3600000;
+            var target = request._id;
+            delete request._id;
             console.log(request);
             JobService
                 .labor
@@ -58,7 +71,10 @@ angular.module('Database')
                     /*if (err) {
                         console.log(err);
                     } else {*/
-                        // find and delete the pending request
+                        /* find and delete the pending request
+                        JobService
+                            .requests
+                            .*/
                         angular.forEach($scope.requests, function (emp) {
                             angular.forEach(emp, function (value, index) {
                                 if (value._id == req) {

@@ -27,6 +27,10 @@
 				<td ng-show="(request.TIME_END.$touched && request.TIME_END.$invalid) || (request.TIME_START.$touched && request.TIME_START.$invalid)">Time invalid.</td>
 			</tr>
 			<tr>
+				<td>Work: </td>
+				<td><select ng-options="work._id as work.WORK_NAME for work in works" ng-model="select.SUBCATEGORY" name="SUBCATEGORY" required></select></td>
+			</tr>
+			<tr>
 				<td>Description: </td>
 				<td><input type="text" name="DESCRIPTION" ng-model="select.DESCRIPTION"></td>
 			</tr>

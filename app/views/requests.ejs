@@ -19,6 +19,7 @@
                 <span>Date: {{ select[req._id].TIME_START | date: "mm/dd/yyyy" }}</span>
                 <span><label>Time in: <input type="time" name="TIME_START" ng-model="select[req._id].TIME_START"></label></span>
                 <span><label>Time out: <input type="time" name="TIME_END" ng-model="select[req._id].TIME_END"></label></span>
+                <span ng-show="req.JOB_ID.JOB_NAME"><label>Work: <select ng-options="work._id as work.WORK_NAME for work in works" name="SUBCATEGORY" ng-model="select[req._id].SUBCATEGORY"></select></label></span>
                 <span><label>Description: <input type="text" name="DESCRIPTION" ng-model="select[req._id].DESCRIPTION"></label></span>
                 <input type="submit" value="Approve">
             </form>
