@@ -69,29 +69,28 @@ exports.labor = function(req, res, next) {
 };
 
 exports.addlabor = function(req, res, next) {
-	console.log('body:');
-	console.log(req.body);
 	var Labor = mongoose.model('Labor');
 	var Trade = mongoose.model('Trade');
 	if (!req.body.CATEGORY) {
 		Trade
-			.find({WORKS: [req.body.SUBCATEGORY]}) // WHY DOESN'T THIS WORK?
+			.findOne({'WORKS._id': req.body.SUBCATEGORY}) // WHY DOESN'T THIS WORK?
 			.exec(function(err, data) {
-				console.log('are we finding trades?');
-				console.log(data);
 				if (err) {
 					console.log(err);
 				}
+				if (data) {
+					req.body.CATEGORY = data._id;
+
+					const labor = new Labor(req.body);
+	    			labor.save((err) => {
+		        		if (err) {
+		            		console.log(err);
+		        		}
+		        		res.redirect('/labor');
+					});
+	    		}
 			});
 	}
-
-    const labor = new Labor(req.body);
-    labor.save((err) => {
-        if (err) {
-            console.log(err);
-        }
-        res.redirect('/labor');
-    });
 };
 
 exports.travel = function(req, res, next) {

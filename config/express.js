@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const passport = require('passport');
 
 module.exports = function() {
     const app = express();
@@ -20,6 +21,9 @@ module.exports = function() {
         resave: true,
         secret: config.sessionSecret
     }));
+
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     app.set('views', './app/views');
     app.set('view engine', 'ejs');
