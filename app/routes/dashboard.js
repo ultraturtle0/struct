@@ -1,25 +1,7 @@
 const dashboard = require('../controllers/dashboard.server.controller');
 const passport = require('passport');
 var router = require('express').Router();
-
-var verify = function(acl) {
-    return function (req, res, next) {
-        var message;
-        if (req.session.passport) {
-            acl.isAllowed(req.session.passport.user, req.url, req.method, (err, res) => {
-                if (res) {
-                    console.log('does this work?');
-                    next();
-                } else {
-                    message = err;
-                }
-            });
-        } else {
-            message = "You do not have permission to access that page.";      
-            res.redirect('/signin');
-        }
-    }
-}
+var verify = require('../middleware/verify');
 
 module.exports = (function(app, acl) {
     router.use(verify(acl));
