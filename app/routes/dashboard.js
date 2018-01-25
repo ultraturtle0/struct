@@ -1,7 +1,14 @@
 const dashboard = require('../controllers/dashboard.server.controller');
 const passport = require('passport');
 
-module.exports = (function(app) {
+/* var verify = function(acl) {
+    return function (req, res, next) {
+        if (acl.isAllowed(req.session.user, req.url, req.method)) {
+            next();
+        }
+} */
+
+module.exports = (function(app, acl) {
     app.route('/')
         .get(dashboard.dashboard);
 
@@ -24,7 +31,12 @@ module.exports = (function(app) {
         .get(dashboard.repairs);
 
     app.route('/requests')
-        .get(dashboard.requests);
+        .get(acl.middleware(0, (req) => {
+            acl.isAllowed(req.session.passport.user, 'requests', 'view', (_, role) => {
+                console.log(role);
+            });
+            return req.session.passport.user;
+        }), dashboard.requests);
 
     app.route('/signin')
         .post(passport.authenticate('local', {
