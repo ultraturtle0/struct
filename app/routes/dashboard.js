@@ -1,12 +1,24 @@
 const dashboard = require('../controllers/dashboard.server.controller');
 const passport = require('passport');
 
-/* var verify = function(acl) {
+var verify = function(acl) {
     return function (req, res, next) {
-        if (acl.isAllowed(req.session.user, req.url, req.method)) {
-            next();
+        var message;
+        if (req.session.passport) {
+            acl.isAllowed(req.session.passport.user, req.url, req.method, (err, res) => {
+                if (res) {
+                    next();
+                } else {
+                    message = err;
+                }
+            });
+        } else {
+            message = "You do not have permission to access that page.";      
+            res.redirect('/');
         }
-} */
+        console.log(message);
+    }
+}
 
 module.exports = (function(app, acl) {
     app.route('/')
@@ -31,12 +43,7 @@ module.exports = (function(app, acl) {
         .get(dashboard.repairs);
 
     app.route('/requests')
-        .get(acl.middleware(0, (req) => {
-            acl.isAllowed(req.session.passport.user, 'requests', 'view', (_, role) => {
-                console.log(role);
-            });
-            return req.session.passport.user;
-        }), dashboard.requests);
+        .get(verify(acl), dashboard.requests);
 
     app.route('/signin')
         .post(passport.authenticate('local', {
