@@ -32,7 +32,7 @@ module.exports = function($acl) {
     app.use(passport.session());
 
     $acl.then((acl) => {
-        console.log(acl);
+        require('../app/routes/home.js')(app, acl);
         require('../app/routes/dashboard.js')(app, acl);
         require('../app/routes/api.js')(app, acl);
     });

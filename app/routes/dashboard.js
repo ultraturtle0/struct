@@ -1,5 +1,6 @@
 const dashboard = require('../controllers/dashboard.server.controller');
 const passport = require('passport');
+var router = require('express').Router();
 
 var verify = function(acl) {
     return function (req, res, next) {
@@ -7,6 +8,7 @@ var verify = function(acl) {
         if (req.session.passport) {
             acl.isAllowed(req.session.passport.user, req.url, req.method, (err, res) => {
                 if (res) {
+                    console.log('does this work?');
                     next();
                 } else {
                     message = err;
@@ -14,42 +16,25 @@ var verify = function(acl) {
             });
         } else {
             message = "You do not have permission to access that page.";      
-            res.redirect('/');
+            res.redirect('/signin');
         }
-        console.log(message);
     }
 }
 
 module.exports = (function(app, acl) {
-    app.route('/')
-        .get(dashboard.dashboard);
+    router.use(verify(acl));
 
-    app.route('/jobs')
-        .get(dashboard.jobs);
+    router
+        .get('/', dashboard.dashboard)
+        .get('/jobs', dashboard.jobs)
+    	.get('/emps', dashboard.emps)
+    	.get('/labor', dashboard.labor)
+    	.get('/payroll', dashboard.payroll)
+    	.get('/travel', dashboard.travel)
+        .get('/repairs', dashboard.repairs)
+        .get('/requests', dashboard.requests);
 
-    app.route('/emps')
-    	.get(dashboard.emps);
-
-    app.route('/labor')
-    	.get(dashboard.labor);
-
-    app.route('/payroll')
-    	.get(dashboard.payroll);
-
-    app.route('/travel')
-    	.get(dashboard.travel);
-
-    app.route('/repairs')
-        .get(dashboard.repairs);
-
-    app.route('/requests')
-        .get(verify(acl), dashboard.requests);
-
-    app.route('/signin')
-        .post(passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/labor',
-            failureFlash: true
-        }));
+    app.use('/dashboard', router);
+        
 });
     

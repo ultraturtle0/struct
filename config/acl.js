@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
 module.exports = function ($db) {
 	return $db.then(function () {
 		acl = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_', true));
-		acl.allow('*', '/', '*');
 		acl.allow('admin',
-			['/jobs', '/emps', '/labor', '/payroll', '/travel', '/repairs', '/requests'],
+			['/', '/jobs', '/emps', '/labor', '/payroll', '/travel', '/repairs', '/requests'],
 			'*'
 		);
 

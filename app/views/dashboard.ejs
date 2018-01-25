@@ -16,18 +16,10 @@
         <table id="tabs">
             <tbody>
                 <tr>
-                    <td ng-repeat="tab in tabs"><a ng-href="{{ tab.url }}">{{ tab.name }}</a></td>
+                    <td ng-repeat="tab in tabs"><a ng-href="/dashboard{{ tab.url }}">{{ tab.name }}</a></td>
                 </tr>
             </tbody>
         </table>
-
-        <form name="signin" action="/signin" method="post">
-            <label>Name: </label>
-            <input type="text" name="username" />
-            <label>Password: </label>
-            <input type="password" name="password" />
-            <input type="submit" value="Login" />
-        </form>
 
         <div ng-view id="form"></div>
         

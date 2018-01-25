@@ -4,6 +4,7 @@ const Emp = require('mongoose').model('Emp');
 
 module.exports = function() {
     passport.use(new LocalStrategy((username, password, done) => {
+        console.log('do we get to the local strategy?');
         console.log(username);
         console.log(password);
         Emp.findOne({
