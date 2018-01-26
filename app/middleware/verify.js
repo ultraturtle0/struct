@@ -1,17 +1,18 @@
 module.exports = function(acl) {
     return function (req, res, next) {
-        var message;
         if (req.session.passport) {
-            acl.isAllowed(req.session.passport.user, req.url, req.method, (err, res) => {
-                if (res) {
-                    console.log('does this work?');
+            console.log(req.url);
+            acl.isAllowed(req.session.passport.user, req.url, req.method, (err, allowed) => {
+                console.log(err);
+                if (allowed) {
+                    console.log(req.url);
                     next();
                 } else {
-                    message = err;
+                    res.redirect('/signin');
                 }
             });
         } else {
-            message = "You do not have permission to access that page.";      
+            console.log("Not signed in.");
             res.redirect('/signin');
         }
     }

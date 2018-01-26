@@ -9,24 +9,17 @@ module.exports = function (app, acl) {
 		});
     app.route('/signin')
     	.get(home.signin)
-    	.post(function(req, res, next) {
-    		passport.authenticate('local', function (err, user, info) {
+    	.post(passport.authenticate('local'),
+    		function (req, res, next) {
+    			//console.log(req.session.passport.user);
+	    		acl.roleUsers('admin', function (err, users) {
+	    			if (users.indexOf(req.session.passport.user.toString()) != -1) {
+	    				res.redirect('/dashboard');
+	    			} else {
+	    				res.redirect('/users')
+	    			}
+	    		});
 
-	        	if (err) {
-	        		return next(err);
-	        	}
-	        	if (!user) {
-	        		return res.redirect('/signin');
-	        	}
-	        	req.login(user, function(err) {
-	        		if (err) {
-	        			return next(err);
-	        		}
-	        		if (acl.hasRole(user, 'admin')) {
-	        			return res.redirect('/dashboard');
-	        		}
-	        		return res.redirect('/user');
-	        	});
-	        })(req, res, next);
-    	});
+    		}
+    	);
 }

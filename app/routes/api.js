@@ -1,7 +1,8 @@
 const api = require('../controllers/api.server.controller');
 const geo = require('../controllers/geo.server.controller');
+const verify = require('../middleware/verify');
 
-module.exports = (function (app) {
+module.exports = (function (app, acl) {
 	app.route('/api/jobs')
 		.get(api.jobs)
 		.post(api.addjob);
