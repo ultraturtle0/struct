@@ -3,7 +3,7 @@ const passport = require('passport');
 var router = require('express').Router();
 var verify = require('../middleware/verify');
 
-module.exports = (function(app, acl) {
+module.exports = function(app, acl) {
     router.use(verify(acl));
 
     router
@@ -18,5 +18,5 @@ module.exports = (function(app, acl) {
 
     app.use('/dashboard', router);
         
-});
+};
     

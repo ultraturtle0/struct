@@ -1,13 +1,13 @@
 module.exports = function(acl) {
     return function (req, res, next) {
+        console.log(req.baseUrl || req.url);
         if (req.session.passport) {
-            console.log(req.url);
-            acl.isAllowed(req.session.passport.user.toString(), req.url, req.method, (err, allowed) => {
-                console.log(err);
+            var url = req.baseUrl || req.url; // ALLOWS FOR ROUTER OR STANDARD MIDDLEWARE USE
+            acl.isAllowed(req.session.passport.user.toString(), url, req.method, (err, allowed) => {
                 if (allowed) {
-                    console.log(req.url);
                     next();
                 } else {
+                    console.log('ACCESS DENIED');
                     res.redirect('/signin');
                 }
             });

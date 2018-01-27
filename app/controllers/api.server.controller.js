@@ -21,7 +21,7 @@ exports.addjob = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        res.redirect('/jobs');
+        res.redirect('/dashboard/jobs');
     });
 };
 
@@ -48,7 +48,7 @@ exports.addemp = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        res.redirect('/emps');
+        res.redirect('/dashboard/emps');
     });
 };
 
@@ -87,7 +87,7 @@ exports.addlabor = function(req, res, next) {
 		        		if (err) {
 		            		console.log(err);
 		        		}
-		        		res.redirect('/labor');
+		        		res.redirect('/dashboard/labor');
 					});
 	    		}
 			});
@@ -121,7 +121,7 @@ exports.addtravel = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        res.redirect('/travel');
+        res.redirect('/dashboard/travel');
     });
 };
 
@@ -211,7 +211,7 @@ exports.addvehicle = function(req, res, next) {
             const message = getErrorMessage(err);
             console.log(message);
         }
-        res.redirect('/travel');
+        res.redirect('/dashboard/travel');
     });
 };
 
@@ -240,7 +240,7 @@ exports.addrepair = function(req, res, next) {
             console.log(err);
         }
         res.setHeader("Content-Type", "text/html");
-        res.redirect('/repairs');
+        res.redirect('/dashboard/repairs');
     });
 };
 
@@ -269,6 +269,6 @@ exports.addrequest = function(req, res, next) {
         if (err) {
             console.log(err);
         }
-        res.redirect('/requests');
+        res.redirect('/dashboard/requests');
     });
 };
