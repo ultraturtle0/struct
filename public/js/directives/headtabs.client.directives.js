@@ -1,7 +1,7 @@
 angular.module('Database')
 	.directive('headtabs', ['$location', function($location) {
 		return {
-			templateUrl: 'public/templates/headtabs.html',
+			templateUrl: '/public/templates/headtabs.html',
 			link: function(scope, element, attrs) {
 				var locs = [
 					{name: "Home", url: "/"},
@@ -18,6 +18,7 @@ angular.module('Database')
 	            		scope.pages.push(value);
 	            	}
 	            });
+	            console.log(scope.pages);
 			}
 		}
 	}]);
