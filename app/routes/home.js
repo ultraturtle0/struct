@@ -2,6 +2,7 @@ const home = require('../controllers/home.server.controller');
 const dashboard = require('../controllers/dashboard.server.controller');
 const passport = require('passport');
 const verify = require('../middleware/verify');
+var router = require('express').Router();
 
 var debug = function(acl) {
 	return (function(req, res, next) {

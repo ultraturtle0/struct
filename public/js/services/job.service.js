@@ -1,4 +1,4 @@
-angular.module('Database')
+angular.module('Services')
     .factory('JobService', ['$resource', function($resource) {
         var service = {
             jobs: $resource('/api/jobs', {
@@ -61,7 +61,7 @@ angular.module('Database')
                 }),
 
             vehicles: $resource('/api/vehicles', {
-                    VEHICLE_NAME: "@VEHICLE_NAME",
+                    VEHICLE_NAME: "@VEHICLE_NAME"
                 }),
 
             repairs: $resource('/api/repairs', {

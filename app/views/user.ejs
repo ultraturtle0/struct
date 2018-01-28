@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= user %> - Sound Sport Surfaces</title>
+		<title>- Sound Sport Surfaces</title>
+		<script type="text/javascript" src="/lib/angular/angular.js"></script>
+		<script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
+		<script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="/public/js/Services.js"></script>
+		<script type="text/javascript" src="/public/js/Request.js"></script>
 	</head>
-	<body>
+	<body ng-app="Request" ng-controller="RequestController">
 		<form id="request" name="request" ng-submit="requestSubmit()" method="post" novalidate>
 			<table>
 				<tbody>
@@ -13,11 +18,6 @@
 						<td>or Location: </td>
 						<td><input type="text" name="LOCATION" ng-model="select.LOCATION"></td>
 						<td ng-show="(request.JOB_ID.$touched || request.LOCATION.$touched) && (!select.JOB_ID && !select.LOCATION)">Choose a job or enter a location.</td>
-					</tr>
-					<tr>
-						<td>Employee: </td>
-						<td><select ng-options="emp._id as emp.EMP_NAME for emp in emps" name="EMP_ID" ng-model="select.EMP_ID" required></select></td>
-						<td ng-show="request.EMP_NAME.$touched && request.EMP_NAME.$invalid">Select an employee.</td>
 					</tr>
 					<tr ng-show="request.JOB_ID.$touched && (lastrequest.JOB_ID == select.JOB_ID)">
 						<td>Vehicle: </td>
@@ -43,5 +43,12 @@
 			</table>
 		    <input type="submit" value="Submit" ng-disabled="request.$invalid">
 		</form>
+
+		<!-- services -->
+		<script type="text/javascript" src="/public/js/services/job.service.js"></script>
+
+		<!-- controllers -->
+		<script type="text/javascript" src="/public/js/controllers/request.client.controllers.js"></script>
+
 	</body>
 </html>	
