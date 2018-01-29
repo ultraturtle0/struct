@@ -1,6 +1,18 @@
 angular.module('Database')
     .controller('ReqController', ['$scope', '$window', 'JobService', function($scope, $window, JobService) {
         
+        var getData = function(query) {
+            JobService
+                [query]
+                .query({})
+                .$promise
+                .then(function(data) {
+                    if (data.length) {
+                        $scope[query] = data;
+                    }
+                });
+            };
+
         $scope.getReqs = function(query) {
             JobService
                 .requests
@@ -35,26 +47,6 @@ angular.module('Database')
                         console.log($scope.select);
                     }
                 });
-            JobService
-                .jobs
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.jobs = data;
-                    }
-                });
-            JobService
-                .works
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.works = data;
-                    }
-                });
         };
 
         $scope.requestApprove = function(req) {
@@ -64,7 +56,7 @@ angular.module('Database')
             delete request._id;
             console.log(request);
             JobService
-                .labor
+                .labors
                 .save({}, request)
                 .$promise
                 .then(function (err) {
@@ -90,6 +82,10 @@ angular.module('Database')
 
         var init = function() {
             $scope.getReqs({});
+
+            queries = ['jobs', 'works'];
+            queries.forEach(getData);
+
             $scope.select = {};
             $scope.focus = {};
         }

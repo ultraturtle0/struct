@@ -31,7 +31,7 @@ angular.module('Services')
                     }
                 }),
 
-            labor: $resource('/api/labor', {
+            labors: $resource('/api/labor', {
                     JOB_ID: "@JOB_ID",
                     EMP_ID: "@EMP_ID",
                     TIME_START: "@TIME_START",
@@ -42,7 +42,7 @@ angular.module('Services')
                     DESCRIPTION: "@DESCRIPTION"
                 }),
 
-            travel: $resource('/api/travel', {
+            travels: $resource('/api/travel', {
                     JOB_ID_START: "@JOB_ID_START",
                     JOB_ID_END: "@JOB_ID_END",
                     LOC_START: "@LOC_START",

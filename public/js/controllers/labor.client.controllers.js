@@ -1,55 +1,14 @@
 angular.module('Database')
     .controller('LaborController', ['$scope', 'JobService', 'daterangeFilter', function($scope, JobService, daterangeFilter) {
         
-        $scope.getData = function(query) {
+        var getData = function(query) {
             JobService
-                .labor
-                .query(query)
+                [query]
+                .query({})
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
-                        $scope.labors = data;
-                    }
-                });
-            JobService
-                .jobs
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data[0].JOB_NUMBER);
-                        $scope.jobs = data;
-                    }
-                });
-            JobService
-                .employees
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.emps = data;
-                    }
-                });
-            JobService
-                .works
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.works = data;
-                    }
-                });
-            JobService
-                .trades
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.trades = data;
+                        $scope[query] = data;
                     }
                 });
         };
@@ -87,7 +46,8 @@ angular.module('Database')
             if (params.has("job"))
                 $scope.focus.job = parseInt(params.get("job"));
 
-            $scope.getData({});
+            let queries = ['labors', 'jobs', 'employees', 'works', 'trades'];
+            queries.forEach(getData);
             
             $scope.searches = [];
         }

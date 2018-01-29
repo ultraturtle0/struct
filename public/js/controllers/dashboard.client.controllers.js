@@ -1,71 +1,21 @@
 angular.module('Database')
     .controller('DashboardController', ['$scope', '$route', '$routeParams', '$location', '$window', '$templateCache', 'JobService', 'GeoService', function($scope, $route, $routeParams, $location, $window, $templateCache, JobService, GeoService) {
-        $scope.getData = function(query) {
+        
+        var getData = function(query) {
             JobService
-                .jobs
-                .query(query)
+                [query]
+                .query({})
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        $scope.jobs = data;
-                    }
-                });
-            JobService
-                .employees
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        $scope.emps = data;
-                    }
-                });
-            JobService
-                .works
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        $scope.works = data;
-                        data.forEach(function(value) {
-                            console.log(value.WORK_NAME);
-                            if (value.WORK_NAME == '') {
-                                $scope.workblank = value._id;
-                            }
-                        });
-                        console.log('blank: ' + $scope.workblank);
-                    }
-                });
-            JobService
-                .trades
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        $scope.trades = data;
-                    }
-                });
-            JobService
-                .vehicles
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        $scope.vehicles = data;
-                    }
-                });
-            JobService
-                .requests
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        $scope.requests = data;
+                        $scope[query] = data;
                     }
                 });
         };
 
         var init = function() {
-            $scope.getData({});
+            let queries = ['jobs', 'employees', 'works', 'trades', 'vehicles', 'requests'];
+            queries.forEach(getData);
             $templateCache.removeAll();
         }
 
@@ -230,24 +180,6 @@ angular.module('Database')
                                 }
                             });
                     }
-                });
-        }
-
-        $scope.requestSubmit = function () {
-            var date = new Date(Date.now());
-            $scope.select.TIME_START.setFullYear(date.getFullYear());
-            $scope.select.TIME_END.setFullYear(date.getFullYear());
-            $scope.select.TIME_START.setMonth(date.getMonth());
-            $scope.select.TIME_END.setMonth(date.getMonth());
-            $scope.select.TIME_START.setDate(date.getDate());
-            $scope.select.TIME_END.setDate(date.getDate());
-
-            JobService
-                .requests
-                .save({}, $scope.select)
-                .$promise
-                .then(function(response) {
-                    $window.location.href = '/requests';
                 });
         }
 

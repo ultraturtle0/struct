@@ -1,57 +1,17 @@
 angular.module('Database')
     .controller('TravelController', ['$scope', 'JobService', 'daterangeFilter', 'jobfilterFilter', function($scope, JobService, daterangeFilter, jobfilterFilter) {
         
-        $scope.getTrips = function(query) {
+        var getData = function(query) {
             JobService
-                .travel
-                .query(query)
+                [query]
+                .query({})
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
-                        $scope.trips = data;
+                        $scope[query] = data;
                     }
                 });
-        };
-
-        $scope.getVehicles = function(query) {
-            JobService
-                .vehicles
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.vehicles = data;
-                    }
-                });
-        };
-
-        $scope.getJobs = function(query) {
-            JobService
-                .jobs
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.jobs = data;
-                    }
-                });
-        };
-
-        $scope.getEmps = function(query) {
-            JobService
-                .employees
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.emps = data;
-                    }
-                });
-        };
+            };
 
         $scope.sumMiles = function (filtered) {
             var miles = 0;
@@ -71,10 +31,9 @@ angular.module('Database')
 
         var init = function() {
             $scope.select = {};
-            $scope.getTrips({});
-            $scope.getVehicles({});
-            $scope.getJobs({});
-            $scope.getEmps({});
+
+            let queries = ['travels', 'vehicles', 'jobs', 'employees'];
+            queries.forEach(getData);
 
             $scope.focus = {
                 time_end: new Date()

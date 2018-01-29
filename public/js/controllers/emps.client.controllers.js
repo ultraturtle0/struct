@@ -1,14 +1,14 @@
 angular.module('Database')
     .controller('EmpController', ['$scope', '$window', 'JobService', function($scope, $window, JobService) {
         
-        $scope.getEmps = function(query) {
+        var getData = function(query) {
             JobService
-                .employees
-                .query(query)
+                [query]
+                .query({})
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        $scope.emps = data;
+                        $scope[query] = data;
                     }
                 });
         };
@@ -18,7 +18,8 @@ angular.module('Database')
         }
 
         var init = function() {
-            $scope.getEmps({});
+            let queries = ['employees'];
+            queries.forEach(getData);
         }
 
         init();

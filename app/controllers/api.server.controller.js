@@ -261,14 +261,21 @@ exports.requests = function(req, res, next) {
 }
 
 exports.addrequest = function(req, res, next) {
+	
+	req.body.EMP_ID = req.session.passport.user;
 	console.log(req.body);
 
 	var Request = mongoose.model('Request');
     const request = new Request(req.body);
     request.save((err) => {
+    	let success = false;
+    	let message = '';
         if (err) {
-            console.log(err);
+            message = err;
+        } else {
+        	message = 'Success!';
+        	success = true;
         }
-        res.redirect('/dashboard/requests');
+        res.send({success: success, message: message});
     });
 };

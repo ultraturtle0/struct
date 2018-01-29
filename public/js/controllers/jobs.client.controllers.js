@@ -1,14 +1,14 @@
 angular.module('Database')
     .controller('JobController', ['$scope', '$location', '$window', 'JobService', 'daterangeFilter', function($scope, $location, $window, JobService, daterangeFilter) {
         
-        $scope.getJobs = function(query) {
+        var getData = function(query) {
             JobService
-                .jobs
-                .query(query)
+                [query]
+                .query({})
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        $scope.jobs = data;
+                        $scope[query] = data;
                     }
                 });
         };
@@ -18,7 +18,7 @@ angular.module('Database')
         }
 
         var init = function() {
-            $scope.getJobs({});
+            getData('jobs');
         }
 
         init();

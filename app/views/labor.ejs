@@ -12,7 +12,7 @@
     <body ng-app="Database" ng-controller="LaborController">
         <headtabs></headtabs>
         Job Number: <select ng-options="job.JOB_NUMBER as job.JOB_NUMBER for job in jobs" ng-Model="focus.job" name="job"></select>
-        Employee: <select ng-options="emp.EMP_NAME as emp.EMP_NAME for emp in emps" ng-Model="focus.emp" name="emp"></select>
+        Employee: <select ng-options="emp.EMP_NAME as emp.EMP_NAME for emp in employees" ng-Model="focus.emp" name="emp"></select>
         From <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
         Trade: <select ng-options="trade.TRADE_NAME as trade.TRADE_NAME for trade in trades" ng-model="focus.CATEGORY"></select>

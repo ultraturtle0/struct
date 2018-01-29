@@ -3,30 +3,20 @@ angular.module('Database')
         
         $scope.getData = function(query) {
             JobService
-                .repairs
-                .query(query)
+                [query]
+                .query({})
                 .$promise
                 .then(function(data) {
                     if (data.length) {
-                        console.log(data);
-                        $scope.repairs = data;
-                    }
-                });
-            JobService
-                .vehicles
-                .query(query)
-                .$promise
-                .then(function(data) {
-                    if (data.length) {
-                        console.log(data);
-                        $scope.vehicles = data;
+                        $scope[query] = data;
                     }
                 });
         };
 
         var init = function() {
             $scope.select = {};
-            $scope.getData({});
+            let queries = ['repairs', 'vehicles'];
+            queries.forEach(getData);
 
             $scope.focus = {
                 time_end: new Date()
