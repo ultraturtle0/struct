@@ -73,6 +73,7 @@ angular.module('Services')
                 }),
 
             requests: $resource('/api/requests', {
+                    _id: "@_id",
                     JOB_ID: "@JOB_ID",
                     LOCATION: "@LOCATION",
                     EMP_ID: "@EMP_ID",

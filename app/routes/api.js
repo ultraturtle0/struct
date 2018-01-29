@@ -29,7 +29,8 @@ module.exports = (function (app, acl) {
 		.post(api.addvehicle);
 	app.route('/api/requests')
 		.get(api.requests)
-		.post(api.addrequest);
+		.post(api.addrequest)
+		.delete(api.deleterequest);
 
 	app.route('/api/geo')
 		.get(geo.distance);

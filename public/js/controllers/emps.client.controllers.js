@@ -14,7 +14,7 @@ angular.module('Database')
         };
 
         $scope.showEmp = function(emp) {
-            $window.location.href = '/labor?emp=' + emp;
+            $window.location.href = '/dashboard/labor?emp=' + emp;
         }
 
         var init = function() {

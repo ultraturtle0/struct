@@ -59,24 +59,32 @@ angular.module('Database')
                 .labors
                 .save({}, request)
                 .$promise
-                .then(function (err) {
-                    /*if (err) {
-                        console.log(err);
-                    } else {*/
-                        /* find and delete the pending request
+                .then(function (res) {
+                    if (res.error) {
+                        console.log(res.error);
+                    } else {
+                        // find and delete the pending request
                         JobService
                             .requests
-                            .*/
-                        angular.forEach($scope.requests, function (emp) {
-                            angular.forEach(emp, function (value, index) {
-                                if (value._id == req) {
-                                    emp.splice(index, 1);
+                            .delete({_id: target})
+                            .$promise
+                            .then(function (res) {
+                                if (res.err) {
+                                    console.log(res.err);
+                                } else {
+                                    console.log(res.message);
+                                    angular.forEach($scope.requests, function (emp) {
+                                        angular.forEach(emp, function (value, index) {
+                                            if (value._id == req) {
+                                                emp.splice(index, 1);
+                                            }
+                                        });
+                                    });
+                                    delete $scope.select[req];
                                 }
                             });
-                        });
-                        delete $scope.select[req];
-                        console.log($scope.requests);
-                    // }
+                        
+                    }
                 });
         }
 

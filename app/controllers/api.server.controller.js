@@ -279,3 +279,18 @@ exports.addrequest = function(req, res, next) {
         res.send({success: success, message: message});
     });
 };
+
+exports.deleterequest = function(req, res, next) {
+	var query = req.query;
+	console.log(query);
+
+	var Request = mongoose.model('Request');
+	Request
+		.findByIdAndRemove(query, function(err) {
+			if (err) {
+				res.json({err: err});
+			} else {
+				res.json({message: "success!"});
+			}
+		});
+}
