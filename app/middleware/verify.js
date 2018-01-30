@@ -1,9 +1,10 @@
 module.exports = function(acl) {
     return function (req, res, next) {
-        console.log(req.baseUrl || req.url);
         if (req.session.passport) {
             var url = req.baseUrl || req.url; // ALLOWS FOR ROUTER OR STANDARD MIDDLEWARE USE
+            console.log(url);
             acl.isAllowed(req.session.passport.user.toString(), url, req.method, (err, allowed) => {
+                console.log(err);
                 if (allowed) {
                     next();
                 } else {
