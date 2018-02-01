@@ -23,13 +23,14 @@ angular.module('Request')
 		}
 
 		$scope.requestSubmit = function () {
-            var date = new Date(Date.now());
-            $scope.select.TIME_START.setFullYear(date.getFullYear());
-            $scope.select.TIME_END.setFullYear(date.getFullYear());
-            $scope.select.TIME_START.setMonth(date.getMonth());
-            $scope.select.TIME_END.setMonth(date.getMonth());
-            $scope.select.TIME_START.setDate(date.getDate());
-            $scope.select.TIME_END.setDate(date.getDate());
+            var date = moment();
+            var start = moment($scope.select.TIME_START);
+            var end = moment($scope.select.TIME_END);
+            console.log($scope.select.TIME_START);
+ 
+            $scope.select.TIME_START = start.year(date.year()).month(date.month()).date(date.date()).toDate();
+            $scope.select.TIME_END = end.year(date.year()).month(date.month()).date(date.date()).toDate();
+            console.log(date);
 
             $scope.message = 'Submitting...'
             JobService

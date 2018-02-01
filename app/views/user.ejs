@@ -5,6 +5,10 @@
 		<script type="text/javascript" src="/lib/angular/angular.js"></script>
 		<script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
 		<script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+        <link href="//cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css"  rel="stylesheet">
+        <script src="//cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
+
+        <script type="text/javascript" src="/lib/moment/moment.js"></script>
 		<script type="text/javascript" src="/public/js/Services.js"></script>
 		<script type="text/javascript" src="/public/js/Request.js"></script>
 	</head>
@@ -12,6 +16,7 @@
 		<form id="request" name="request" ng-submit="requestSubmit()" method="post" novalidate>
 			<table>
 				<tbody>
+                    <tr><td><p>{{ select.TIME_START | date: "HH:mm:ss"}}</p></td></tr>
 					<tr>
 						<td>Job: </td>
 						<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" name="JOB_ID" ng-model="select.JOB_ID"></select></td>

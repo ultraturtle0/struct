@@ -10,5 +10,6 @@ module.exports = function() {
     require('../app/models/labor.server.model.js');
     require('../app/models/travel.server.model.js');
     require('../app/models/vehicle.server.model.js');
+    require('../app/models/day.server.model.js');
     return $db;
 };

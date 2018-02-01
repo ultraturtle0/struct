@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
+mongoose.Promise = require('bluebird');
 
 exports.jobs = function(req, res, next) {
 	var Job = mongoose.model('Job');
@@ -70,51 +72,114 @@ exports.labor = function(req, res, next) {
 };
 
 exports.addlabor = function(req, res, next) {
+
+    console.log('we get here, right?');
 	var Labor = mongoose.model('Labor');
 	var Trade = mongoose.model('Trade');
+    var Day = mongoose.model('Day');
+    var labor;
+
+    // check if Day exists
+    console.log(req.body.TIME_START);
+    let today = moment(new Date(req.body.TIME_START)).startOf('day');
+    let tomorrow = moment(today).add(1, 'days'); // DO YOU EVEN NEED THIS? 
+    console.log(today);
+    console.log(tomorrow);
+
+
+    // add Labor
 	if (!req.body.CATEGORY) {
+        console.log(req.body);
 		Trade
-			.findOne({'WORKS._id': req.body.SUBCATEGORY}) // WHY DOESN'T THIS WORK?
-			.exec(function(err, data) {
-				if (err) {
-					console.log(err);
-				}
+			.findOne({TRADE_NAME: "Painting"}) // WHY DOESN'T THIS WORK?
+			.exec((err, data) => {
 				if (data) {
 					req.body.CATEGORY = data._id;
 
-					const labor = new Labor(req.body);
-	    			labor.save((err) => {
-		        		if (err) {
-		            		console.log(err);
-		        		}
-		        		res.redirect('/dashboard/labor');
-					});
-	    		}
-			});
-	}
+					labor = new Labor(req.body);
+	    			labor.save()
+                        .then(() => {
+                        console.log('do we get into the labor save callback?');
+                        Day
+                            .findOneAndUpdate({
+                                DAY: {
+                                    $gte: today.toDate(),
+                                    $lt: tomorrow.toDate()
+                                },
+                                EMP_ID: req.body.EMP_ID
+                            }, {
+                                $min: {
+                                    TIME_START: req.body.TIME_START
+                                },
+                                $max: {
+                                    TIME_END: req.body.TIME_END
+                                },
+                                $push: {
+                                    LABORS: labor
+                                }
+                            })
+                            .populate('LABORS')
+                            .exec((err, newday) => {
+                                console.log(newday);
+                                if (!newday) {
+                                    var doc = {
+                                        DATE: today,
+                                        EMP_ID: req.body.EMP_ID,
+                                        TIME_START: req.body.TIME_START,
+                                        TIME_END: req.body.TIME_END,
+                                        LABORS: [labor._id]
+                                    };
+                                    // FUCKING CALLBACK HELLLLLLLLLL
+                                    var day = new Day(doc);
+                                    day.save()
+                                        .then(() => {
+                                            console.log('OMG WOW');
+                                        })
+                                        .catch((err) => {
+                                            console.log('OH NO');
+                                            console.log(err);
+                                        });
+                                }
+                            })
+                            .catch((err) => {
+                                console.log('error adding/updating day: ');
+                                console.log(err);
+                            })
+                            .finally(() => {
+                                res.redirect('/dashboard/labor'); // DEPRECATED?
+                            });
+
+                        });
+                }                 
+            })
+            .catch((err) => {
+                console.log('trade required');
+                console.log(err);
+            });
+    }
 };
 
 exports.travel = function(req, res, next) {
-	var Travel = mongoose.model('Travel');
-	var query = req.query;
-	Travel
-		.find(query)
-		.populate('JOB_ID_START')
-		.populate('JOB_ID_END')
-		.populate('EMP_ID')
-		.populate('VEHICLE_ID')
-		.exec(function(err, data) {
-			if (err) {
-				console.log(err);
-				return next(err);
-			}
-			res.json(data);
-		});
+    var Travel = mongoose.model('Travel');
+    var query = req.query;
+    Travel
+        .find(query)
+        .populate('JOB_ID_START')
+        .populate('JOB_ID_END')
+        .populate('EMP_ID')
+        .populate('VEHICLE_ID')
+        .exec(function(err, data) {
+            if (err) {
+                console.log(err);
+                return next(err);
+            }
+            res.json(data);
+        });
 };
 
 exports.addtravel = function(req, res, next) {
-	console.log(req.body);
-	var Travel = mongoose.model('Travel');
+    console.log(req.body);
+    var Travel = mongoose.model('Travel');
     const travel = new Travel(req.body);
     travel.save((err) => {
         if (err) {
@@ -126,22 +191,22 @@ exports.addtravel = function(req, res, next) {
 };
 
 exports.work = function(req, res, next) {
-	var Work = mongoose.model('Work');
-	var query = req.query;
-	Work
-		.find(query)
-		.exec(function(err, data) {
-			if (err) {
-				console.log(err);
-				return next(err);
-			}
-			res.json(data);
-		});
+    var Work = mongoose.model('Work');
+    var query = req.query;
+    Work
+        .find(query)
+        .exec(function(err, data) {
+            if (err) {
+                console.log(err);
+                return next(err);
+            }
+            res.json(data);
+        });
 };
 
 exports.addwork = function(req, res, next) {
-	console.log(req.body);
-	var Work = mongoose.model('Work');
+    console.log(req.body);
+    var Work = mongoose.model('Work');
     const work = new Work(req.body);
     work.save((err) => {
         if (err) {
@@ -153,21 +218,21 @@ exports.addwork = function(req, res, next) {
 };
 
 exports.trades = function(req, res, next) {
-	var Trade = mongoose.model('Trade');
-	var query = req.query;
-	Trade
-		.find(query)
-		.populate('WORKS')
-		.exec(function(err, data) {
-			if (err) {
-				console.log(err);
-				return next(err);
-			}
-			res.json(data);
-		});
+    var Trade = mongoose.model('Trade');
+    var query = req.query;
+    Trade
+        .find(query)
+        .populate('WORKS')
+        .exec(function(err, data) {
+            if (err) {
+                console.log(err);
+                return next(err);
+            }
+            res.json(data);
+        });
 };
 
-exports.addtrade = function(req, res, next) {
+    exports.addtrade = function(req, res, next) {
 	console.log('why is the body empty');
 	console.log(req.body);
 	var WORKS = req.body.WORKS;
