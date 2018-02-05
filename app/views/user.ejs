@@ -5,6 +5,8 @@
 		<script type="text/javascript" src="/lib/angular/angular.js"></script>
 		<script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
 		<script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="/lib/angular-messages/angular-messages.min.js"></script>
+
 
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
 		<script type="text/javascript" src="/public/js/Services.js"></script>
@@ -17,7 +19,7 @@
 		<form id="request" name="request" ng-submit="requestSubmit()" method="post" novalidate>
 			<table>
 				<tbody>
-                    <tr><td><p>{{ select.TIME_START }}</p></td></tr>
+                    <tr><td><p>{{ select.TIME_START }}</p></td><td><p>{{ select.TIME_END }}</p></td></tr>
 					<tr>
 						<td>Job: </td>
 						<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" name="JOB_ID" ng-model="select.JOB_ID"></select></td>
@@ -32,11 +34,11 @@
 					</tr>
 					<tr>
 						<td>Start Time: </td>
-                        <td><input flatpickr type="text" name="TIME_START" ng-model="select.TIME_START" required>
-<input type="time" name="TIME_START" ng-model="select.TIME_START" ng-max="select.TIME_END" required></td>
+                        <td><input flatpickr name="TIME_START" ng-model="select.TIME_START" required>
+                        </td>
 						<td>Stop Time: </td>
-						<td><input type="time" name="TIME_END" ng-model="select.TIME_END" ng-min="select.TIME_START" required></td>
-						<td ng-show="(request.TIME_END.$touched && request.TIME_END.$invalid) || (request.TIME_START.$touched && request.TIME_START.$invalid)">Time invalid.</td>
+                        <td><input flatpickr name="TIME_END" ng-model="select.TIME_END" min="{{ select.TIME_START }}" required></td>
+                        <td ng-messages="request.TIME_END.$error"><div ng-if="request.TIME_START.$dirty && request.TIME_END.$dirty" ng-message="timepickr">Time invalid.</div></td>
 					</tr>
 					<tr>
 						<td>Work: </td>

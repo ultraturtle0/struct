@@ -1,1 +1,1 @@
-angular.module('Services', ['ngResource', 'ngRoute']);
+angular.module('Services', ['ngResource', 'ngRoute', 'ngMessages']);
