@@ -1,6 +1,8 @@
 angular.module('Database')
     .controller('ReqController', ['$scope', '$window', 'JobService', function($scope, $window, JobService) {
         
+        
+
         var getData = function(query) {
             JobService
                 [query]
@@ -9,6 +11,8 @@ angular.module('Database')
                 .then(function(data) {
                     if (data.length) {
                         $scope[query] = data;
+                    } else {
+                        console.log('error loading ' + query);
                     }
                 });
             };
@@ -38,6 +42,8 @@ angular.module('Database')
                                     JOB_ID: value.JOB_ID._id || null,
                                     EMP_ID: value.EMP_ID._id,
                                     LOCATION: value.LOCATION || null,
+                                    VEHICLE_ID: value.VEHICLE_ID,
+                                    SUBCATEGORY: value.SUBCATEGORY,
                                     TIME_START: new Date(Date.parse(value.TIME_START)),
                                     TIME_END: new Date(Date.parse(value.TIME_END)),
                                     DESCRIPTION: value.DESCRIPTION
@@ -91,7 +97,7 @@ angular.module('Database')
         var init = function() {
             $scope.getReqs({});
 
-            queries = ['jobs', 'works'];
+            queries = ['jobs', 'works', 'vehicles'];
             queries.forEach(getData);
 
             $scope.select = {};

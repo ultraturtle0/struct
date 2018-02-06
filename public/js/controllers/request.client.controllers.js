@@ -1,14 +1,17 @@
 angular.module('Request')
 	.controller('RequestController', ['$scope', '$window', 'JobService', function($scope, $window, JobService) {
 		
-		var getData = function(query) {
-			JobService[query]
+		var getData = function(doc, query) {
+            if (!query) {
+                query = {};
+            }
+			return JobService[doc]
 				.query({})
 				.$promise
 				.then(function(data) {
 					if (data) {
 						console.log(data);
-						$scope[query] = data;
+						$scope[doc] = data;
 					}
 				});
 			};
@@ -19,9 +22,7 @@ angular.module('Request')
 			inputs.forEach((input) => {
 				$scope.request[input].$setUntouched();
                 $scope.request[input].$dirty = false;
-                console.log($scope.request[input]);
                 if ($scope.request[input].fp) {
-                    console.log('SO THAT WORKS');
                     $scope.request[input].fp.clear();
                 }
 			})
@@ -53,7 +54,7 @@ angular.module('Request')
 
         let queries = ['jobs', 'employees', 'vehicles', 'works'];
 		queries.forEach(getData);
-
+ 
 		$scope.select = {};
 		$scope.message = '';
 

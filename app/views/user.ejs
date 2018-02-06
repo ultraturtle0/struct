@@ -27,10 +27,10 @@
 						<td><input type="text" name="LOCATION" ng-model="select.LOCATION"></td>
 						<td ng-show="(request.JOB_ID.$touched || request.LOCATION.$touched) && (!select.JOB_ID && !select.LOCATION)">Choose a job or enter a location.</td>
 					</tr>
-					<tr ng-show="request.JOB_ID.$touched && (lastrequest.JOB_ID == select.JOB_ID)">
+					<tr>
 						<td>Vehicle: </td>
-						<td><select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE" ng-model="select.VEHICLE_ID"></select></td>
-						<td ng-show="request.EMP_NAME.$touched && request.EMP_NAME.$invalid">Select a vehicle.</td>
+						<td><select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE" ng-model="select.VEHICLE_ID" required></select></td>
+						<td ng-show="request.VEHICLE.$touched && request.VEHICLE.$invalid">Select a vehicle.</td>
 					</tr>
 					<tr>
 						<td>Start Time: </td>

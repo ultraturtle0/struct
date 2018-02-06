@@ -8,6 +8,8 @@
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="/lib/angular-messages/angular-messages.min.js"></script>
+
     </head>
     <body ng-app="Database" ng-controller="ReqController">
         <headtabs></headtabs>
@@ -20,6 +22,7 @@
                 <span><label>Time in: <input type="time" name="TIME_START" ng-model="select[req._id].TIME_START"></label></span>
                 <span><label>Time out: <input type="time" name="TIME_END" ng-model="select[req._id].TIME_END"></label></span>
                 <span ng-show="req.JOB_ID.JOB_NAME"><label>Work: <select ng-options="work._id as work.WORK_NAME for work in works" name="SUBCATEGORY" ng-model="select[req._id].SUBCATEGORY"></select></label></span>
+                <span><label>Vehicle: <select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" name="VEHICLE_ID" ng-model="select[req._id].VEHICLE_ID"></select></label></span>
                 <span><label>Description: <input type="text" name="DESCRIPTION" ng-model="select[req._id].DESCRIPTION"></label></span>
                 <input type="submit" value="Approve">
             </form>

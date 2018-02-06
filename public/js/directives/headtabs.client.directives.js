@@ -18,7 +18,6 @@ angular.module('Database')
 	            		scope.pages.push(value);
 	            	}
 	            });
-	            console.log(scope.pages);
 			}
 		}
 	}]);
