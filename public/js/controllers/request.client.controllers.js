@@ -18,6 +18,12 @@ angular.module('Request')
 			let inputs = ['JOB_ID', 'LOCATION', 'VEHICLE', 'TIME_START', 'TIME_END'];
 			inputs.forEach((input) => {
 				$scope.request[input].$setUntouched();
+                $scope.request[input].$dirty = false;
+                console.log($scope.request[input]);
+                if ($scope.request[input].fp) {
+                    console.log('SO THAT WORKS');
+                    $scope.request[input].fp.clear();
+                }
 			})
 			$scope.request.$setPristine();
 		}

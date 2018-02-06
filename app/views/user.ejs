@@ -34,10 +34,10 @@
 					</tr>
 					<tr>
 						<td>Start Time: </td>
-                        <td><input flatpickr name="TIME_START" ng-model="select.TIME_START" required>
+                        <td><input flatpickr api="request.TIME_START.fp" name="TIME_START" ng-model="select.TIME_START" required>
                         </td>
 						<td>Stop Time: </td>
-                        <td><input flatpickr name="TIME_END" ng-model="select.TIME_END" min="{{ select.TIME_START }}" required></td>
+                        <td><input flatpickr api="request.TIME_END.fp" name="TIME_END" ng-model="select.TIME_END" min="{{ select.TIME_START }}" required></td>
                         <td ng-messages="request.TIME_END.$error"><div ng-if="request.TIME_START.$dirty && request.TIME_END.$dirty" ng-message="timepickr">Time invalid.</div></td>
 					</tr>
 					<tr>

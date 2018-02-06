@@ -2,28 +2,36 @@ angular.module('Services')
     .directive('flatpickr', [function() {
         return {
             restrict: 'A',
-            require: '^ngModel',
+            scope: {
+                api: '='
+            },
+            require: '^ngModel', // DOES MODEL NEED PARENT INDICATOR?
             link: function(scope, element, attrs, ngModel) {
-                console.log(element);
-                flatpickr(element[0], {
+
+                fp = flatpickr(element[0], {
                     enableTime: true,
                     noCalendar: true,
                     altInput: true,
                     altFormat: 'H:i',
                     dateFormat: 'Z'
                 });
+
+                scope.api = {
+                    clear: fp.clear
+                };
                 
                 var validate = function() {
-                    var valid = (new Date(ngModel.$viewValue)) > (new Date(attrs.min));
-                    ngModel.$setValidity('min', valid);
+                    var valid = (new Date(ngModel.$modelValue)) > (new Date(attrs.min));
+                    ngModel.$setValidity('timepickr', valid);
+
                 };
 
-
                 if ('min' in attrs) { 
-                    scope.$watch(attrs.ngModel, validate);
-                    attrs.$observe('timepickr', validate);
+                    attrs.$observe('min', validate);
+                    scope.$watch(() => {
+                        return ngModel.$modelValue;
+                    }, validate); 
                 }
-
                 
             }
         };
