@@ -123,7 +123,7 @@ exports.addlabor = function(req, res, next) {
                                 console.log(newday);
                                 if (!newday) {
                                     var doc = {
-                                        DATE: today,
+                                        DAY: today,
                                         EMP_ID: req.body.EMP_ID,
                                         TIME_START: req.body.TIME_START,
                                         TIME_END: req.body.TIME_END,
