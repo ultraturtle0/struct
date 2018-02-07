@@ -68,7 +68,12 @@ angular.module('Database')
 
         $scope.requestApprove = function(req) {
             var request = $scope.select[req];
-            request.HOURS = (request.TIME_END - request.TIME_START) / 3600000;
+
+            var START_moment = moment(request.TIME_START);
+            var END_moment = moment(request.TIME_END);
+            request.HOURS = moment.duration(END_moment.diff(START_moment)).asMinutes() / 60;
+            console.log(request.HOURS);
+            
             var target = request._id;
             delete request._id;
             JobService
