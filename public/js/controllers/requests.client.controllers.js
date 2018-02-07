@@ -17,6 +17,10 @@ angular.module('Database')
                 });
             };
 
+        var loadTimes = function(request, time, date) {
+            $scope.fp[request][time].setDate(date, true);
+        };
+
         $scope.getReqs = function(query) {
             JobService
                 .requests
@@ -26,17 +30,23 @@ angular.module('Database')
                     if (data.length) {
                         console.log(data);
                         $scope.requests = {};
+
                         angular.forEach(data, function (value) {
                             if (!(value.EMP_ID.EMP_NAME in $scope.requests)) {
                                 $scope.requests[value.EMP_ID.EMP_NAME] = [value];
                             } else {
                                 $scope.requests[value.EMP_ID.EMP_NAME].push(value);
                             }
+
+                            setTimeout(() => {
+                                loadTimes(value._id, 'TIME_START', value.TIME_START);
+                                loadTimes(value._id, 'TIME_END', value.TIME_END);
+                            }, 0);
+
                         });
                         angular.forEach($scope.requests, function (emp) {
+                            var counter = 0;
                             angular.forEach(emp, function (value) {
-                                console.log('setting value');
-                                console.log(value);
                                 $scope.select[value._id] = {
                                     _id: value._id,
                                     JOB_ID: value.JOB_ID._id || null,
@@ -44,13 +54,14 @@ angular.module('Database')
                                     LOCATION: value.LOCATION || null,
                                     VEHICLE_ID: value.VEHICLE_ID,
                                     SUBCATEGORY: value.SUBCATEGORY,
-                                    TIME_START: new Date(Date.parse(value.TIME_START)),
-                                    TIME_END: new Date(Date.parse(value.TIME_END)),
+                                    TIME_START: value.TIME_START,
+                                    TIME_END: value.TIME_END,
                                     DESCRIPTION: value.DESCRIPTION
                                 }
                             });
+                            
                         });
-                        console.log($scope.select);
+
                     }
                 });
         };
@@ -60,7 +71,6 @@ angular.module('Database')
             request.HOURS = (request.TIME_END - request.TIME_START) / 3600000;
             var target = request._id;
             delete request._id;
-            console.log(request);
             JobService
                 .labors
                 .save({}, request)
@@ -95,6 +105,7 @@ angular.module('Database')
         }
 
         var init = function() {
+            $scope.fp = {};
             $scope.getReqs({});
 
             queries = ['jobs', 'works', 'vehicles'];
