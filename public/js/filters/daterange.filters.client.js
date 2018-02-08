@@ -6,7 +6,6 @@ angular.module('Database')
 				return items;
 			}
 			angular.forEach(items, function(value) {
-                console.log(value[key]);
 				if (moment(value[key]).isAfter(startDate) &&
 					moment(value[key]).isBefore(endDate)) {
 						result.push(value);

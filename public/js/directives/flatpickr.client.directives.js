@@ -9,9 +9,7 @@ angular.module('Services')
             require: '^ngModel', // DOES MODEL NEED PARENT INDICATOR?
             link: function(scope, element, attrs, ngModel) {
 
-                console.log(ngModel.$modelValue);
-                console.log(scope.fpOptions);
-
+                
                 fp = flatpickr(element[0], scope.fpOptions || {
                     enableTime: true,
                     noCalendar: true,
@@ -39,13 +37,6 @@ angular.module('Services')
                         return ngModel.$modelValue;
                     }, validate); 
                 }
-
-                scope.$watch(() => {
-                    return ngModel.$modelValue;
-                }, (newVal) => {
-                    console.log(newVal);
-                });
-
                 
             }
         };

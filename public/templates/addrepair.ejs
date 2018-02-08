@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td>Date: </td>
-				<td><input type="date" name="REPAIR_DATE" ng-model="select.REPAIR_DATE"></td>
+				<td><input flatpickr options="fpOptions" name="REPAIR_DATE" ng-model="select.REPAIR_DATE"></td>
 				<td ng-show="repair.REPAIR_DATE.$touched && repair.REPAIR_DATE.$invalid" required>Enter a date.</td>
 			</tr>
 			<tr>
