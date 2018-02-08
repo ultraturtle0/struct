@@ -3,14 +3,16 @@ angular.module('Services')
         return {
             restrict: 'A',
             scope: {
-                api: '='
+                api: '=',
+                fpOptions: '=options'
             },
             require: '^ngModel', // DOES MODEL NEED PARENT INDICATOR?
             link: function(scope, element, attrs, ngModel) {
 
                 console.log(ngModel.$modelValue);
+                console.log(scope.fpOptions);
 
-                fp = flatpickr(element[0], {
+                fp = flatpickr(element[0], scope.fpOptions || {
                     enableTime: true,
                     noCalendar: true,
                     altInput: true,
@@ -19,7 +21,6 @@ angular.module('Services')
                 });
 
                 if (attrs.api) {
-                    console.log('were getting here');
                     scope.api = {
                         clear: fp.clear,
                         setDate: fp.setDate

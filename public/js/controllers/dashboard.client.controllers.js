@@ -14,7 +14,7 @@ angular.module('Database')
         };
 
         var init = function() {
-            let queries = ['jobs', 'employees', 'works', 'trades', 'vehicles', 'requests'];
+            let queries = ['jobs', 'employees', 'works', 'vehicles', 'requests'];
             queries.forEach(getData);
             $templateCache.removeAll();
         }
@@ -56,10 +56,7 @@ angular.module('Database')
             $scope.select.HOURS = ($scope.select.TIME_END - $scope.select.TIME_START) / 3600000;
             console.log($scope.select.HOURS);
             delete $scope.select.DATE;
-            
-            $scope.select.CATEGORY = $scope.select.trade._id;
-            delete $scope.select.trade;
-            
+                        
             if (!$scope.select.SUBCATEGORY) {
                 $scope.select.SUBCATEGORY = $scope.workblank;
             }
@@ -104,25 +101,6 @@ angular.module('Database')
                     }
                 });
         };
-
-        $scope.tradeSubmit = function () {
-            console.log($scope.select.WORKS);
-            var query = {
-                TRADE_NAME: $scope.select.TRADE_NAME,
-                WORKS: $scope.select.WORKS
-            }
-            console.log('query');
-            console.log(query);
-            JobService
-                .trades
-                .save({}, query)
-                .$promise
-                .then(function(err) {
-                    if (err) {
-                        console.log(err)
-                    }
-                });
-        }
 
         $scope.travelSubmit = function () {
             var date = $scope.select.DATE;

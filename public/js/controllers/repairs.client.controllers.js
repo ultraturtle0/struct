@@ -1,7 +1,7 @@
 angular.module('Database')
     .controller('RepairsController', ['$scope', 'JobService', 'daterangeFilter', function($scope, JobService, daterangeFilter) {
         
-        $scope.getData = function(query) {
+        var getData = function(query) {
             JobService
                 [query]
                 .query({})

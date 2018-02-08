@@ -36,6 +36,13 @@ angular.module('Database')
         var init = function() {
             var params = (new URL(document.location)).searchParams;
 
+            $scope.fpOptions = {
+                noCalendar: false,
+                altInput: true,
+                altFormat: 'm-d-Y',
+                dateFormat: 'Z'
+            };
+
             $scope.focus = {
                 time_end: new Date()
             };
@@ -46,7 +53,7 @@ angular.module('Database')
             if (params.has("job"))
                 $scope.focus.job = parseInt(params.get("job"));
 
-            let queries = ['labors', 'jobs', 'employees', 'works', 'trades'];
+            let queries = ['labors', 'jobs', 'employees', 'works'];
             queries.forEach(getData);
             
             $scope.searches = [];

@@ -88,15 +88,7 @@ exports.addlabor = function(req, res, next) {
 
 
     // add Labor
-	if (!req.body.CATEGORY) {
-        console.log(req.body);
-		Trade
-			.findOne({TRADE_NAME: "Painting"}) // WHY DOESN'T THIS WORK?
-			.exec((err, data) => {
-				if (data) {
-					req.body.CATEGORY = data._id;
-
-					labor = new Labor(req.body);
+   					labor = new Labor(req.body);
 	    			labor.save()
                         .then(() => {
                         console.log('do we get into the labor save callback?');
@@ -148,16 +140,10 @@ exports.addlabor = function(req, res, next) {
                             .finally(() => {
                                 res.redirect('/dashboard/labor'); // DEPRECATED?
                             });
+                        
 
-                        });
-                }                 
-            })
-            .catch((err) => {
-                console.log('trade required');
-                console.log(err);
-            });
-    }
-};
+                        });               
+    };
 
 exports.travel = function(req, res, next) {
     var Travel = mongoose.model('Travel');
@@ -212,42 +198,6 @@ exports.addwork = function(req, res, next) {
         if (err) {
             const message = getErrorMessage(err);
             console.log(message);
-        }
-        res.redirect('/');
-    });
-};
-
-exports.trades = function(req, res, next) {
-    var Trade = mongoose.model('Trade');
-    var query = req.query;
-    Trade
-        .find(query)
-        .populate('WORKS')
-        .exec(function(err, data) {
-            if (err) {
-                console.log(err);
-                return next(err);
-            }
-            res.json(data);
-        });
-};
-
-    exports.addtrade = function(req, res, next) {
-	console.log('why is the body empty');
-	console.log(req.body);
-	var WORKS = req.body.WORKS;
-	delete req.body.WORKS;
-	var Trade = mongoose.model('Trade');
-    const trade = new Trade(req.body);
-    trade.WORKS = [];
-    WORKS.forEach(function(work) {
-    	console.log(work.WORK_NAME);
-    	trade.WORKS.push(work);
-    });
-    trade.save((err) => {
-        if (err) {
-
-            console.log(err);
         }
         res.redirect('/');
     });

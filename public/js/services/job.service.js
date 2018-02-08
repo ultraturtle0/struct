@@ -52,12 +52,9 @@ angular.module('Services')
                     TIME_START: "@TIME_START",
                     TIME_END: "@TIME_END"
                 }),
-
-            trades: $resource('/api/trades', {
-                }),
-
+ 
             works: $resource('/api/work', {
-                    TRADE_NAME: "@WORK_NAME",
+                    WORK_NAME: "@WORK_NAME",
                 }),
 
             vehicles: $resource('/api/vehicles', {

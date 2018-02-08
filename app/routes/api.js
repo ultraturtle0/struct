@@ -23,9 +23,6 @@ module.exports = (function (app, acl) {
 		.get('/work', api.work)
 		.post('/work', api.addwork)
 
-		.get('/trades', api.trades)
-		.post('/trades', api.addtrade)
-
 		.get('/repairs', api.repairs)
 		.post('/repairs', api.addrepair)
 
