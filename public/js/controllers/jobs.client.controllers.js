@@ -18,6 +18,13 @@ angular.module('Database')
         }
 
         var init = function() {
+            $scope.fpOptions = {
+                noCalendar: false,
+                altInput: true,
+                altFormat: 'm-d-Y',
+                dateFormat: 'Z'
+            };
+
             getData('jobs');
         }
 

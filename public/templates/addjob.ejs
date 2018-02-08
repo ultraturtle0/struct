@@ -10,6 +10,11 @@
 				<td>Job Name: </td>
 				<td><input type="text" name="JOB_NAME" ng-model="select.JOB_NAME" required></td>
 				<td ng-show="job.JOB_NAME.$touched && job.JOB_NAME.$invalid">Job name required.</td>
+    		</tr>
+			<tr>
+				<td>Start Date:</td>
+				<td><input flatpickr options="fpOptions" name="JOB_START" ng-model="select.JOB_START" required></td>
+				<td ng-show="job.JOB_START.$touched && job.JOB_START.$invalid">Start date required.</td>
 			</tr>
 			<tr>
 				<td>Street Address: </td>

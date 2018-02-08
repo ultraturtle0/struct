@@ -4,12 +4,15 @@
         <title>Jobs - Sound Sport Surfaces</title>
 
         <link rel="stylesheet" type="text/css" href="/public/css/tables.css">
+        <link rel="stylesheet" type="text/css" href="/lib/flatpickr/dist/flatpickr.css">
 
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-messages/angular-messages.min.js"></script>
 
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+
+        <script type="text/javascript" src="/lib/flatpickr/dist/flatpickr.js"></script>
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
 
     </head>
@@ -18,8 +21,8 @@
         <div class="filters">
             <span>Job Number: <select ng-options="job as job.JOB_NUMBER for job in jobs" ng-model="focus.job"></select></span>
             <span>Customer: <input type="text" ng-Model="focus.customer" name="customer"></span>
-            <span>From <input type="date" ng-Model="focus.time_start" name="date_start">
-            to <input type="date" ng-Model="focus.time_end" name="date_end"></span>
+            <span>From <input flatpickr options="fpOptions" ng-Model="focus.time_start" name="date_start">
+            to <input flatpickr options="fpOptions" ng-Model="focus.time_end" name="date_end"></span>
         </div>
         <table class="data">
             <tr ng-repeat="job in jobs | filter: {JOB_NUMBER: focus.job.JOB_NUMBER} | filter: {CUSTOMER_NAME: focus.customer} | daterange : 'JOB_START' : focus.time_start : focus.time_end | orderBy:'-JOB_NUMBER'" ng-click="showJob(job.JOB_NUMBER)">
@@ -49,6 +52,7 @@
 
         <!-- directives -->
         <script type="text/javascript" src="/public/js/directives/headtabs.client.directives.js"></script>
+        <script type="text/javascript" src="/public/js/directives/flatpickr.client.directives.js"></script>
 
     </body>
 </html>
