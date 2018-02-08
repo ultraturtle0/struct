@@ -1,17 +1,6 @@
 const Job = require('mongoose').model('Job');
 const Emp = require('mongoose').model('Emp');
 
-/*function isAuthenticated(req, res, next) {
-    if (req.user) {
-        Emp
-            .findOne({_id: req.user}, function (err, emp) {
-                if (emp) {
-                    if 
-                }
-            })
-}*/
-
-
 exports.dashboard = (function(req, res, next) {
     if (req.session) {
         console.log(req.session);
