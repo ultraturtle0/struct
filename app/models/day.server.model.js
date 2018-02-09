@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LaborSchema = mongoose.model('Labor');
-
 const DaySchema = new Schema({
     DAY: Date,
     EMP_ID: {
@@ -15,7 +13,13 @@ const DaySchema = new Schema({
     HOURS: Number,
     LABORS: [{
         type: Schema.Types.ObjectId,
-        ref: 'Labor'
+        ref: 'Labor',
+        default: []
+    }],
+    TRAVELS: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Travel',
+        default: []
     }]
 }, {
     autoIndex: false
