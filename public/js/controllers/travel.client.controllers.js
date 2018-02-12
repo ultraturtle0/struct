@@ -7,6 +7,7 @@ angular.module('Database')
                 .query({})
                 .$promise
                 .then(function(data) {
+                    console.log(data);
                     if (data.length) {
                         $scope[query] = data;
                     }

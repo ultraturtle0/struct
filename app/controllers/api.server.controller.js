@@ -214,9 +214,9 @@ exports.travel = function(req, res, next) {
             }
             res.json(data);
         });
-    };
+};
 
-    exports.addtravel = function(req, res, next) {
+exports.addtravel = function(req, res, next) {
     console.log(req.body);
     var Travel = mongoose.model('Travel');
     const travel = new Travel(req.body);
