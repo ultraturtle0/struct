@@ -87,7 +87,9 @@ exports.addlabor = function(req, res, next) {
     let tomorrow = moment(today).add(1, 'days'); // DO YOU EVEN NEED THIS? 
 
     // add Labor
+    
     labor = new Labor(req.body);
+    
     labor.save()
         .then(() => {
             return Day                         // FIND DAY
@@ -148,6 +150,8 @@ exports.addlabor = function(req, res, next) {
                         units: 'imperial'
                     };
                     console.log(geoQuery);
+                    console.log(last.TIME_END);
+                    console.log(labor.TIME_START);
 
                     var START_moment = moment(last.TIME_END);
                     var END_moment = moment(labor.TIME_START);
@@ -161,7 +165,7 @@ exports.addlabor = function(req, res, next) {
                         HOURS: duration, 
                         // MILES: ,
                         EMP_ID: labor.EMP_ID,
-                        VEHICLE_ID: labor.VEHICLE_ID,
+                        VEHICLE_ID: req.body.VEHICLE_ID,
                         TIME_START: last.TIME_END,
                         TIME_END: labor.TIME_START
                     }

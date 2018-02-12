@@ -21,8 +21,7 @@
         to <input type="date" ng-model="focus.time_end" name="date_end">
         {{ focus }}
         <table class="data">
-            <!-- <tr ng-repeat="travel in travels | jobfilter : focus.job | filter : {EMP_ID: {_id: focus.emp }} | filter : {VEHICLE_ID: {_id: focus.vehicle}} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START' as filtered"> -->
-            <tr ng-repeat="travel in travels">
+            <tr ng-repeat="travel in travels | jobfilter : focus.job | filter : {EMP_ID: {_id: focus.emp }} | filter : {VEHICLE_ID: {_id: focus.vehicle}} | daterange : focus.time_start : focus.time_end | orderBy:'-TIME_START' as filtered">
                 <td>{{ travel.JOB_ID_START.JOB_NUMBER || travel.LOC_START_ADDR }}</td>
                 <td>{{ travel.JOB_ID_END.JOB_NUMBER || travel.LOC_END_ADDR }}</td>
                 <td>{{ travel.EMP_ID.EMP_NAME }}</td>
