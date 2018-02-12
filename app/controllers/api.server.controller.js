@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const request = require('request-promise');
 mongoose.Promise = require('bluebird');
+const bluebird = require('bluebird');
+
+const $geo = require('../services/geo.server.service.js');
 
 exports.jobs = function(req, res, next) {
 	var Job = mongoose.model('Job');
@@ -75,6 +78,7 @@ exports.labor = function(req, res, next) {
 exports.addlabor = function(req, res, next) {
 
 	var Labor = mongoose.model('Labor');
+    var Travel = mongoose.model('Travel');
 	var Job = mongoose.model('Job');
     var Day = mongoose.model('Day');
     var labor;
@@ -86,26 +90,6 @@ exports.addlabor = function(req, res, next) {
     labor = new Labor(req.body);
     labor.save()
         .then(() => {
-        console.log('do we get into the labor save callback?');
-        /*Day
-            .findOneAndUpdate({
-                DAY: {
-                    $gte: today.toDate(),
-                    $lt: tomorrow.toDate()
-                },
-                EMP_ID: req.body.EMP_ID
-            }, {
-                $min: {
-                    TIME_START: req.body.TIME_START
-                },
-                $max: {
-                    TIME_END: req.body.TIME_END
-                },
-                $push: {
-                    LABORS: labor
-                }
-            })
-        */
             return Day                         // FIND DAY
                 .findOneAndUpdate({
                     DAY: {
@@ -133,7 +117,8 @@ exports.addlabor = function(req, res, next) {
                     }
                 }, {
                     upsert: true
-                }).populate('LABORS');
+                })
+                .populate('LABORS');
         })
         .then((oldday, err) => {                     // DETERMINE TRAVEL
             if (!oldday) {
@@ -141,9 +126,68 @@ exports.addlabor = function(req, res, next) {
             }
             var last = oldday.LABORS[oldday.LABORS.length-1];
             if (last.JOB_ID.toString() == labor.JOB_ID.toString()) {
-                console.log('same place!');
-                return oldday;
+                return;
             }
+
+            var $lastJob = Job.findById(last.JOB_ID).exec();
+            var $thisJob = Job.findById(labor.JOB_ID).exec();
+
+            // get Job addresses
+            return bluebird.Promise.all([$lastJob, $thisJob])
+                .then((results) => {
+                    console.log('entering Promise.all section');
+                    var job_start = results[0];
+                    var job_end = results[1];
+
+                    var start_format = job_start.JOB_ADDRESS + ' ' + job_start.JOB_CITY + ',' + job_start.JOB_STATE;
+                    var end_format = job_end.JOB_ADDRESS + ' ' + job_end.JOB_CITY + ',' + job_end.JOB_STATE;
+
+                    var geoQuery = {
+                        origins: start_format,
+                        destinations: end_format,
+                        units: 'imperial'
+                    };
+                    console.log(geoQuery);
+
+                    var START_moment = moment(last.TIME_END);
+                    var END_moment = moment(labor.TIME_START);
+                    var duration = moment.duration(END_moment.diff(START_moment)).asMinutes() / 60;
+
+                    var new_travel = {
+                        JOB_ID_START: job_start._id,
+                        JOB_ID_END: job_end._id,
+                        // LOC_START_ADDR: job_start.LOC_START,
+                        // LOC_END_ADDR: job_end.LOC_END,
+                        HOURS: duration, 
+                        // MILES: ,
+                        EMP_ID: labor.EMP_ID,
+                        VEHICLE_ID: labor.VEHICLE_ID,
+                        TIME_START: last.TIME_END,
+                        TIME_END: labor.TIME_START
+                    }
+
+                    return $geo.$distance(geoQuery)
+                        .then((google) => {
+                            google = JSON.parse(google);
+                            if (google) {
+                                new_travel.MILES = google.rows[0].elements[0].distance.value / 1000.0 * 0.621371;
+                            }
+                            console.log(new_travel);
+                            var travel = new Travel(new_travel);
+                            return travel.save();
+                        })
+                        .then((travel) => {
+                            console.log(travel);
+                            return Day
+                                .findOneAndUpdate({
+                                    _id: oldday._id
+                                }, {
+                                    $push: {
+                                        TRAVELS: travel._id
+                                    }
+                                });
+                        });
+                });
         })
         .catch((err) => {
             console.log('error adding/updating day: ');
@@ -154,7 +198,7 @@ exports.addlabor = function(req, res, next) {
         });
 }
 
-    exports.travel = function(req, res, next) {
+exports.travel = function(req, res, next) {
     var Travel = mongoose.model('Travel');
     var query = req.query;
     Travel
