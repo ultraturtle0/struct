@@ -149,9 +149,6 @@ exports.addlabor = function(req, res, next) {
                         destinations: end_format,
                         units: 'imperial'
                     };
-                    console.log(geoQuery);
-                    console.log(last.TIME_END);
-                    console.log(labor.TIME_START);
 
                     var START_moment = moment(last.TIME_END);
                     var END_moment = moment(labor.TIME_START);
