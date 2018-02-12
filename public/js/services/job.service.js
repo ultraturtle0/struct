@@ -74,6 +74,7 @@ angular.module('Services')
                     JOB_ID: "@JOB_ID",
                     LOCATION: "@LOCATION",
                     EMP_ID: "@EMP_ID",
+                    VEHICLE_ID: "@VEHICLE_ID",
                     TIME_START: "@TIME_START",
                     TIME_END: "@TIME_END",
                     SUBCATEGORY: "@SUBCATEGORY",
