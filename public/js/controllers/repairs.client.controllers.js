@@ -14,6 +14,13 @@ angular.module('Database')
         };
 
         var init = function() {
+            $scope.fpOptions = {
+                noCalendar: false,
+                altInput: true,
+                altFormat: 'm-d-Y',
+                dateFormat: 'Z'
+            }
+
             $scope.select = {};
             let queries = ['repairs', 'vehicles'];
             queries.forEach(getData);

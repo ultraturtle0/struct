@@ -55,6 +55,7 @@ angular.module('Request')
         let queries = ['jobs', 'employees', 'vehicles', 'works'];
 		queries.forEach(getData);
  
+   
 		$scope.select = {};
 		$scope.message = '';
 
