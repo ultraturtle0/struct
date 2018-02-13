@@ -31,7 +31,8 @@ angular.module('Database')
             {name: "Add Job", url: "/#!add_job"},
             {name: "Add Employee", url: "/#!add_emp"},
             {name: "Add Travel", url: "/#!add_travel"},
-            {name: "Add Repairs", url: "/#!add_repair"}
+            {name: "Add Repairs", url: "/#!add_repair"},
+            {name: "Add Request", url: "/#!add_request"}
         ];
 
         $scope.jobs = [];
@@ -50,6 +51,25 @@ angular.module('Database')
             $scope.lastrequest = last;
         });
             
+		$scope.requestSubmit = function () {
+            var date = moment();
+            var start = moment($scope.select.TIME_START);
+            var end = moment($scope.select.TIME_END);
+ 
+            $scope.select.TIME_START = start.year(date.year()).month(date.month()).date(date.date()).toDate();
+            $scope.select.TIME_END = end.year(date.year()).month(date.month()).date(date.date()).toDate();
+
+            $scope.message = 'Submitting...'
+            JobService
+                .requests
+                .save({}, $scope.select)
+                .$promise
+                .then(function(res) {
+                	console.log(res.message);
+                	$scope.message = res.message;
+                	// $scope.reset();
+                });
+        }
 
         $scope.laborSubmit = function () {
             var date = $scope.select.DATE;
