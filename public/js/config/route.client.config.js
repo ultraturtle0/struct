@@ -18,6 +18,9 @@ angular.module('Database')
 			})
 			.when('/add_request', {
 				templateUrl: '/public/templates/addrequest.ejs'
+			})
+			.when('/add_vehicle', {
+				templateUrl: '/public/templates/addvehicle.ejs'
 			});
 
 	}]);

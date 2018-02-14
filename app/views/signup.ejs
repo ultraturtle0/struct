@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Signup - Sound Sport Surfaces</title>
+
+        <link rel="stylesheet" type="text/css" href="/public/css/dashboard.css">
+
+        <script type="text/javascript" src="/lib/angular/angular.js"></script>
+        <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
+        <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+
+        <script type="text/javascript" src="/lib/moment/moment.js"></script>
+    </head>
+    <body>
+
+		<form name="signup" action="/signup" method="post">
+            <label>Name: </label>
+            <input type="text" name="EMP_NAME" ng-model="select.EMP_NAME" required />
+            <label>Password: </label>
+            <input type="password" name="password" minlength="8" required />
+            <label>Employee Phone: </label>
+            <input type="text" name="EMP_PHONE">
+            <label>Employee Email: </label>
+            <input type="email" name="EMP_EMAIL">
+
+            <input type="submit" value="Signup" />
+		</form>
+	</body>
+</html>

@@ -1,4 +1,5 @@
 const home = require('../controllers/home.server.controller');
+const api = require('../controllers/api.server.controller');
 const dashboard = require('../controllers/dashboard.server.controller');
 const passport = require('passport');
 const verify = require('../middleware/verify');
@@ -34,6 +35,9 @@ module.exports = function (app, acl) {
     app.route('/signin')
     	.get(home.signin)
     	.post(passport.authenticate('local'), roleRedirect(acl));
+    app.route('/signup')
+    	.get(home.signup)
+        .post(api.addemp);
     app.route('/user')
     	.get(verify(acl), home.user);
 }

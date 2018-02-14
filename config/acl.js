@@ -30,8 +30,8 @@ module.exports = function ($db) {
             },
         ]);
 
-		acl.addUserRoles('5a6932f75159a437de872ceb', 'admin');
-		acl.addUserRoles('5a6cf1e6f18551f99c08698e', 'user');
+		acl.addUserRoles('5a838a88016f6cf9858a4c11', 'admin');
+		acl.addUserRoles('5a838e1e3ccc2005afca3917', 'user');
 		return acl;
 	});
 }

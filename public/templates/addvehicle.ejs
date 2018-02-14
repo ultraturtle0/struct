@@ -1,0 +1,12 @@
+<form id="vehicle" name="vehicle" action="/api/vehicles" method="post">
+	<table>
+		<tbody>
+			<tr>
+				<td>Vehicle Name: </td>
+				<td><input type="text" name="VEHICLE_NAME" ng-model="select.VEHICLE_NAME" required></td>
+				<td ng-show="vehicle.VEHICLE_NAME.$touched && vehicle.VEHICLE_NAME.$invalid">Name required.</td>
+			</tr>
+		</tbody>
+	</table>
+    <input type="submit" value="Submit">
+</form>
