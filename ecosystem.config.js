@@ -31,8 +31,8 @@ module.exports = {
       path : '/var/www/production',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
-    dev : {
-      user : 'pi',
+    staging : {
+      user : 'deploy',
       host : '192.168.1.151',
       ref  : 'origin/master',
       repo : 'http://github.com/ultraturtle0/struct.git',
@@ -41,6 +41,18 @@ module.exports = {
       env  : {
         NODE_ENV: 'development'
       }
+    },
+    dev : {
+      user : 'deploy',
+      host : '127.0.0.1',
+      ref  : 'origin/master',
+      repo : 'http://github.com/ultraturtle0/struct.git',
+      path : '/var/www/structdev',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env development',
+      env  : {
+        NODE_ENV: 'development'
+      }
     }
+
   }
 };
