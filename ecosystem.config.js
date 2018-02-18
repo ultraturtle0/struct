@@ -43,7 +43,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'http://github.com/ultraturtle0/struct.git',
       path : '/var/www/structdev',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env staging',
+      'post-deploy' : 'npm install && pm2 startOrRestart ecosystem.config.js --env staging',
       env  : {
         NODE_ENV: 'staging'
       }
