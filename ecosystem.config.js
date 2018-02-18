@@ -36,13 +36,13 @@ module.exports = {
     },
     staging : {
       user : 'deploy',
-      host : '192.168.1.151',
+      host : '138.197.20.29',
       ref  : 'origin/master',
       repo : 'http://github.com/ultraturtle0/struct.git',
       path : '/var/www/structdev',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env development',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env staging',
       env  : {
-        NODE_ENV: 'development'
+        NODE_ENV: 'staging'
       }
     },
     dev : {
