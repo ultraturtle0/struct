@@ -12,6 +12,9 @@ module.exports = {
       env: {
         COMMON_VARIABLE: 'true'
       },
+      env_development : {
+        NODE_ENV: 'development'
+      },
       env_production : {
         NODE_ENV: 'production'
       }
@@ -44,7 +47,7 @@ module.exports = {
     },
     dev : {
       user : 'deploy',
-      host : '127.0.0.1',
+      host : '138.197.20.29',
       ref  : 'origin/master',
       repo : 'http://github.com/ultraturtle0/struct.git',
       path : '/var/www/structdev',
