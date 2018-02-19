@@ -34,6 +34,7 @@ var init = function ($db) {
 		acl.addUserRoles('5a838e1e3ccc2005afca3917', 'user');
 		return acl;
 	});
+    return this.$acl;
 };
 
 module.exports = {

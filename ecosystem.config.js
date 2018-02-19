@@ -7,6 +7,19 @@ module.exports = {
 
     // First application
     {
+      name      : 'setup',
+      script    : 'setup.js',
+      env: {
+        COMMON_VARIABLE: 'true'
+      },
+      env_production : {
+        NODE_ENV: 'production'
+      },
+      env_staging : {
+        NODE_ENV: 'staging'
+      }
+    },
+    {
       name      : 'struct',
       script    : 'server.js',
       env: {
