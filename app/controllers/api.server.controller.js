@@ -5,6 +5,7 @@ mongoose.Promise = require('bluebird');
 const bluebird = require('bluebird');
 
 const $geo = require('../services/geo.server.service.js');
+const $acl = require('../../config/acl').$acl;
 
 exports.jobs = function(req, res, next) {
 	var Job = mongoose.model('Job');
@@ -44,18 +45,30 @@ exports.emps = function(req, res, next) {
 };
 
 exports.addemp = function(req, res, next) {
-	console.log('new emp');
-	console.log(req.body);
+    var admin = req.body.ADMIN;
+    delete req.body.ADMIN;
 	var Emp = mongoose.model('Emp');
     const emp = new Emp(req.body);
     emp.provider = 'local';
-    emp.save((err) => {
-        if (err) {
-            const message = getErrorMessage(err);
-            console.log(message);
-        }
-        res.redirect('/dashboard/emps');
-    });
+    emp.save()
+        .then((new_emp) => {
+            return $acl.then((acl) => {
+                var role;
+                if (admin == 'true') {
+                    role = 'admin';
+                } else {
+                    role = 'user';
+                }
+                acl.addUserRoles(new_emp._id.toString(), role);
+                return null;
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            res.redirect('/dashboard/emps');
+        });
 };
 
 exports.labor = function(req, res, next) {

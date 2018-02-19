@@ -2,8 +2,8 @@ var config = require('./config');
 var acl = require('acl');
 const mongoose = require('mongoose');
 
-module.exports = function ($db) {
-	return $db.then(function () {
+var init = function ($db) {
+	this.$acl = $db.then(function () {
 		acl = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_', true));
 		acl.allow([
             {
@@ -34,4 +34,8 @@ module.exports = function ($db) {
 		acl.addUserRoles('5a838e1e3ccc2005afca3917', 'user');
 		return acl;
 	});
-}
+};
+
+module.exports = {
+    init: init
+};
