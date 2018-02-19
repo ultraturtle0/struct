@@ -6,6 +6,10 @@ const EmpSchema = new Schema({
 	EMP_NAME: String,
 	EMP_PHONE: Number,
 	EMP_EMAIL: String,
+    ADMIN: {
+        type: Boolean,
+        default: false
+    },
 	WAGE: {
 		type: Number,
 		default: 15,

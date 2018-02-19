@@ -45,8 +45,9 @@ exports.emps = function(req, res, next) {
 };
 
 exports.addemp = function(req, res, next) {
-    var admin = req.body.ADMIN;
-    delete req.body.ADMIN;
+    if (req.body.ADMIN) {
+        req.body.ADMIN = true;
+    }
 	var Emp = mongoose.model('Emp');
     const emp = new Emp(req.body);
     emp.provider = 'local';
@@ -54,7 +55,7 @@ exports.addemp = function(req, res, next) {
         .then((new_emp) => {
             return $acl.then((acl) => {
                 var role;
-                if (admin == 'true') {
+                if (req.body.ADMIN) {
                     role = 'admin';
                 } else {
                     role = 'user';
