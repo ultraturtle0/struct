@@ -7,19 +7,6 @@ module.exports = {
 
     // First application
     {
-      name      : 'setup',
-      script    : 'setup.js',
-      env: {
-        COMMON_VARIABLE: 'true'
-      },
-      env_production : {
-        NODE_ENV: 'production'
-      },
-      env_staging : {
-        NODE_ENV: 'staging'
-      }
-    },
-    {
       name      : 'struct',
       script    : 'server.js',
       env: {
@@ -56,7 +43,10 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'http://github.com/ultraturtle0/struct.git',
       path : '/var/www/structdev',
-      'post-deploy' : 'npm install && pm2 startOrRestart ecosystem.config.js --env staging',
+      'post-deploy' : '\
+        npm install; \
+        node setup; \
+        pm2 startOrRestart ecosystem.config.js --env staging',
       env  : {
         NODE_ENV: 'staging'
       }

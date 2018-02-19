@@ -17,4 +17,6 @@ emp.save()
     .catch((err) => {
         console.log(err);
     });
-        
+       
+
+process.exit();
