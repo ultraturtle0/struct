@@ -2,9 +2,10 @@ const dashboard = require('../controllers/dashboard.server.controller');
 const passport = require('passport');
 var router = require('express').Router();
 var verify = require('../middleware/verify');
+var acl = require('acl');
 
-module.exports = function(app, acl) {
-    router.use(verify(acl));
+module.exports = function(app) {
+    router.use(verify);
 
     router
         .get('/', dashboard.dashboard)

@@ -2,10 +2,11 @@ var config = require('./config');
 var acl = require('acl');
 const mongoose = require('mongoose');
 
-var init = function ($db) {
-	this.$acl = $db.then(function () {
-		acl = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_', true));
-		acl.allow([
+var instance;
+var $acl = (function () {
+        console.log(mongoose.connection.db);
+		instance = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_', true));
+		return instance.allow([
             {
                 roles: ['admin'],
                 allows: [
@@ -29,14 +30,9 @@ var init = function ($db) {
                 ]
             },
         ]);
-
-		acl.addUserRoles('5a838a88016f6cf9858a4c11', 'admin');
-		acl.addUserRoles('5a838e1e3ccc2005afca3917', 'user');
-		return acl;
-	});
-    return this.$acl;
-};
+    })();
 
 module.exports = {
-    init: init
+    $acl: $acl,
+    instance: instance
 };

@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 const flash = require('connect-flash');
 
-module.exports = function($acl) {
+module.exports = function() {
     const app = express();
 
     (process.env.NODE_ENV === 'development') ?
@@ -31,11 +31,9 @@ module.exports = function($acl) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    $acl.then((acl) => {
-        require('../app/routes/home.js')(app, acl);
-        require('../app/routes/dashboard.js')(app, acl);
-        require('../app/routes/api.js')(app, acl);
-    });
+    require('../app/routes/home.js')(app);
+    require('../app/routes/dashboard.js')(app);
+    require('../app/routes/api.js')(app);
 
     app.use('/lib', express.static('./node_modules'));
     app.use('/public', express.static('./public'));
