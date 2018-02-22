@@ -1,17 +1,20 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+const config = require('./config/config');
+
 const $mongoose = require('./config/mongoose')();
-const $acl = require('./config/acl').init($mongoose);
+var webmaster = config.webmaster;
 
-const mongoose = require('mongoose');
-
-var Emp = mongoose.model('Emp');
-
-var webmaster = require('../../../../struct_keys/webmaster.js');
-
-var emp = new Emp(webmaster);
-emp.save()
+$mongoose
+    .then(() => {
+        var mongoose = require('mongoose');
+        var Emp = mongoose.model('Emp');
+        var emp = new Emp(webmaster);
+        return emp.save();
+    })
     .then((wm) => {
-        return $acl.then((acl) => {
-            acl.addUserRoles(wm._id.toString(), 'admin');
+        var acl = require('./config/acl');
+        return acl.$acl.then(() => {
+            acl.instance.addUserRoles(wm._id.toString(), 'admin');
         });
     })
     .catch((err) => {
