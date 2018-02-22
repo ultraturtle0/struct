@@ -4,5 +4,5 @@ module.exports = {
     db: 'mongodb://localhost/sss',
     sessionSecret: require('./sessionSecret.js'),
     google_key: require('./googleAPI.js'),
-    webmaster: require('./webmaster.js')
+    webmaster: require('../webmaster.js')
 };

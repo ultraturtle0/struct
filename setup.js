@@ -1,25 +1,25 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const config = require('./config/config');
 
-const $mongoose = require('./config/mongoose')();
 var webmaster = config.webmaster;
+var $db = require('./config/mongoose')();
 
-$mongoose
+$db
     .then(() => {
-        var mongoose = require('mongoose');
+        const mongoose = require('mongoose');
         var Emp = mongoose.model('Emp');
         var emp = new Emp(webmaster);
         return emp.save();
     })
     .then((wm) => {
         var acl = require('./config/acl');
-        return acl.$acl.then(() => {
-            acl.instance.addUserRoles(wm._id.toString(), 'admin');
-        });
+        return acl.instance.addUserRoles(wm._id.toString(), 'admin');
     })
     .catch((err) => {
         console.log(err);
+    })
+    .finally(() => {
+        process.exit();
     });
-       
 
-process.exit();
+
