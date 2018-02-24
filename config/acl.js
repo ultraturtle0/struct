@@ -21,11 +21,11 @@ var $acl = (function () {
                 allows: [
                     {
                         resources: ['/', '/user', '/api'],
-                        permissions: 'view'
+                        permissions: 'GET'
                     },
                     {
                         resources: ['/api/requests'],
-                        permissions: 'put'
+                        permissions: 'POST'
                     }
                 ]
             },
