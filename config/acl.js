@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 
 var instance;
 var $acl = (function () {
-        console.log(mongoose.connection.db);
 		instance = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_', true));
 		return instance.allow([
             {

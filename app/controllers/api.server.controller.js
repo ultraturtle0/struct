@@ -181,8 +181,11 @@ exports.addlabor = function(req, res, next) {
                     return $geo.$distance(geoQuery)
                         .then((google) => {
                             google = JSON.parse(google);
-                            if (google) {
+                            console.log(JSON.stringify(google));
+                            if (google && google.rows[0].elements[0].status != 'ZERO_RESULTS') {
                                 new_travel.MILES = google.rows[0].elements[0].distance.value / 1000.0 * 0.621371;
+                            } else {
+                                new_travel.MILES = 0;
                             }
                             console.log(new_travel);
                             var travel = new Travel(new_travel);
