@@ -19,7 +19,6 @@
 		<form id="request" name="request" ng-submit="requestSubmit()" method="post" novalidate>
 			<table>
 				<tbody>
-                    <tr><td><p>{{ select.TIME_START }}</p></td><td><p>{{ select.TIME_END }}</p></td></tr>
 					<tr>
 						<td>Job: </td>
 						<td><select ng-options="job._id as job.JOB_NUMBER for job in jobs" name="JOB_ID" ng-model="select.JOB_ID"></select></td>
