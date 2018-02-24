@@ -47,6 +47,7 @@ module.exports = {
         npm install; \
         NODE_ENV=staging node setup',
       'post-deploy' : '\
+        npm install; \
         mongod; \
         pm2 startOrRestart ecosystem.config.js --env staging',
       env  : {
