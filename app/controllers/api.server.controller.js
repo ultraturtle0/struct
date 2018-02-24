@@ -45,6 +45,7 @@ exports.emps = function(req, res, next) {
 };
 
 exports.addemp = function(req, res, next) {
+    console.log(req.body);
     if (req.body.ADMIN) {
         req.body.ADMIN = true;
     }
