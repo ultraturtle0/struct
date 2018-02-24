@@ -45,6 +45,7 @@ module.exports = {
       path : '/var/www/structdev',
       'post-deploy' : '\
         npm install; \
+        mongod; \
         node setup; \
         pm2 startOrRestart ecosystem.config.js --env staging',
       env  : {
