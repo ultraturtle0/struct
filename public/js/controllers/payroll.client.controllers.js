@@ -2,35 +2,46 @@ angular.module('Database')
 	.controller('PayrollController', ['$scope', 'JobService', function($scope, JobService) {
 
 		var labor_data;
-		var emp_data;
 
-		$scope.getPayroll = function(l_query, e_query) {
-			JobService.labor
-				.query(l_query)
+		var getPayroll = function() {
+			return JobService.days
+				.query({})
 				.$promise
-				.then(function(_labor) {
-					labor_data = _labor;
+				.then(function(_days) {
+                    var employees = {};
+                    _days.forEach((day) => {
+                        day.BILLABLE = day.LABORS.concat(day.TRAVELS);
+                        if (!(day.EMP_ID.EMP_NAME in employees)) {
+                            employees[day.EMP_ID.EMP_NAME] = [];
+                        }
+                        employees[day.EMP_ID.EMP_NAME].push(day);
+                    });
+                    $scope.employees = employees;
 				})
-				.then(() => {
+				/*.then(() => {
 					JobService.employees
 					.query(e_query)
 					.$promise
 					.then(function(_emps) {
-						emp_data = _emps;
+						employees = _emps;
 					})
 					.then(() => {
 						console.log(labor_data);
-						console.log(emp_data);
+						console.log(employees);
 						consolidate_payroll({
 							start: new Date(),
 							end: new Date()
 						});
 					});
 				});
-
+                */
+                .catch((err) => {
+                    console.log('error getting Days:');
+                    console.log(err);
+                });
 		};
 
-		var consolidate_payroll = function() {
+/*		var consolidate_payroll = function() {
 			var time_start = $scope.focus.time_start;
 			var time_end = $scope.focus.time_end;
 			console.log("we're in.");
@@ -64,12 +75,15 @@ angular.module('Database')
 			console.log('employees');
 			console.log($scope.employees);
 		}
+        */
 
 		var init = function() {
-			$scope.employees = [];
-			$scope.getPayroll({}, {});
-			$scope.$watch('focus.time_start', consolidate_payroll);
-			$scope.$watch('focus.time_end', consolidate_payroll);
+			//$scope.employees = [];
+			getPayroll().then(() => {
+                console.log($scope.employees);
+            });
+			//$scope.$watch('focus.time_start', consolidate_payroll);
+			//$scope.$watch('focus.time_end', consolidate_payroll);
 			var current = new Date();
 			var before = new Date();
 			before.setDate(current.getDate() - 14);
@@ -77,8 +91,7 @@ angular.module('Database')
 				time_start: before,
 				time_end: current
 			};
-			
-			console.log($scope.focus.time_end);
+            console.log($scope.employees);			
 		}
 
 		init();

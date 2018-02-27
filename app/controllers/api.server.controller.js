@@ -213,6 +213,24 @@ exports.addlabor = function(req, res, next) {
         });
 }
 
+exports.days = function(req, res, next) {
+    var Day = mongoose.model('Day');
+    var query = req.query;
+    Day
+        .find(query)
+        .populate('EMP_ID')
+        .populate('LABORS')
+        .populate('TRAVELS')
+        .exec((err, data) => {
+            if (err) {
+                console.log(err);
+                return next(err);
+            }
+            console.log(data);
+            res.json(data);
+        });
+};
+
 exports.travel = function(req, res, next) {
     var Travel = mongoose.model('Travel');
     var query = req.query;

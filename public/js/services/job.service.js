@@ -79,6 +79,13 @@ angular.module('Services')
                     TIME_END: "@TIME_END",
                     SUBCATEGORY: "@SUBCATEGORY",
                     DESCRIPTION: "@DESCRIPTION"
+                }),
+
+            days: $resource('/api/days', {
+                    _id: "@_id",
+                    DAY: "@DAY",
+                    EMP_ID: "@EMP_ID",
+                    HOURS: "@HOURS"
                 })
         }
 

@@ -10,7 +10,9 @@ angular.module('Database')
 	                {name: "Labor", url: "/labor"},
 	                {name: "Travel", url: "/travel"},
 	                {name: "Repairs", url: "/repairs"},
-	                {name: "Requests", url: "/requests"}
+	                {name: "Requests", url: "/requests"},
+	                {name: "Payroll", url: "/payroll"}
+
 	            ];
 	            scope.pages = [];
 	            locs.forEach(function(value) {

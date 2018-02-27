@@ -8,22 +8,26 @@
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="/lib/angular-messages/angular-messages.min.js"></script>
+
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
     </head>
     <body ng-app="Database" ng-controller="PayrollController">
         <headtabs></headtabs>
-        Employee: <input type="text" ng-Model="focus.emp" name="emp">
+        Employee: <select ng-options="emp as emp for (emp, days) in employees" ng-Model="focus.emp" name="emp"></select>
         Period: from <input type="date" ng-Model="focus.time_start" name="date_start"> 
         to <input type="date" ng-Model="focus.time_end" name="date_end">
-        <table class="data">
-            <tr ng-repeat="emp in employees | filter:focus.emp | orderBy:'EMP_NAME'">
-                <td>{{ emp.employee }}</td>
-                <td>{{ emp.hours }}</td>
-                <td>{{ emp.wage }}</td>
-                <td>{{ emp.paycheck }}</td>
-            </tr>
-
-        </table>
+        <div>
+            <h1>{{ focus.emp }}</h1>
+            <table class="data" ng-repeat="day in employees[focus.emp]">
+                <tr>
+                    <td>{{ day.DAY }}</td>
+                </tr>
+                <tr ng-repeat="work in day.BILLABLE">
+                    <td>{{ work.DESCRIPTION || work.MILES }}</td>
+                </tr>
+            </table>
+        </div>
 
         <!-- application -->
         <script type="text/javascript" src="/public/js/Services.js"></script>

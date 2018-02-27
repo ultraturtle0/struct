@@ -30,6 +30,8 @@ module.exports = function (app) {
 		.get('/vehicles', api.vehicles)
 		.post('/vehicles', api.addvehicle)
 
+        .get('/days', api.days)
+
 		.get('/requests', api.requests)
 		.post('/requests', api.addrequest)
 		.delete('/requests', api.deleterequest);
