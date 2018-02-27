@@ -23,8 +23,11 @@
                 <tr>
                     <td>{{ day.DAY }}</td>
                 </tr>
-                <tr ng-repeat="work in day.BILLABLE">
-                    <td>{{ work.DESCRIPTION || work.MILES }}</td>
+                <tr ng-repeat="item in day.BILLABLE | orderBy: 'TIME_START'">
+                    <td>{{ jobs[item.JOB_ID].JOB_NUMBER || jobs[item.JOB_ID_START].JOB_NUMBER }}<span ng-show="item.JOB_ID_END"> - {{ jobs[item.JOB_ID_END].JOB_NUMBER }}</span></td>
+                    <td>{{ item.TIME_START }} - {{ item.TIME_END }}</td>
+                    <td>{{ works[item.SUBCATEGORY].WORK_NAME || "Travel" }}</td>
+                    <td>{{ item.DESCRIPTION || vehicles[item.VEHICLE_ID].VEHICLE_NAME }}</td>
                 </tr>
             </table>
         </div>
