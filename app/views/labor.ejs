@@ -15,35 +15,54 @@
         <script type="text/javascript" src="/lib/flatpickr/dist/flatpickr.js"></script>
     </head>
     <body ng-app="Database" ng-controller="LaborController">
-        <headtabs></headtabs>
-        Job Number: <select ng-options="job.JOB_NUMBER as job.JOB_NUMBER for job in jobs" ng-Model="focus.job" name="job"></select>
-        Employee: <select ng-options="emp.EMP_NAME as emp.EMP_NAME for emp in employees" ng-Model="focus.emp" name="emp"></select>
-        From <input flatpickr options="fpOptions" ng-Model="focus.time_start" name="date_start"> 
-        to <input flatpickr options="fpOptions" ng-Model="focus.time_end" name="date_end">
-        Work: <select ng-options="work.WORK_NAME as work.WORK_NAME for work in works" ng-model="focus.SUBCATEGORY"></select>
-        <button type="button" ng-click="saveQuery(filtered)">Save Query</button>
+        <div id="header">
+            <h1>Labor</h1>
+            <headtabs></headtabs>
+        </div>
+        <div class="filters">
+            <p>Job Number: <select ng-options="job.JOB_NUMBER as job.JOB_NUMBER for job in jobs" ng-Model="focus.job" name="job"></select></p>
+            <p>Employee: <select ng-options="emp.EMP_NAME as emp.EMP_NAME for emp in employees" ng-Model="focus.emp" name="emp"></select></p>
+            <p>From <input flatpickr options="fpOptions" ng-Model="focus.time_start" name="date_start"></p> 
+            <p>to <input flatpickr options="fpOptions" ng-Model="focus.time_end" name="date_end"></p>
+            <p>Work: <select ng-options="work.WORK_NAME as work.WORK_NAME for work in works" ng-model="focus.SUBCATEGORY"></select><p>
+            <p><button type="button" ng-click="saveQuery(filtered)">Save Query</button></p>
+        </div>
+        <div class="main">
         <table class="data">
+            <tr>
+                <th>Job</th>
+                <th>Employee</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Hours</th>
+                <th>Work</th>
+                <th>Description</th>
+            </tr>
             <tr ng-repeat="labor in labors | filter : {JOB_ID: {JOB_NUMBER: focus.job }} | filter : {EMP_ID: {EMP_NAME: focus.emp }, SUBCATEGORY: {WORK_NAME: focus.SUBCATEGORY}} | daterange : 'TIME_START' : focus.time_start : focus.time_end | orderBy:'-TIME_START' as filtered">
                 <td>{{ labor.JOB_ID.JOB_NUMBER }}</td>
                 <td>{{ labor.EMP_ID.EMP_NAME }}</td>
                 <td>{{ labor.TIME_START | date : 'shortDate' }} {{ labor.TIME_START | date : 'hh:mm' }}</td>
                 <td>{{ labor.TIME_END | date : 'shortDate' }} {{ labor.TIME_END | date : 'hh:mm' }}</td>
-                <td>{{ labor.HOURS }}</td>
+                <td>{{ labor.HOURS | number:2 }}</td>
                 <td>{{ labor.SUBCATEGORY.WORK_NAME }}</td>
                 <td>{{ labor.DESCRIPTION }}</td>
             </tr>
             <br>
+        </table>
+        <br>
+        <table class="queries">
             <tr ng-repeat="search in searches as queries">
                 <td ng-show="search.job">Job Number: {{ search.job.JOB_NUMBER }}</td>
                 <td ng-show="search.emp">Employee: {{ search.emp.EMP_NAME }}</td>
                 <td ng-show="search.SUBCATEGORY">Work: {{ search.SUBCATEGORY }}</td>
                 <td ng-show="search.time_start">From: {{ search.time_start | date : "short" }} to: {{ search.time_end | date : "short" }}</td>
-                <td ng-show="search.HOURS">Hours: {{ search.HOURS }}</td>
+                <td ng-show="search.HOURS">Hours: {{ search.HOURS | number:2 }}</td>
             </tr>
             <tr ng-show="searches.length">
-                <td>Total hours: {{ sumHours(queries) }}</td>
+                <td>Total hours: {{ sumHours(queries) | number:2 }}</td>
             </tr>
         </table>
+        </div> 
 
         <!-- application -->
         <script type="text/javascript" src="/public/js/Services.js"></script>

@@ -1,5 +1,7 @@
 headtabs td, #tabs td {
-  padding: 5px 50px; }
+  padding: 5px 95px 5px 5px; }
+  headtabs td:last-child, #tabs td:last-child {
+    padding: 5px; }
   headtabs td a, #tabs td a {
     text-decoration: none;
     color: black;
@@ -12,18 +14,48 @@ headtabs td, #tabs td {
     headtabs td a:hover, #tabs td a:hover {
       opacity: 1.0; }
 
-.filters span {
-  padding: 5px 10px; }
+#header {
+  margin: 0px 50px; }
+  #header h1 {
+    padding: 5px;
+    margin-bottom: 0px; }
+
+#container {
+  width: 100%;
+  height: 900px; }
+
+.clear {
+  clear: both; }
+
+.filters {
+  float: left;
+  margin: 25px 25px;
+  height: 100%; }
+  .filters p {
+    padding: 5px 10px;
+    margin: 0px; }
+
+.main {
+  margin: 15px 15px;
+  overflow: hidden; }
+  .main h1 {
+    margin: 0px;
+    width: 50px; }
 
 .data {
+  float: left;
   border-collapse: collapse;
-  padding: 25px; }
+  margin: 15px 5px; }
   .data tr {
-    border-bottom: 2px solid transparent;
-    border-top: 2px solid transparent;
+    background-color: transparent;
     cursor: pointer; }
+    .data tr:first-child {
+      border-bottom: solid 1px #858585; }
     .data tr:hover td {
-      border-bottom: 2px solid black;
-      border-top: 2px solid black; }
+      background-color: #f5f5f5; }
     .data tr td {
-      padding: 5px 50px; }
+      padding: 5px 25px; }
+  .data .total {
+    border-top: solid 1px #858585; }
+    .data .total:hover td {
+      background-color: transparent; }

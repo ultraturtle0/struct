@@ -1,5 +1,7 @@
 headtabs td, #tabs td {
-  padding: 5px 50px; }
+  padding: 5px 95px 5px 5px; }
+  headtabs td:last-child, #tabs td:last-child {
+    padding: 5px; }
   headtabs td a, #tabs td a {
     text-decoration: none;
     color: black;

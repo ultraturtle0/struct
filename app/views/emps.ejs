@@ -11,8 +11,16 @@
         <script type="text/javascript" src="/lib/angular-messages/angular-messages.min.js"></script>
     </head>
     <body ng-app="Database" ng-controller="EmpController">
-        <headtabs></headtabs>
+        <div id="header">
+            <h1>Employees</h1>
+            <headtabs></headtabs>
+        </div>
         <table class="data">
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
             <tr ng-repeat="emp in employees | orderBy : 'EMP_NAME'" ng-click="showEmp(emp.EMP_NAME)">
                 <td>{{ emp.EMP_NAME }}</td>
                 <td>{{ emp.EMP_PHONE }}</td>

@@ -109,15 +109,25 @@ angular.module('Database')
             getWorks();
             getVehicles();
 
+            $scope.fpOptions = {
+                noCalendar: false,
+                altInput: true,
+                altFormat: 'm-d-Y',
+                dateFormat: 'Z'
+            };
+
+
 			//$scope.$watch('focus.time_start', consolidate_payroll);
 			//$scope.$watch('focus.time_end', consolidate_payroll);
-			var current = new Date();
+			/*var current = new Date();
 			var before = new Date();
 			before.setDate(current.getDate() - 14);
+            console.log(before);
 			$scope.focus = {
-				time_start: before,
-				time_end: current
+                time_start: new Date(),
+				time_end: new Date()
 			};
+            */
 		}
 
 		init();

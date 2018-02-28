@@ -17,7 +17,10 @@
 
     </head>
     <body ng-app="Database" ng-controller="ReqController">
-        <headtabs></headtabs>
+        <div id="header">
+            <h1>Requests</h1>
+            <headtabs></headtabs>
+        </div>
         <div ng-repeat="(name, emp) in requests">
             <h1>{{ name }}</h1>
             <form name="requestForm" ng-repeat="req in emp | orderBy: 'TIME_START'" ng-submit="requestApprove(req._id)">

@@ -7,10 +7,10 @@ angular.module('Database')
 			}
 			angular.forEach(items, function(value) {
 				if (moment(value[key]).isAfter(startDate) &&
-					moment(value[key]).isBefore(endDate)) {
+					moment(value[key]).isBefore(moment(endDate).endOf('day'))) {
 						result.push(value);
 					}
-			});
+            });
 			return result;
 		}
 	});

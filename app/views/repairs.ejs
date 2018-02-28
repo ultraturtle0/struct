@@ -14,10 +14,15 @@
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
     </head>
     <body ng-app="Database" ng-controller="RepairsController">
-        <headtabs></headtabs>
-        Vehicle: <select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" ng-model="focus.VEHICLE"></select>
-        From <input flatpickr options="fpOptions" ng-Model="focus.time_start" name="date_start"> 
-        to <input flatpickr options="fpOptions" ng-Model="focus.time_end" name="date_end">
+        <div id="header">
+            <h1>Repairs</h1>
+            <headtabs></headtabs>
+        </div>
+        <div class="filters">
+            <p>Vehicle: <select ng-options="vehicle._id as vehicle.VEHICLE_NAME for vehicle in vehicles" ng-model="focus.VEHICLE"></select></p>
+            <p>From <input flatpickr options="fpOptions" ng-Model="focus.time_start" name="date_start"></p> 
+            <p>to <input flatpickr options="fpOptions" ng-Model="focus.time_end" name="date_end"></p>
+        </div>
         <table class="data">
             <tr ng-repeat="repair in repairs | filter : {VEHICLE: {_id: focus.VEHICLE }} | daterange : 'REPAIR_DATE' : focus.time_start : focus.time_end | orderBy:'-REPAIR_DATE'">
                 <td>{{ repair.VEHICLE.VEHICLE_NAME }}</td>

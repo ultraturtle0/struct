@@ -4,6 +4,7 @@
         <title>Payroll - Sound Sport Surfaces</title>
 
         <link rel="stylesheet" href="/public/css/tables.css">
+        <link rel="stylesheet" href="/lib/flatpickr/dist/flatpickr.css">
 
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
         <script type="text/javascript" src="/lib/angular-resource/angular-resource.min.js"></script>
@@ -11,17 +12,24 @@
         <script type="text/javascript" src="/lib/angular-messages/angular-messages.min.js"></script>
 
         <script type="text/javascript" src="/lib/moment/moment.js"></script>
+        <script type="text/javascript" src="/lib/flatpickr/dist/flatpickr.js"></script>
+
     </head>
     <body ng-app="Database" ng-controller="PayrollController">
-        <headtabs></headtabs>
-        Employee: <select ng-options="emp as emp for (emp, days) in employees" ng-Model="focus.emp" name="emp"></select>
-        Period: from <input type="date" ng-Model="focus.time_start" name="date_start"> 
-        to <input type="date" ng-Model="focus.time_end" name="date_end">
-        <div>
+        <div id="header">
+            <h1>Payroll</h1>
+            <headtabs></headtabs>
+        </div>
+        <div class="filters">
+            <p>Employee: <select ng-options="emp as emp for (emp, days) in employees" ng-Model="focus.emp" name="emp"></select></p>
+            <p>Period: from <input flatpickr options="fpOptions" ng-Model="focus.time_start" name="date_start"></p> 
+            <p>to <input flatpickr options="fpOptions" ng-Model="focus.time_end" name="date_end"></p>
+        </div>
+        <div class="main">
             <h1>{{ focus.emp }}</h1>
-            <table class="data" ng-repeat="day in employees[focus.emp]">
+            <table class="data" ng-repeat="day in employees[focus.emp] | daterange : 'TIME_START' : focus.time_start : focus.time_end">
                 <tr>
-                    <td>{{ day.DAY }}</td>
+                    <th>{{ day.DAY | date : 'MMM d' }}</th>
                 </tr>
                 <tr ng-repeat="item in day.BILLABLE | orderBy: 'TIME_START'">
                     <td>{{ jobs[item.JOB_ID].JOB_NUMBER || jobs[item.JOB_ID_START].JOB_NUMBER }}<span ng-show="item.JOB_ID_END"> - {{ jobs[item.JOB_ID_END].JOB_NUMBER }}</span></td>
@@ -47,6 +55,7 @@
 
         <!-- directives -->
         <script type="text/javascript" src="/public/js/directives/headtabs.client.directives.js"></script>
+        <script type="text/javascript" src="/public/js/directives/flatpickr.client.directives.js"></script>
     </body>
 </html>
 
