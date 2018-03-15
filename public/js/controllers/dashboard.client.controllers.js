@@ -25,17 +25,6 @@ angular.module('Database')
             queries.forEach(getData);
             $templateCache.removeAll();
         }
-
-        $scope.tabs = [
-            {name: "Add Labor", url: "/#!add_labor"},
-            {name: "Add Job", url: "/#!add_job"},
-            {name: "Add Employee", url: "/#!add_emp"},
-            {name: "Add Travel", url: "/#!add_travel"},
-            {name: "Add Repairs", url: "/#!add_repair"},
-            {name: "Add Request", url: "/#!add_request"},
-            {name: "Add Vehicle", url: "/#!add_vehicle"}
-        ];
-
         $scope.jobs = [];
         $scope.emps = [];
         $scope.select = {};

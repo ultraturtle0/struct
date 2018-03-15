@@ -1,16 +1,33 @@
 @import 'transitions.sass'
 
-headtabs, #tabs
-  td
+headtabs, #pages
+  width: 800px
+  display: inline-block
+
+  a, p
     padding: 5px 95px 5px 5px
     &:last-child
       padding: 5px
 
-    a
-      text-decoration: none
-      color: black
-      opacity: .7
-      @include transition(opacity, 0.4s, ease)
+    text-decoration: none
+    color: black
+    opacity: .7
+    @include transition(opacity, 0.4s, ease)
 
-      &:hover
-        opacity: 1.0
+    &:hover
+      opacity: 1.0
+
+.menu-tabs
+  li
+    list-style: none
+  display: none
+  position: absolute
+  border: black 1px solid
+
+#menu
+  display: inline-block
+  width: 100px
+  z-index: 1
+  &:hover
+    .menu-tabs
+      display: block

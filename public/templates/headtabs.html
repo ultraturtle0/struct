@@ -1,8 +1,13 @@
-
-<table id="pages">
-    <tbody>
-        <tr>
-            <td ng-repeat="page in pages"><a ng-href="/dashboard{{ page.url }}">{{ page.name }}</a></td>
-        </tr>
-    </tbody>
-</table>
+<div>
+    <div id="menu">
+        <p>Add...</p>
+        <ul class="menu-tabs">
+            <li ng-repeat="tab in tabs">
+                <a ng-href="/dashboard{{ tab.url }}">{{ tab.name }}</a>
+            </li>
+        </ul>
+    </div>
+    <div id="pages">
+        <a ng-repeat="page in pages" ng-href="/dashboard{{ page.url }}">{{ page.name }}</a>
+    </div>
+</div>
