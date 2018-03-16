@@ -1,7 +1,6 @@
 headtabs, #pages {
-  width: 800px;
-  display: inline-block; }
-  headtabs a, headtabs p, #pages a, #pages p {
+  overflow: hidden; }
+  headtabs a, #pages a {
     padding: 5px 95px 5px 5px;
     text-decoration: none;
     color: black;
@@ -11,21 +10,26 @@ headtabs, #pages {
     -ms-transition: opacity 0.4s ease;
     -o-transition: opacity 0.4s ease;
     transition: opacity 0.4s ease; }
-    headtabs a:last-child, headtabs p:last-child, #pages a:last-child, #pages p:last-child {
+    headtabs a:last-child, #pages a:last-child {
       padding: 5px; }
-    headtabs a:hover, headtabs p:hover, #pages a:hover, #pages p:hover {
+    headtabs a:hover, #pages a:hover {
       opacity: 1.0; }
 
 .menu-tabs {
   display: none;
+  background-color: white;
   position: absolute;
+  z-index: 10;
   border: black 1px solid; }
-  .menu-tabs li {
-    list-style: none; }
+  .menu-tabs a {
+    display: block;
+    width: 100%;
+    margin: 5px 5px;
+    padding: 5px 5px; }
 
 #menu {
-  display: inline-block;
-  width: 100px;
+  position: relative;
+  float: left;
   z-index: 1; }
   #menu:hover .menu-tabs {
     display: block; }
